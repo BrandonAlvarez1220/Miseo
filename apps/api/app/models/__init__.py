@@ -12,6 +12,7 @@ from app.models.catalog import (
 )
 from app.models.community import RecipeContribution, RecipeRevision, UserFavorite
 from app.models.ingestion import DuplicateCandidate, IngestionIssue, IngestionJob
+from app.models.learning import LearningPath, PathDish, PathStage, Skill, recipe_skill
 from app.models.recipe import (
     DrinkDetails,
     PreparationStep,
@@ -35,13 +36,18 @@ __all__ = [
     "IngredientAlias",
     "IngredientAlternative",
     "IngredientCategory",
+    "LearningPath",
+    "PathDish",
+    "PathStage",
     "PreparationStep",
     "Recipe",
     "RecipeContribution",
     "RecipeIngredient",
     "RecipeRevision",
     "RecipeSource",
+    "Skill",
     "Unit",
     "UserFavorite",
     "recipe_category",
+    "recipe_skill",
 ]

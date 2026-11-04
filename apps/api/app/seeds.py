@@ -19,6 +19,7 @@ from app.core.config import get_settings
 from app.core.logging import configure_logging
 from app.db.session import create_engine, create_session_factory
 from app.seeding.catalog import seed_alternatives, seed_ingredients
+from app.seeding.learning import seed_learning_paths, seed_recipe_skills, seed_skills
 from app.seeding.recipes import seed_recipes
 from app.seeding.reference import SEEDS_DIR, seed_reference
 
@@ -33,8 +34,19 @@ async def seed_all(session: AsyncSession) -> dict[str, int]:
     )
     counts["recipes"] = await seed_recipes(
         session,
-        [SEEDS_DIR / "recipes_cooking.json", SEEDS_DIR / "recipes_drinks.json"],
+        [
+            SEEDS_DIR / "recipes_cooking.json",
+            SEEDS_DIR / "recipes_drinks.json",
+            SEEDS_DIR / "recipes_paths.json",
+        ],
         SEEDS_DIR / "sources.json",
+    )
+    counts["skills.json"] = await seed_skills(session, SEEDS_DIR / "skills.json")
+    counts["recipe_skills.json"] = await seed_recipe_skills(
+        session, SEEDS_DIR / "recipe_skills.json"
+    )
+    counts["learning_paths.json"] = await seed_learning_paths(
+        session, SEEDS_DIR / "learning_paths.json"
     )
     await session.commit()
     return counts

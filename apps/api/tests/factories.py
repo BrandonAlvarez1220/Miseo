@@ -3,6 +3,7 @@
 from datetime import UTC, datetime
 from decimal import Decimal
 
+from sqlalchemy import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import (
@@ -11,11 +12,16 @@ from app.models import (
     Ingredient,
     IngredientAlias,
     IngredientAlternative,
+    LearningPath,
+    PathDish,
+    PathStage,
     PreparationStep,
     Recipe,
     RecipeIngredient,
     RecipeSource,
+    Skill,
     Unit,
+    recipe_skill,
 )
 from app.models.enums import (
     Difficulty,
@@ -136,3 +142,42 @@ async def make_recipe(
         )
         await session.flush()
     return recipe
+
+
+async def make_skill(
+    session: AsyncSession, slug: str, discipline: RecipeType = RecipeType.COOKING
+) -> Skill:
+    skill = Skill(slug=slug, name=slug.replace("-", " ").title(), discipline=discipline, tip="Tip.")
+    session.add(skill)
+    await session.flush()
+    return skill
+
+
+async def tag_skills(session: AsyncSession, recipe: Recipe, *skills: Skill) -> None:
+    await session.execute(
+        insert(recipe_skill).values([{"recipe_id": recipe.id, "skill_id": s.id} for s in skills])
+    )
+
+
+async def make_path(
+    session: AsyncSession, slug: str, stages: list[tuple[str, int, list[Recipe]]]
+) -> None:
+    session.add(
+        LearningPath(
+            slug=slug,
+            title=slug.title(),
+            discipline=RecipeType.COOKING,
+            stages=[
+                PathStage(
+                    position=position,
+                    title=title,
+                    dishes_to_unlock=unlock,
+                    dishes=[
+                        PathDish(position=n, recipe_id=r.id) for n, r in enumerate(recipes, start=1)
+                    ],
+                )
+                for position, (title, unlock, recipes) in enumerate(stages, start=1)
+            ],
+        )
+    )
+    await session.flush()

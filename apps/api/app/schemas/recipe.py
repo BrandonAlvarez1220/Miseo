@@ -116,6 +116,19 @@ class RecipeSummary(BaseModel):
     published_at: datetime | None
 
 
+class RecipeSkill(APIModel):
+    slug: str
+    name: str
+    tip: str
+
+
+class RecipePathMembership(BaseModel):
+    path_slug: str
+    path_title: str
+    stage_position: int
+    stage_title: str
+
+
 class RecipeDetail(RecipeSummary):
     introduction: str | None
     tips: str | None
@@ -124,6 +137,8 @@ class RecipeDetail(RecipeSummary):
     sources: list[SourceRead]
     drink: DrinkDetailsRead | None
     related: list[RecipeSummary]
+    skills: list[RecipeSkill] = Field(description="What you learn cooking this recipe.")
+    paths: list[RecipePathMembership] = Field(description="Learning paths that include it.")
 
 
 class Page[T](BaseModel):

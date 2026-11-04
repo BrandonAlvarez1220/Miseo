@@ -60,5 +60,13 @@
   {"name": "Agua con gas", "category": "mezcladores", "aliases": ["soda", "agua mineral con gas", "agua carbonatada"], "color": "#e6f2f7", "is_carbonated": true},
   {"name": "Cerveza de jengibre", "category": "mezcladores", "aliases": ["ginger beer"], "color": "#d8b066", "is_carbonated": true},
   {"name": "Ginger ale", "category": "mezcladores", "aliases": ["refresco de jengibre"], "color": "#e6c27f", "is_carbonated": true},
-  {"name": "Cola", "category": "mezcladores", "aliases": ["refresco de cola"], "color": "#3a1d10", "is_carbonated": true}
+  {"name": "Cola", "category": "mezcladores", "aliases": ["refresco de cola"], "color": "#3a1d10", "is_carbonated": true},
+  {"name": "Chile serrano", "category": "verduras", "aliases": ["chiles serranos", "serrano"]},
+  {"name": "Nopales", "category": "verduras", "aliases": ["nopal", "nopalitos"]},
+  {"name": "Epazote", "category": "hierbas", "aliases": ["hoja de epazote"]},
+  {"name": "Fideo", "category": "granos", "aliases": ["fideos", "fideo para sopa", "fideo cambray"]},
+  {"name": "Queso Oaxaca", "category": "lacteos", "aliases": ["quesillo", "queso de hebra"]},
+  {"name": "Frijol seco", "category": "legumbres", "aliases": ["frijol negro", "frijol pinto", "frijol bayo", "frijoles secos"]},
+  {"name": "Bistec de res", "category": "proteinas", "aliases": ["bistec", "bisteces", "carne para bistec"]},
+  {"name": "Refresco de toronja", "category": "mezcladores", "is_carbonated": true, "color": "#f3dcc9", "aliases": ["soda de toronja"]}
 ]

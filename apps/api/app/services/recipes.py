@@ -8,6 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.errors import NotFoundError
 from app.models import IngredientAlternative, Recipe
 from app.models.enums import RecipeType
+from app.repositories import learning as learning_repo
 from app.repositories import recipe as recipe_repo
 from app.repositories.recipe import RecipeFilters, RecipeSort
 from app.schemas.recipe import (
@@ -21,6 +22,8 @@ from app.schemas.recipe import (
     RecipeIngredientRead,
     RecipeIngredientRef,
     RecipeLink,
+    RecipePathMembership,
+    RecipeSkill,
     RecipeSummary,
     SourceRead,
     StepRead,
@@ -128,6 +131,9 @@ async def get_detail(session: AsyncSession, slug: str) -> RecipeDetail:
             variations=[RecipeLink.model_validate(v) for v in variations],
         )
 
+    skills = (await learning_repo.skills_by_recipe(session, [recipe.id])).get(recipe.id, [])
+    memberships = await learning_repo.memberships(session, recipe.id)
+
     summary = to_summary(recipe, len(recipe.ingredients))
     return RecipeDetail(
         **summary.model_dump(),
@@ -150,4 +156,14 @@ async def get_detail(session: AsyncSession, slug: str) -> RecipeDetail:
         sources=[SourceRead.model_validate(s) for s in recipe.sources],
         drink=drink,
         related=related,
+        skills=[RecipeSkill.model_validate(s) for s in skills],
+        paths=[
+            RecipePathMembership(
+                path_slug=path.slug,
+                path_title=path.title,
+                stage_position=stage.position,
+                stage_title=stage.title,
+            )
+            for path, stage in memberships
+        ],
     )
