@@ -24,7 +24,9 @@ class SeedIngredient(_Strict):
     aliases: list[str] = []
     is_alcoholic: bool = False
     is_staple: bool = False
+    is_carbonated: bool = False
     abv: Decimal | None = Field(default=None, ge=0, le=100)
+    color: str | None = Field(default=None, pattern=r"^#[0-9a-f]{6}$")
 
 
 class SeedAlternative(_Strict):

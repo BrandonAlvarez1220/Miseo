@@ -42,6 +42,7 @@ class Ingredient(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "ingredient"
     __table_args__ = (
         CheckConstraint("abv IS NULL OR (abv >= 0 AND abv <= 100)", name="abv_range"),
+        CheckConstraint("color IS NULL OR color ~ '^#[0-9a-f]{6}$'", name="color_hex"),
         Index(
             "ix_ingredient_normalized_name_trgm",
             "normalized_name",
@@ -62,6 +63,10 @@ class Ingredient(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     )
     is_alcoholic: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
     abv: Mapped[Decimal | None] = mapped_column(Numeric(4, 1))
+    # Visual properties used to render drinks (pour animation): approximate color
+    # of the ingredient as a liquid/solid, and whether it adds bubbles.
+    color: Mapped[str | None] = mapped_column(String(7))
+    is_carbonated: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
     image_url: Mapped[str | None] = mapped_column(Text)
 
     category: Mapped[IngredientCategory | None] = relationship()

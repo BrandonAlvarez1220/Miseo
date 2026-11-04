@@ -44,7 +44,9 @@ async def seed_ingredients(session: AsyncSession, path: Path) -> int:
             "category_id": categories[item.category],
             "is_alcoholic": item.is_alcoholic,
             "is_staple": item.is_staple,
+            "is_carbonated": item.is_carbonated,
             "abv": item.abv,
+            "color": item.color,
         }
         stmt = insert(Ingredient).values(values)
         stmt = stmt.on_conflict_do_update(

@@ -192,3 +192,26 @@ async def test_categories_include_published_recipe_counts(
     body = (await client.get("/api/v1/categories")).json()
 
     assert body[0]["recipe_count"] == 1
+
+
+async def test_detail_exposes_ingredient_visual_data(
+    client: AsyncClient, session: AsyncSession
+) -> None:
+    campari = await make_ingredient(session, "Campari")
+    soda = await make_ingredient(session, "Soda")
+    campari.color = "#c8102e"
+    soda.is_carbonated = True
+    await make_recipe(
+        session,
+        "Campari soda",
+        recipe_type=RecipeType.DRINK,
+        ingredients=(campari, soda),
+        drink=DrinkClassification.CLASSIC,
+    )
+    await session.commit()
+
+    body = (await client.get("/api/v1/recipes/campari-soda")).json()
+    lines = {i["ingredient"]["slug"]: i["ingredient"] for i in body["ingredients"]}
+
+    assert lines["campari"]["color"] == "#c8102e"
+    assert lines["soda"]["is_carbonated"] is True

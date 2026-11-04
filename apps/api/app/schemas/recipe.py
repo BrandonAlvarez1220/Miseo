@@ -26,6 +26,13 @@ class IngredientRef(APIModel):
     slug: str
 
 
+class RecipeIngredientRef(IngredientRef):
+    """Ingredient as used in a recipe line, with the visual data drinks need."""
+
+    color: str | None = Field(description="Approximate hex color, e.g. '#c8102e'.")
+    is_carbonated: bool
+
+
 class UnitRead(APIModel):
     code: str
     name: str
@@ -42,7 +49,7 @@ class AlternativeRead(BaseModel):
 
 
 class RecipeIngredientRead(BaseModel):
-    ingredient: IngredientRef
+    ingredient: RecipeIngredientRef
     quantity: Decimal | None
     quantity_max: Decimal | None
     unit: UnitRead | None

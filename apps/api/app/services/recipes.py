@@ -19,6 +19,7 @@ from app.schemas.recipe import (
     Page,
     RecipeDetail,
     RecipeIngredientRead,
+    RecipeIngredientRef,
     RecipeLink,
     RecipeSummary,
     SourceRead,
@@ -134,7 +135,7 @@ async def get_detail(session: AsyncSession, slug: str) -> RecipeDetail:
         tips=recipe.tips,
         ingredients=[
             RecipeIngredientRead(
-                ingredient=IngredientRef.model_validate(item.ingredient),
+                ingredient=RecipeIngredientRef.model_validate(item.ingredient),
                 quantity=item.quantity,
                 quantity_max=item.quantity_max,
                 unit=UnitRead.model_validate(item.unit) if item.unit else None,

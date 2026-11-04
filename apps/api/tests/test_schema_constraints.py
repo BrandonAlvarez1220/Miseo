@@ -196,3 +196,10 @@ async def test_ingredient_in_use_cannot_be_deleted(session: AsyncSession) -> Non
 
     with pytest.raises(IntegrityError, match="fk_recipe_ingredient_ingredient_id_ingredient"):
         await session.execute(text("DELETE FROM ingredient WHERE id = :id"), {"id": salt.id})
+
+
+async def test_ingredient_color_must_be_lowercase_hex(session: AsyncSession) -> None:
+    ingredient = await _ingredient(session, "campari")
+    ingredient.color = "red"
+    with pytest.raises(IntegrityError, match="color_hex"):
+        await session.flush()
