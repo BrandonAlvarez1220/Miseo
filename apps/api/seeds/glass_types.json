@@ -1,0 +1,12 @@
+[
+  {"slug": "coupe", "name": "Copa coupe", "description": "Copa de boca ancha y poco profunda para cócteles servidos sin hielo."},
+  {"slug": "martini", "name": "Copa martini", "description": "Copa cónica clásica para cócteles batidos o mezclados sin hielo."},
+  {"slug": "rocks", "name": "Vaso old fashioned", "description": "Vaso bajo y grueso para tragos con hielo."},
+  {"slug": "highball", "name": "Vaso highball", "description": "Vaso alto para tragos largos con mezclador."},
+  {"slug": "collins", "name": "Vaso collins", "description": "Más alto y estrecho que el highball."},
+  {"slug": "nick-and-nora", "name": "Copa Nick & Nora", "description": "Copa pequeña y elegante, alternativa a la coupe."},
+  {"slug": "copa-de-vino", "name": "Copa de vino", "description": "Para spritz y cócteles con vino."},
+  {"slug": "flauta", "name": "Flauta", "description": "Para cócteles con espumoso."},
+  {"slug": "taza-de-cobre", "name": "Taza de cobre", "description": "Tradicional del Moscow Mule."},
+  {"slug": "tiki", "name": "Vaso tiki", "description": "Vasos de cerámica decorada para cócteles tropicales."}
+]
