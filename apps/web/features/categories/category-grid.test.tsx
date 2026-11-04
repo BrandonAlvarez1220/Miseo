@@ -6,17 +6,32 @@ import type { Category } from "@/types/api";
 import { CategoryGrid } from "./category-grid";
 
 const categories: Category[] = [
-  { id: "1", name: "Sours", slug: "sours", description: "Cítrico y dulzor.", recipe_type: "drink" },
-  { id: "2", name: "Highballs", slug: "highballs", description: null, recipe_type: "drink" },
+  {
+    id: "1",
+    name: "Sours",
+    slug: "sours",
+    description: "Cítrico y dulzor.",
+    recipe_type: "drink",
+    recipe_count: 4,
+  },
+  {
+    id: "2",
+    name: "Highballs",
+    slug: "highballs",
+    description: null,
+    recipe_type: "drink",
+    recipe_count: 1,
+  },
 ];
 
 describe("CategoryGrid", () => {
-  it("renders one item per category with its description", () => {
+  it("links each category to the filtered recipe search with its count", () => {
     render(<CategoryGrid categories={categories} />);
 
-    expect(screen.getAllByRole("listitem")).toHaveLength(2);
-    expect(screen.getByText("Sours")).toBeInTheDocument();
-    expect(screen.getByText("Cítrico y dulzor.")).toBeInTheDocument();
+    const sours = screen.getByRole("link", { name: /Sours/ });
+    expect(sours).toHaveAttribute("href", "/recetas?tipo=drink&categoria=sours");
+    expect(sours).toHaveTextContent("4 recetas");
+    expect(screen.getByRole("link", { name: /Highballs/ })).toHaveTextContent("1 receta");
   });
 
   it("shows an empty state when there are no categories", () => {

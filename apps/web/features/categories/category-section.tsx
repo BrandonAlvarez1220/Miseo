@@ -1,9 +1,6 @@
-import { CloudOff } from "lucide-react";
 import { connection } from "next/server";
 
-import { buttonVariants } from "@/components/ui/button";
-import { StateMessage } from "@/components/ui/state-message";
-import { ApiError } from "@/lib/api-client";
+import { apiErrorState } from "@/components/ui/api-error-state";
 import type { Category, RecipeType } from "@/types/api";
 
 import { getCategories } from "./api";
@@ -24,21 +21,7 @@ export async function CategorySection({ recipeType, retryHref }: CategorySection
   try {
     categories = await getCategories(recipeType);
   } catch (error) {
-    if (!(error instanceof ApiError)) throw error;
-    console.error("Failed to load categories", { code: error.code, status: error.status });
-    return (
-      <StateMessage
-        tone="danger"
-        icon={CloudOff}
-        title="No pudimos cargar las categorías"
-        description="El servicio no está disponible en este momento. Inténtalo de nuevo en unos segundos."
-        action={
-          <a href={retryHref} className={buttonVariants({ variant: "secondary", size: "sm" })}>
-            Reintentar
-          </a>
-        }
-      />
-    );
+    return apiErrorState(error, retryHref, "las categorías");
   }
   return <CategoryGrid categories={categories} />;
 }

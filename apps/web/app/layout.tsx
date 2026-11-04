@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/layout/app-sidebar";
 import { AppTopbar } from "@/components/layout/app-topbar";
 import { MobileTabBar } from "@/components/layout/mobile-tab-bar";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { GlobalSearch } from "@/components/search/global-search";
 
 import "./globals.css";
 
@@ -35,7 +36,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full bg-canvas text-ink">
         <AppSidebar />
         <div className="flex min-w-0 flex-1 flex-col pb-20 lg:pb-0">
-          <AppTopbar />
+          <AppTopbar>
+            <GlobalSearch />
+          </AppTopbar>
           <main className="flex-1">{children}</main>
           <SiteFooter />
         </div>
