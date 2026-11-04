@@ -1,16 +1,10 @@
-"""Idempotent loader for reference and development seed data.
-
-Usage::
-
-    uv run python -m app.seeds
+"""Reference catalogs (units, categories, glassware...).
 
 Each dataset is upserted by its natural key (``code``, ``slug`` ...), so running
 the loader repeatedly never duplicates rows and updates changed descriptions.
 """
 
-import asyncio
 import json
-import logging
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -18,15 +12,10 @@ from typing import Any
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.config import get_settings
-from app.core.logging import configure_logging
 from app.db.base import Base
-from app.db.session import create_engine, create_session_factory
 from app.models import BartendingTechnique, Category, GlassType, IngredientCategory, Unit
 
-logger = logging.getLogger("app.seeds")
-
-SEEDS_DIR = Path(__file__).resolve().parent.parent / "seeds"
+SEEDS_DIR = Path(__file__).resolve().parents[2] / "seeds"
 
 
 @dataclass(frozen=True)
@@ -64,28 +53,10 @@ async def upsert(session: AsyncSession, dataset: Dataset, rows: list[dict[str, A
     await session.execute(stmt)
 
 
-async def seed_all(session: AsyncSession) -> dict[str, int]:
+async def seed_reference(session: AsyncSession) -> dict[str, int]:
     counts: dict[str, int] = {}
     for dataset in DATASETS:
         rows = load_rows(dataset.file)
         await upsert(session, dataset, rows)
         counts[dataset.file] = len(rows)
-    await session.commit()
     return counts
-
-
-async def main() -> None:
-    settings = get_settings()
-    configure_logging(settings.log_level, json_output=settings.is_production)
-    engine = create_engine(settings)
-    try:
-        async with create_session_factory(engine)() as session:
-            counts = await seed_all(session)
-    finally:
-        await engine.dispose()
-    for file, count in counts.items():
-        logger.info("Seeded %s (%d rows)", file, count)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())

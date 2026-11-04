@@ -1,0 +1,316 @@
+[
+  {
+    "slug": "arroz-con-pollo",
+    "title": "Arroz con pollo",
+    "description": "Un clásico casero de una sola olla: arroz meloso con pollo, verduras y especias.",
+    "introduction": "Pocas recetas resuelven una comida familiar tan bien como esta: todo se cocina en la misma olla y el arroz absorbe el sabor del pollo y del sofrito.",
+    "tips": "Dora bien el pollo antes de añadir el arroz: ese tostado es la base del sabor. No remuevas el arroz una vez que hierva.",
+    "recipe_type": "cooking", "difficulty": "medium", "servings": 4,
+    "preparation_time_minutes": 15, "cooking_time_minutes": 40,
+    "categories": ["pastas-y-arroces", "carnes-y-aves"],
+    "ingredients": [
+      {"ingredient": "pollo", "quantity": 800, "unit": "g", "notes": "en piezas (muslos o contramuslos)"},
+      {"ingredient": "arroz", "quantity": 2, "unit": "cup"},
+      {"ingredient": "caldo de pollo", "quantity": 4, "unit": "cup", "notes": "caliente"},
+      {"ingredient": "cebolla", "quantity": 1, "unit": "piece", "notes": "picada"},
+      {"ingredient": "ajo", "quantity": 3, "unit": "clove", "notes": "picados"},
+      {"ingredient": "pimiento rojo", "quantity": 1, "unit": "piece", "notes": "en tiras"},
+      {"ingredient": "tomate", "quantity": 2, "unit": "piece", "notes": "rallados"},
+      {"ingredient": "comino", "quantity": 1, "unit": "tsp"},
+      {"ingredient": "pimenton", "quantity": 1, "unit": "tsp"},
+      {"ingredient": "aceite de oliva", "quantity": 3, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "pimienta negra", "unit": "to_taste"},
+      {"ingredient": "guisantes", "quantity": 1, "unit": "cup", "optional": true},
+      {"ingredient": "cilantro", "quantity": 2, "unit": "tbsp", "optional": true, "notes": "picado, para servir"}
+    ],
+    "steps": [
+      "Salpimienta el pollo. Calienta el aceite en una olla amplia y dora las piezas por todos los lados a fuego medio-alto. Retíralas y reserva.",
+      "En la misma olla sofríe la cebolla y el pimiento 5 minutos, hasta que se ablanden. Añade el ajo y cocina 1 minuto más.",
+      "Incorpora el tomate rallado, el comino y el pimentón. Cocina 3-4 minutos hasta que el tomate pierda el agua.",
+      "Añade el arroz y remueve 1 minuto para que se impregne del sofrito.",
+      "Vuelve a poner el pollo, vierte el caldo caliente y ajusta de sal. Cuando hierva, baja el fuego, tapa y cocina 18-20 minutos sin remover.",
+      "Si usas guisantes, añádelos en los últimos 5 minutos. Deja reposar 5 minutos tapado y sirve con cilantro."
+    ]
+  },
+  {
+    "slug": "ensalada-caprese",
+    "title": "Ensalada caprese",
+    "description": "Tomate, mozzarella y albahaca con buen aceite de oliva. Simple y perfecta en temporada.",
+    "introduction": "Una ensalada de pocos ingredientes donde cada uno importa: usa los tomates más maduros que encuentres.",
+    "tips": "Saca la mozzarella de la nevera 20 minutos antes para que recupere su textura cremosa.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 2,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 0,
+    "categories": ["ensaladas", "entradas", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "tomate", "quantity": 3, "unit": "piece", "notes": "maduros"},
+      {"ingredient": "mozzarella", "quantity": 250, "unit": "g"},
+      {"ingredient": "albahaca", "quantity": 10, "unit": "leaf"},
+      {"ingredient": "aceite de oliva", "quantity": 3, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste", "notes": "en escamas si tienes"},
+      {"ingredient": "pimienta negra", "unit": "to_taste"},
+      {"ingredient": "vinagre balsamico", "quantity": 1, "unit": "tbsp", "optional": true}
+    ],
+    "steps": [
+      "Corta los tomates y la mozzarella en rodajas de medio centímetro.",
+      "Intercálalos en un plato alternando con las hojas de albahaca.",
+      "Sazona con sal y pimienta, riega con el aceite de oliva y, si quieres, unas gotas de vinagre balsámico justo antes de servir."
+    ]
+  },
+  {
+    "slug": "guacamole",
+    "title": "Guacamole",
+    "description": "Aguacate machacado con lima, cebolla, tomate y cilantro.",
+    "introduction": "La clave es el aguacate en su punto: cede ligeramente al presionarlo.",
+    "tips": "Prepáralo justo antes de servir. Si sobra, cúbrelo con film en contacto con la superficie para que no se oxide.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 15, "cooking_time_minutes": 0,
+    "categories": ["entradas", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "aguacate", "quantity": 3, "unit": "piece", "notes": "maduros"},
+      {"ingredient": "lima", "quantity": 1, "unit": "piece", "notes": "su jugo"},
+      {"ingredient": "cebolla", "quantity": 0.5, "unit": "piece", "notes": "picada fina"},
+      {"ingredient": "tomate", "quantity": 1, "unit": "piece", "notes": "sin semillas, en cubos"},
+      {"ingredient": "cilantro", "quantity": 2, "unit": "tbsp", "notes": "picado"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "chile jalapeno", "quantity": 1, "unit": "piece", "optional": true, "notes": "sin semillas, picado"}
+    ],
+    "steps": [
+      "Machaca la pulpa de los aguacates con un tenedor, dejando algunos trozos.",
+      "Añade el jugo de lima y una pizca de sal y mezcla.",
+      "Incorpora la cebolla, el tomate, el cilantro y el jalapeño. Prueba y ajusta de sal y lima."
+    ]
+  },
+  {
+    "slug": "tortilla-de-patatas",
+    "title": "Tortilla de patatas",
+    "description": "Patatas confitadas en aceite de oliva y huevo, jugosa por dentro.",
+    "introduction": "Con cebolla o sin cebolla: aquí la cebolla es opcional para que cada casa decida.",
+    "tips": "El aceite sobrante del confitado se puede colar y reutilizar para otra fritura.",
+    "recipe_type": "cooking", "difficulty": "medium", "servings": 6,
+    "preparation_time_minutes": 15, "cooking_time_minutes": 30,
+    "categories": ["entradas", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "patata", "quantity": 800, "unit": "g", "notes": "en láminas finas"},
+      {"ingredient": "huevo", "quantity": 6, "unit": "piece"},
+      {"ingredient": "aceite de oliva", "quantity": 250, "unit": "ml", "notes": "para confitar"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "cebolla", "quantity": 1, "unit": "piece", "optional": true, "notes": "en juliana"}
+    ],
+    "steps": [
+      "Calienta el aceite en una sartén a fuego medio y añade las patatas (y la cebolla, si la usas) con un poco de sal. Cocina 20 minutos, sin que lleguen a dorarse, hasta que estén tiernas.",
+      "Escurre bien las patatas reservando el aceite.",
+      "Bate los huevos con sal, añade las patatas calientes y deja reposar 5 minutos.",
+      "Calienta 1 cucharada del aceite reservado en una sartén mediana, vierte la mezcla y cuaja 3 minutos a fuego medio.",
+      "Dale la vuelta con ayuda de un plato y cocina 2 minutos más. Sirve templada."
+    ]
+  },
+  {
+    "slug": "pasta-al-pomodoro",
+    "title": "Pasta al pomodoro",
+    "description": "Pasta con una salsa sencilla de tomate, ajo, aceite de oliva y albahaca.",
+    "introduction": "Una salsa de tomate de 20 minutos que demuestra que no hacen falta muchos ingredientes.",
+    "tips": "Reserva un poco del agua de cocción: su almidón ayuda a que la salsa se adhiera a la pasta.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 25,
+    "categories": ["pastas-y-arroces", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "pasta", "quantity": 400, "unit": "g"},
+      {"ingredient": "tomate", "quantity": 800, "unit": "g", "notes": "maduros, pelados y troceados"},
+      {"ingredient": "ajo", "quantity": 2, "unit": "clove", "notes": "laminados"},
+      {"ingredient": "aceite de oliva", "quantity": 4, "unit": "tbsp"},
+      {"ingredient": "albahaca", "quantity": 8, "unit": "leaf"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "queso parmesano", "quantity": 40, "unit": "g", "optional": true, "notes": "rallado"}
+    ],
+    "steps": [
+      "Calienta el aceite a fuego suave y dora ligeramente el ajo.",
+      "Añade el tomate y una pizca de sal. Cocina 20 minutos a fuego medio, aplastando el tomate, hasta que espese.",
+      "Mientras tanto, cuece la pasta en abundante agua con sal según el paquete. Reserva media taza del agua de cocción.",
+      "Escurre la pasta, mézclala con la salsa y un chorrito del agua reservada. Termina con albahaca y parmesano."
+    ]
+  },
+  {
+    "slug": "pollo-al-limon-con-ajo",
+    "title": "Pollo al limón con ajo",
+    "description": "Pechugas doradas en sartén con una salsa rápida de limón, ajo y mantequilla.",
+    "introduction": "Una cena de entre semana con sabor de domingo.",
+    "tips": "Aplana un poco las pechugas para que se cocinen de forma uniforme y queden jugosas.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 20,
+    "categories": ["carnes-y-aves"],
+    "ingredients": [
+      {"ingredient": "pollo", "quantity": 4, "unit": "piece", "notes": "pechugas"},
+      {"ingredient": "limon", "quantity": 2, "unit": "piece", "notes": "jugo y ralladura"},
+      {"ingredient": "ajo", "quantity": 4, "unit": "clove", "notes": "picados"},
+      {"ingredient": "mantequilla", "quantity": 30, "unit": "g"},
+      {"ingredient": "aceite de oliva", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "pimienta negra", "unit": "to_taste"},
+      {"ingredient": "romero", "quantity": 1, "unit": "sprig", "optional": true}
+    ],
+    "steps": [
+      "Salpimienta las pechugas. Dóralas en el aceite caliente 5-6 minutos por lado hasta que estén hechas. Retira y reserva.",
+      "Baja el fuego, añade la mantequilla, el ajo y el romero y cocina 1 minuto sin que el ajo se queme.",
+      "Agrega el jugo y la ralladura de limón, raspa el fondo de la sartén y deja reducir 2 minutos.",
+      "Devuelve el pollo a la sartén, báñalo con la salsa y sirve."
+    ]
+  },
+  {
+    "slug": "sopa-de-tomate",
+    "title": "Sopa de tomate",
+    "description": "Crema suave de tomate asado con un toque de albahaca.",
+    "introduction": "Perfecta para aprovechar tomates muy maduros.",
+    "tips": "Si los tomates están ácidos, añade una pizca de azúcar.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 30,
+    "categories": ["sopas-y-cremas", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "tomate", "quantity": 1, "unit": "kg"},
+      {"ingredient": "cebolla", "quantity": 1, "unit": "piece"},
+      {"ingredient": "ajo", "quantity": 2, "unit": "clove"},
+      {"ingredient": "caldo de verduras", "quantity": 750, "unit": "ml"},
+      {"ingredient": "aceite de oliva", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "pimienta negra", "unit": "to_taste"},
+      {"ingredient": "albahaca", "quantity": 6, "unit": "leaf", "optional": true},
+      {"ingredient": "nata", "quantity": 100, "unit": "ml", "optional": true}
+    ],
+    "steps": [
+      "Pica la cebolla y el ajo y póchalos en el aceite 6 minutos a fuego medio.",
+      "Añade los tomates troceados, sal y pimienta y cocina 8 minutos.",
+      "Vierte el caldo y cocina 15 minutos a fuego suave.",
+      "Tritura hasta obtener una crema fina. Si quieres, añade la nata y la albahaca y vuelve a triturar."
+    ]
+  },
+  {
+    "slug": "lentejas-guisadas",
+    "title": "Lentejas guisadas",
+    "description": "Lentejas con verduras y pimentón, un guiso reconfortante y económico.",
+    "introduction": "Un plato de cuchara completo, aún mejor al día siguiente.",
+    "tips": "Las lentejas pardinas no necesitan remojo. Añade agua caliente si hace falta durante la cocción, nunca fría.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 15, "cooking_time_minutes": 45,
+    "categories": ["sopas-y-cremas", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "lentejas", "quantity": 300, "unit": "g"},
+      {"ingredient": "zanahoria", "quantity": 2, "unit": "piece", "notes": "en rodajas"},
+      {"ingredient": "cebolla", "quantity": 1, "unit": "piece", "notes": "picada"},
+      {"ingredient": "ajo", "quantity": 2, "unit": "clove"},
+      {"ingredient": "pimiento rojo", "quantity": 1, "unit": "piece", "notes": "picado"},
+      {"ingredient": "tomate", "quantity": 1, "unit": "piece", "notes": "rallado"},
+      {"ingredient": "pimenton", "quantity": 1, "unit": "tsp"},
+      {"ingredient": "laurel", "quantity": 2, "unit": "leaf"},
+      {"ingredient": "aceite de oliva", "quantity": 3, "unit": "tbsp"},
+      {"ingredient": "agua", "quantity": 1.2, "unit": "l"},
+      {"ingredient": "sal", "unit": "to_taste"}
+    ],
+    "steps": [
+      "Sofríe la cebolla, el pimiento y el ajo en el aceite 8 minutos.",
+      "Añade el tomate y cocina 3 minutos. Fuera del fuego, incorpora el pimentón y remueve.",
+      "Agrega las lentejas, la zanahoria, el laurel y el agua. Lleva a ebullición.",
+      "Baja el fuego y cocina 35-40 minutos hasta que las lentejas estén tiernas. Sala al final."
+    ]
+  },
+  {
+    "slug": "panqueques",
+    "title": "Panqueques esponjosos",
+    "description": "Panqueques altos y suaves para el desayuno del fin de semana.",
+    "introduction": "Rinde unos 12 panqueques medianos.",
+    "tips": "No batas de más: unos grumos pequeños en la masa son buena señal. Dale la vuelta cuando aparezcan burbujas en la superficie.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 15,
+    "categories": ["desayunos", "postres"],
+    "ingredients": [
+      {"ingredient": "harina de trigo", "quantity": 200, "unit": "g"},
+      {"ingredient": "leche", "quantity": 300, "unit": "ml"},
+      {"ingredient": "huevo", "quantity": 2, "unit": "piece"},
+      {"ingredient": "azucar", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "polvo de hornear", "quantity": 2, "unit": "tsp"},
+      {"ingredient": "mantequilla", "quantity": 30, "unit": "g", "notes": "derretida, y un poco más para la sartén"},
+      {"ingredient": "sal", "quantity": 1, "unit": "pinch"},
+      {"ingredient": "miel", "unit": "to_taste", "optional": true, "notes": "para servir"}
+    ],
+    "steps": [
+      "Mezcla en un bol la harina, el azúcar, el polvo de hornear y la sal.",
+      "En otro bol bate los huevos con la leche y la mantequilla derretida.",
+      "Une ambas mezclas con pocos movimientos, sin batir de más.",
+      "Calienta una sartén a fuego medio con un poco de mantequilla. Vierte porciones de masa y cocina hasta que salgan burbujas; da la vuelta y cocina 1 minuto más.",
+      "Sirve calientes con miel."
+    ]
+  },
+  {
+    "slug": "huevos-rancheros",
+    "title": "Huevos rancheros",
+    "description": "Huevos fritos sobre tortillas de maíz con salsa de tomate y chile.",
+    "introduction": "Un desayuno contundente, con tanto picante como quieras.",
+    "tips": "Calienta las tortillas en un comal o sartén seca para que no se rompan.",
+    "recipe_type": "cooking", "difficulty": "medium", "servings": 2,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 15,
+    "categories": ["desayunos"],
+    "ingredients": [
+      {"ingredient": "huevo", "quantity": 4, "unit": "piece"},
+      {"ingredient": "tortilla de maiz", "quantity": 4, "unit": "piece"},
+      {"ingredient": "tomate", "quantity": 3, "unit": "piece"},
+      {"ingredient": "cebolla", "quantity": 0.5, "unit": "piece"},
+      {"ingredient": "ajo", "quantity": 1, "unit": "clove"},
+      {"ingredient": "chile jalapeno", "quantity": 1, "unit": "piece"},
+      {"ingredient": "aceite vegetal", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "frijoles cocidos", "quantity": 1, "unit": "cup", "optional": true, "notes": "para acompañar"},
+      {"ingredient": "cilantro", "quantity": 1, "unit": "tbsp", "optional": true}
+    ],
+    "steps": [
+      "Tritura el tomate, la cebolla, el ajo y el jalapeño con una pizca de sal.",
+      "Cocina la salsa en 1 cucharada de aceite 8 minutos a fuego medio.",
+      "Calienta las tortillas y fríe los huevos en el aceite restante.",
+      "Coloca dos tortillas por plato, encima los huevos y baña con la salsa. Acompaña con frijoles y cilantro."
+    ]
+  },
+  {
+    "slug": "pico-de-gallo",
+    "title": "Pico de gallo",
+    "description": "Salsa fresca de tomate, cebolla, chile, cilantro y lima.",
+    "introduction": "Acompaña tacos, carnes a la plancha o simplemente unos totopos.",
+    "tips": "Corta todo del mismo tamaño para que cada bocado tenga de todo.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 15, "cooking_time_minutes": 0,
+    "categories": ["entradas", "ensaladas", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "tomate", "quantity": 4, "unit": "piece", "notes": "en cubos pequeños"},
+      {"ingredient": "cebolla", "quantity": 1, "unit": "piece", "notes": "picada fina"},
+      {"ingredient": "cilantro", "quantity": 3, "unit": "tbsp", "notes": "picado"},
+      {"ingredient": "chile jalapeno", "quantity": 1, "unit": "piece", "notes": "picado"},
+      {"ingredient": "lima", "quantity": 1, "unit": "piece", "notes": "su jugo"},
+      {"ingredient": "sal", "unit": "to_taste"}
+    ],
+    "steps": [
+      "Mezcla en un bol el tomate, la cebolla, el cilantro y el jalapeño.",
+      "Añade el jugo de lima y sal al gusto. Deja reposar 10 minutos antes de servir."
+    ]
+  },
+  {
+    "slug": "salmon-al-horno-con-limon",
+    "title": "Salmón al horno con limón",
+    "description": "Filetes de salmón jugosos con ajo, limón y perejil, listos en 20 minutos.",
+    "introduction": "Una de las formas más fáciles de cocinar pescado sin que se seque.",
+    "tips": "El salmón está listo cuando se separa en láminas al presionarlo con un tenedor.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 2,
+    "preparation_time_minutes": 5, "cooking_time_minutes": 15,
+    "categories": ["pescados-y-mariscos"],
+    "ingredients": [
+      {"ingredient": "salmon", "quantity": 2, "unit": "piece", "notes": "filetes de unos 150 g"},
+      {"ingredient": "limon", "quantity": 1, "unit": "piece", "notes": "en rodajas"},
+      {"ingredient": "ajo", "quantity": 2, "unit": "clove", "notes": "laminados"},
+      {"ingredient": "aceite de oliva", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "pimienta negra", "unit": "to_taste"},
+      {"ingredient": "perejil", "quantity": 1, "unit": "tbsp", "optional": true, "notes": "picado"}
+    ],
+    "steps": [
+      "Precalienta el horno a 200 °C.",
+      "Coloca el salmón en una bandeja, salpimienta y reparte el ajo y las rodajas de limón por encima. Riega con el aceite.",
+      "Hornea 12-15 minutos según el grosor. Termina con perejil."
+    ]
+  }
+]
