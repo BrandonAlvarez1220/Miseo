@@ -1,0 +1,8 @@
+packages:
+  - apps/web
+
+ignoredBuiltDependencies:
+  - unrs-resolver
+
+onlyBuiltDependencies:
+  - sharp
