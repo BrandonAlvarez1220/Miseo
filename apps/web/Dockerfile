@@ -11,7 +11,7 @@ RUN pnpm install --frozen-lockfile --filter web
 
 FROM deps AS build
 COPY apps/web apps/web
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_TELEMETRY_DISABLED=1 NEXT_OUTPUT=standalone
 RUN pnpm --filter web build
 
 FROM node:22-alpine AS runner
