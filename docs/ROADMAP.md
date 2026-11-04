@@ -26,7 +26,7 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
 
 **Entregable:** ambas apps corren en local.
 
-## Fase 2 — Núcleo (sin IA)
+## Fase 2 — Núcleo (sin IA) ✅
 - Endpoints de recetas: listado con búsqueda, filtros (categoría, tiempo,
   dificultad, tipo), ordenación y paginación.
 - Detalle de receta con ingredientes, pasos, fuentes, sustituciones y

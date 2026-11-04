@@ -87,3 +87,89 @@
 3. `GET /recipes` (búsqueda trigram, filtros, orden, paginación) y `GET /recipes/{slug}`.
 4. Motor de recomendación EXACT / FLEXIBLE / DISCOVER + tests exhaustivos.
 5. UI: búsqueda, selector de ingredientes, resultados con %, detalle con porciones.
+
+## Rediseño visual (entre Fase 1 y 2) ✅
+
+Rama `refactor/web-app-shell-layout`. La interfaz pasa de un estilo editorial
+(serif, crema) a una *app* tipo panel inspirada en la referencia aportada:
+barra lateral, búsqueda fija, blanco/verde/naranja y Plus Jakarta Sans. Ver
+`DESIGN_SYSTEM.md`. También: Prettier con orden de clases Tailwind y
+`output: standalone` solo en Docker (`next start` vuelve a funcionar en local).
+
+## Fase 2 — Núcleo (sin IA) ✅
+
+**Completado**
+- **Datos**
+  - Migración 2: `ingredient.slug`, `ingredient.is_staple`, extensión `unaccent`
+    (relleno seguro de `slug` para filas existentes).
+  - Normalizador determinista (`services/normalization.py`), sin singularizar.
+  - Seeds validados con Pydantic (`app/seeding/`): 62 ingredientes con 120+
+    alias, 19 sustituciones, 12 recetas de cocina (ejemplos originales de Miseo,
+    CC BY-SA 4.0) y 11 bebidas: 9 clásicos según la IBA (atribuidos), 1 variación
+    documentada (Hemingway Special) y 2 sin alcohol (1 variación, 1 contemporánea).
+    Upsert por clave natural en una transacción; ejecución repetible.
+- **API**
+  - `GET /recipes`: búsqueda sin acentos y tolerante a erratas, filtros (tipo,
+    categoría, dificultad, tiempo máximo, ingredientes, con/sin alcohol), orden
+    (relevancia, recientes, alfabético, rápidas) y paginación acotada.
+  - `GET /recipes/{slug}`: ingredientes con unidades y sustituciones, pasos,
+    fuentes, datos de barra, variaciones y relacionadas. Solo publicadas.
+  - `GET /ingredients`: autocompletado (nombre/alias), resolución por slugs,
+    populares por módulo.
+  - `GET /recommendations`: motor EXACT / FLEXIBLE / DISCOVER.
+  - `GET /categories` con número de recetas publicadas; `GET /mixology/techniques`
+    y `/glass-types`.
+- **Web**
+  - Inicio con datos reales: recién añadidas, ingredientes populares (atajos al
+    recomendador), clásicos de barra, categorías destacadas.
+  - `/que-puedo-preparar`: combobox accesible (teclado, ARIA), sugerencias, modos,
+    filtro de tipo, básicos; estado en la URL; tarjetas con % de coincidencia,
+    lo que tienes, lo que falta, sustituciones y básicos asumidos.
+  - `/recetas`: buscador global y filtros como formulario GET (funciona sin JS;
+    con JS aplica al cambiar y limpia parámetros vacíos), chips de filtros
+    activos, paginación.
+  - `/recetas/[slug]`: detalle con ajuste de porciones (fracciones y redondeo
+    métrico), sustituciones por ingrediente, consejo, fuente y atribución,
+    compartir (Web Share API o copiar enlace), relacionadas; los cócteles se
+    muestran con el tema de Mixología.
+  - Cocina y Mixología: categorías enlazadas, últimas recetas; guía de técnicas y
+    cristalería.
+  - Ilustraciones de respaldo deterministas por categoría mientras no hay fotos.
+
+**Decisiones**
+- Matching en Python sobre candidatos filtrados en SQL (ver ARCHITECTURE §7).
+- Los básicos de despensa se asumen por defecto pero el usuario puede desactivarlo.
+- Proxy BFF para el autocompletado en lugar de exponer la API al navegador.
+- Validación de parámetros de URL con Zod: valores inválidos se descartan en lugar
+  de romper la página (enlaces editados a mano siguen funcionando).
+- TanStack Query no se añadió: el único fetch en cliente (autocompletado) es un
+  `fetch` con `AbortController` y *debounce*; no justifica la dependencia aún.
+- Componentes de datos llaman a `connection()`: con *partial prefetching*, un
+  render especulativo abortaba los `fetch` y quedaban errores en el log.
+- Favoritos no se muestran en el detalle hasta tener autenticación (Fase 3): sin
+  botones que no hagan nada.
+
+**Tests ejecutados**
+- API: 86 passed (`pytest -W error::DeprecationWarning`), `ruff`, `ruff format`,
+  `mypy --strict` sin errores. Incluye 25+ tests unitarios del matcher.
+- Web: 44 passed (`vitest`), `eslint`, `prettier --check`, `tsc`, `next build`.
+- Manual con Playwright: autocompletado → selección con teclado → cambio de modo
+  → quitar ingrediente; escalado de porciones (800 g → 400 g); búsqueda global y
+  filtros; sin errores en consola; sin scroll horizontal a 390 px.
+
+**Problemas conocidos**
+- Las especificaciones IBA se transcribieron a mano: conviene verificarlas contra
+  la lista oficial antes de un release.
+- Una receta inexistente muestra la página 404 pero responde HTTP 200 (el estado
+  ya se envió al hacer *streaming*); Next añade `noindex`, así que no se indexa.
+- `docker compose up` sigue sin probarse de punta a punta (sin daemon de Docker).
+- Licencia de contenido de recetas (CC BY-SA 4.0) a confirmar por el autor.
+- Sin fotografía real; `image_url` está soportado de punta a punta.
+
+**Siguientes tareas recomendadas (Fase 3)**
+1. Supabase Auth + verificación de JWT en la API + perfiles `app_user`.
+2. RBAC en dependencias de FastAPI y tests de permisos.
+3. Favoritos (y su botón en el detalle).
+4. Despensa del usuario con cantidades y caducidad (habilita el aviso "tu tempeh
+   está por caducar" de la referencia).
+5. Envío de recetas con React Hook Form + Zod y moderación.

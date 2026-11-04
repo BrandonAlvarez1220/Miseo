@@ -167,22 +167,44 @@ cambia por razones distintas.
 
 ## 7. Motor de recomendación (Fase 2) — determinista
 
-Se ejecuta en la API con SQL + Python, **sin LLM**:
+Implementado en `apps/api/app/services/matching.py` como **funciones puras** (sin
+base de datos), probadas de forma exhaustiva en `tests/test_matching.py`. La carga
+de candidatos vive aparte (`repositories/recommendation.py`). **Sin LLM.**
 
-```
-score_base = ingredientes_requeridos_disponibles / total_requeridos × 100
-```
+Para cada receta, cada ingrediente **requerido** aporta un peso:
 
-Refinamientos:
-- Los opcionales no penalizan; suman un pequeño bonus si están disponibles.
-- Modo **FLEXIBLE**: un requerido faltante con sustituto conocido
-  (`ingredient_alternative`) disponible cuenta como cubierto con un peso < 1
-  según `substitution_type`.
-- Modo **EXACT**: solo recetas con 100 % de requeridos cubiertos sin sustituciones.
-- Modo **DISCOVER**: todas las recetas con al menos un ingrediente en común,
-  ordenadas por score y luego por menor número de faltantes.
+| Situación | Peso |
+| --- | --- |
+| El usuario lo tiene | 1.0 |
+| Es básico de despensa (`is_staple`) y `assume_staples=true` | 1.0 |
+| Falta pero hay sustituto disponible `equivalent` / `similar` / `emergency` | 0.9 / 0.75 / 0.5 |
+| Falta sin sustituto | 0 |
 
-Detalles en `docs/DATABASE.md` y en el código del servicio cuando se implemente.
+`match_percentage = Σ pesos / nº requeridos × 100`
+
+- Los **opcionales** no penalizan; solo desempatan (bonus de 0.01 × fracción disponible).
+- Una receta solo se recomienda si usa al menos un ingrediente **no básico** del
+  usuario (si eliges "sal", no te recomendamos todo lo que lleva sal).
+- **EXACT**: todo requerido disponible tal cual. **FLEXIBLE**: todo cubierto,
+  con sustituciones. **DISCOVER**: cualquier coincidencia, ordenada.
+- Orden: score ↓, faltantes ↑, tiempo total ↑, título.
+- Los sustitutos pueden ser básicos (caldo → agua, de emergencia).
+- **Cantidades:** el selector no pide cantidades, así que hoy no se comparan.
+  Cuando exista la despensa del usuario (Fase 3, con cantidades y caducidad), el
+  modelo `Candidate` ya separa lo necesario para añadirlo.
+
+Los candidatos se filtran en SQL (recetas publicadas que usan algún ingrediente
+disponible o sustituible) y se puntúan en Python: claro, testeable y suficiente
+para miles de recetas. Si el catálogo crece mucho, el cálculo se puede mover a
+una agregación SQL sin cambiar el contrato.
+
+### Frontend del recomendador
+
+`/que-puedo-preparar?i=pollo,arroz&modo=flexible&tipo=cooking&basicos=1`: el
+estado vive en la URL (compartible, sobrevive a recargas). El selector es un
+componente de cliente; los resultados se renderizan en servidor para esa URL.
+El autocompletado usa un *route handler* de Next (`/api/ingredients`) como proxy
+BFF: el navegador nunca conoce `API_URL` y la API no necesita abrir CORS.
 
 ## 8. Ingesta asistida por IA (Fase 4)
 

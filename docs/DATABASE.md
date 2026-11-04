@@ -77,7 +77,9 @@ licor, jarabe, ...). Tabla en lugar de enum porque la comunidad la ampliará.
 | --- | --- | --- |
 | id | uuid PK | |
 | name | varchar(120) | Nombre visible ("Limón") |
-| normalized_name | varchar(120) **UNIQUE** | minúsculas, sin acentos, singular, espacios colapsados ("limon") |
+| normalized_name | varchar(120) **UNIQUE** | minúsculas, sin acentos ni puntuación, espacios colapsados ("limon"). **No** se singulariza: los plurales van como alias |
+| slug | varchar(140) **UNIQUE** | `normalized_name` con guiones; se usa en URLs compartibles (`?i=pollo,arroz`) |
+| is_staple | bool default false | Básico de despensa (sal, agua, aceite...). El recomendador puede darlo por disponible |
 | description | text null | |
 | category_id | FK `ingredient_category` null | |
 | is_alcoholic | bool default false | Clasifica bebidas sin alcohol de forma derivable |
@@ -233,8 +235,18 @@ mantequilla sustituya al aceite no implica lo contrario.
 
 ## Búsqueda
 
-Fase 2 usa PostgreSQL estándar: `ILIKE` + `pg_trgm` (similitud y tolerancia a
-errores tipográficos) sobre `recipe.title` e `ingredient.normalized_name`.
+Fase 2 usa PostgreSQL estándar:
+
+- Títulos: `unaccent(lower(title))` contiene el término normalizado **o**
+  similitud trigram > 0.3 (tolera erratas: "margarta" → Margarita).
+- Ingredientes: `normalized_name` o cualquier `normalized_alias` contiene el
+  término, o similitud > 0.35; primero los que empiezan por el término.
+- El término se normaliza en Python (sin puntuación), así que comodines como `%`
+  nunca llegan al SQL; además se usa `autoescape`.
+
+Nota de rendimiento: `unaccent()` no es `IMMUTABLE`, por lo que la expresión no
+usa el índice trigram de `title`. Con el catálogo actual es irrelevante; si crece,
+la solución es una columna generada `search_title` normalizada e indexada.
 No se introducen embeddings ni búsqueda vectorial hasta que exista un problema
 real que lo justifique.
 
