@@ -84,6 +84,8 @@ licor, jarabe, ...). Tabla en lugar de enum porque la comunidad la ampliará.
 | category_id | FK `ingredient_category` null | |
 | is_alcoholic | bool default false | Clasifica bebidas sin alcohol de forma derivable |
 | abv | numeric(4,1) null CHECK 0–100 | Solo si el dato es fiable (para estimar ABV del cóctel) |
+| color | varchar(7) null CHECK hex | Color aproximado; lo usa la animación de cócteles |
+| is_carbonated | bool default false | Añade burbujas y va al final en tragos construidos |
 | image_url | text null | |
 
 **`ingredient_alias`** — sinónimos para normalización ("coriandro" → cilantro,
@@ -208,6 +210,18 @@ mantequilla sustituya al aceite no implica lo contrario.
   `created_by`. **Por qué JSONB aquí:** la revisión es una *foto histórica*
   inmutable; la receta canónica sigue siendo estructurada. Guardar el historial
   normalizado multiplicaría las tablas sin aportar consultas útiles.
+
+### Rutas de aprendizaje
+
+- **`skill`** — `slug` UNIQUE, `name`, `discipline` (`cooking`/`drink`), `tip`.
+- **`recipe_skill`** — N:M receta ↔ habilidad ("lo que aprendes").
+- **`learning_path`** — `slug` UNIQUE, `title`, `discipline`, `description`.
+- **`path_stage`** — `path_id`, `position` (`UNIQUE (path_id, position)`, > 0),
+  `title`, `description`, `dishes_to_unlock` (≥ 0).
+- **`path_dish`** — `stage_id`, `recipe_id`, `position`;
+  `UNIQUE (stage_id, position)` y `UNIQUE (stage_id, recipe_id)`. El seed valida
+  además que una receta no aparezca en dos etapas de la misma ruta y que su tipo
+  coincida con el de la ruta.
 
 ### Ingesta (Fase 4)
 

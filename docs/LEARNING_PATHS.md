@@ -1,6 +1,8 @@
 # Rutas de aprendizaje (propuesta para revisión)
 
-> Estado: **diseño**. Nada de esto está implementado todavía.
+> Estado: **etapas 1–4 de cocina y 1–4 de barra implementadas** (rama
+> `feat/learning-paths-dish-ladder`), con progreso guardado en el navegador.
+> Etapas 5–6 y progreso en la cuenta: pendientes.
 
 ## Idea: una escalera de platillos
 
@@ -77,13 +79,17 @@ Notas:
 La ruta apunta a recetas; las habilidades son **etiquetas** de las recetas.
 
 ```
-skill          (slug, name, discipline: cooking|bar, tip_md)   ← "sellar carne", "dry shake"
-recipe_skill   (recipe_id, skill_id, first_time_tip: bool)      ← N:M, "lo que aprendes"
+skill          (slug, name, discipline: cooking|drink, tip)    ← "sellar carne", "dry shake"
+recipe_skill   (recipe_id, skill_id)                            ← N:M, "lo que aprendes"
 learning_path  (slug, title, discipline, description)
 path_stage     (path_id, position, title, description, dishes_to_unlock)
 path_dish      (stage_id, position, recipe_id)                 ← los platillos de la escalera
 user_progress  (user_id, recipe_id, cooked_at, rating?)        ← Fase 3 (requiere login)
 ```
+
+- "Nueva" no se guarda: la API la calcula (`is_new`) recorriendo la escalera en
+  orden; la primera receta que enseña una habilidad la marca como nueva. Así,
+  reordenar la ruta no deja datos inconsistentes.
 
 - "Habilidades que ya tienes" = habilidades de las recetas que el usuario marcó
   como cocinadas. No hay exámenes de técnica.
@@ -92,11 +98,21 @@ user_progress  (user_id, recipe_id, cooked_at, rating?)        ← Fase 3 (requi
   sincroniza.
 - Las rutas son datos (seeds versionados), no código.
 
-## Orden de implementación sugerido
+## Implementado
 
-1. Escribir las recetas ＋ de las etapas 1–2 (son las que más usuarios van a cocinar).
-2. Tablas + seeds de las dos rutas; etiquetar habilidades en las recetas existentes.
-3. Páginas `/rutas`, `/rutas/cocina`, `/rutas/barra` y la sección "Lo que aprendes"
-   en el detalle de cada receta.
-4. Progreso local → progreso en la cuenta (Fase 3).
-5. Etapas 3–6 de forma incremental.
+- Recetas nuevas: huevos a la mexicana, sopa de fideo, quesadillas, arroz rojo,
+  frijoles de la olla, bistec con nopales y Paloma (+ 8 ingredientes).
+- 30 habilidades con su tip, 66 etiquetas receta↔habilidad.
+- Ruta de cocina: etapas 1–4 (18 platillos). Ruta de barra: etapas 1–4 (12 tragos).
+  Las etapas solo incluyen recetas que ya existen; las ＋ pendientes de las tablas
+  de arriba (caldo de pollo, chilaquiles, tinga, carajillo, Manhattan…) se añadirán
+  con sus etapas.
+- API: `GET /paths`, `GET /paths/{slug}`; el detalle de receta incluye `skills` y
+  `paths`.
+- Web: `/rutas`, `/rutas/[slug]` (escalera, desbloqueo sugerido, "Ya lo cociné",
+  habilidades que ya tienes) y "Lo que aprendes" en el detalle de receta.
+
+## Pendiente
+
+1. Recetas ＋ de las etapas 3–6 y sus etapas.
+2. Progreso en la cuenta (Fase 3), migrando el del navegador al iniciar sesión.

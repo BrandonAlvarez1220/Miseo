@@ -50,7 +50,7 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
 - Subida de imágenes a Supabase Storage con validación de tipo/tamaño.
 - Rate limiting en endpoints sensibles.
 
-## Fase 3b — Rutas de aprendizaje (propuesta: `LEARNING_PATHS.md`)
+## Fase 3b — Rutas de aprendizaje (`LEARNING_PATHS.md`) — etapas 1–4 ✅
 - Escalera de platillos (fácil → complejo) en cocina y barra; las habilidades se
   aprenden cocinando y se muestran como "lo que aprendes" en cada receta.
 

@@ -199,3 +199,33 @@ Rama `feat/cocktail-pour-animation` (parte de la Fase 2).
   aparece después de la menta en vez de machacarse con ella.
 - Las guarniciones se deducen del texto libre `garnish`; las no reconocidas no se
   dibujan.
+
+## Rutas de aprendizaje (escalera de platillos) ✅ etapas 1–4
+
+Rama `feat/learning-paths-dish-ladder`. Detalle en `LEARNING_PATHS.md`.
+
+**Completado**
+- Migración 4: `skill`, `recipe_skill`, `learning_path`, `path_stage`, `path_dish`.
+- Seeds validados: 7 recetas nuevas (6 de cocina mexicana casera y la Paloma),
+  8 ingredientes, 30 habilidades con tips, 66 etiquetas, rutas de cocina y barra
+  con 4 etapas cada una. Repetibles sin duplicar.
+- API `GET /paths`, `GET /paths/{slug}` (`is_new` calculado en orden de la
+  escalera; solo recetas publicadas); `skills` y `paths` en el detalle de receta.
+- Web: `/rutas`, `/rutas/[slug]` con progreso, desbloqueo sugerido (nunca
+  bloquea la navegación), "Ya lo cociné" y habilidades que ya tienes; sección
+  "Lo que aprendes" con tips en cada receta; tarjetas de rutas en el inicio;
+  "Rutas" en la navegación (en móvil sustituye a "Recetas", que sigue en la
+  búsqueda). Aviso de consumo responsable en la ruta de barra.
+- El progreso vive en `localStorage` mediante `useSyncExternalStore` (correcto con
+  SSR, sincronizado entre pestañas, tolera almacenamiento bloqueado).
+
+**Tests**
+- API: 97 passed (rutas, `is_new`, recetas no publicadas, validaciones del seed).
+- Web: 65 passed (lógica de desbloqueo, escalera interactiva, almacenamiento
+  bloqueado). Playwright: marcar 3 platillos desbloquea la etapa 2 y persiste tras
+  recargar; sin errores de consola; sin scroll horizontal en móvil.
+
+**Notas**
+- La Paloma usa la especificación IBA de memoria (50 ml tequila, 5 ml lima, 100 ml
+  refresco de toronja, sal): verificar junto con el resto.
+- El progreso es por navegador hasta tener cuentas (Fase 3).
