@@ -15,7 +15,7 @@ const unit = (code: string, name: string, plural_name: string) => ({
 });
 
 const line = (overrides: Partial<RecipeIngredient>): RecipeIngredient => ({
-  ingredient: { id: "x", slug: "x", name: "X" },
+  ingredient: { id: "x", slug: "x", name: "X", color: null, is_carbonated: false },
   quantity: null,
   quantity_max: null,
   unit: null,
@@ -28,16 +28,16 @@ const line = (overrides: Partial<RecipeIngredient>): RecipeIngredient => ({
 
 const ingredients = [
   line({
-    ingredient: { id: "1", slug: "arroz", name: "Arroz" },
+    ingredient: { id: "1", slug: "arroz", name: "Arroz", color: null, is_carbonated: false },
     quantity: "2.000",
     unit: unit("cup", "taza", "tazas"),
   }),
   line({
-    ingredient: { id: "2", slug: "sal", name: "Sal" },
+    ingredient: { id: "2", slug: "sal", name: "Sal", color: null, is_carbonated: false },
     unit: unit("to_taste", "al gusto", "al gusto"),
   }),
   line({
-    ingredient: { id: "3", slug: "lima", name: "Lima" },
+    ingredient: { id: "3", slug: "lima", name: "Lima", color: null, is_carbonated: false },
     quantity: "1.000",
     is_optional: true,
     alternatives: [

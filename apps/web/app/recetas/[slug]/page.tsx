@@ -21,6 +21,7 @@ import { Chip } from "@/components/ui/chip";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Skeleton } from "@/components/ui/skeleton";
+import { CocktailAnimation } from "@/features/cocktail/cocktail-animation";
 import { getRecipe } from "@/features/recipes/api";
 import { IngredientList } from "@/features/recipes/ingredient-list";
 import { RecipeArt } from "@/features/recipes/recipe-art";
@@ -107,16 +108,24 @@ function RecipeContent({ recipe }: { recipe: RecipeDetail }) {
           ) : null}
         </nav>
 
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center">
-          <RecipeArt
-            slug={recipe.slug}
-            title={recipe.title}
-            recipeType={recipe.recipe_type}
-            categories={recipe.categories}
-            imageUrl={recipe.image_url}
-            className="aspect-[4/3] w-full rounded-xl"
-            iconClassName="size-24"
-          />
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
+          {isDrink && recipe.drink ? (
+            <CocktailAnimation
+              title={recipe.title}
+              drink={recipe.drink}
+              ingredients={recipe.ingredients}
+            />
+          ) : (
+            <RecipeArt
+              slug={recipe.slug}
+              title={recipe.title}
+              recipeType={recipe.recipe_type}
+              categories={recipe.categories}
+              imageUrl={recipe.image_url}
+              className="aspect-[4/3] w-full rounded-xl"
+              iconClassName="size-24"
+            />
+          )}
           <div>
             <ul className="mb-4 flex flex-wrap gap-2">
               {isDrink && recipe.drink ? (

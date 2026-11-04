@@ -58,8 +58,14 @@ export interface Alternative {
   notes: string | null;
 }
 
+export interface RecipeIngredientRef extends IngredientRef {
+  /** Approximate hex color of the ingredient, e.g. "#c8102e". */
+  color: string | null;
+  is_carbonated: boolean;
+}
+
 export interface RecipeIngredient {
-  ingredient: IngredientRef;
+  ingredient: RecipeIngredientRef;
   quantity: DecimalString | null;
   quantity_max: DecimalString | null;
   unit: Unit | null;
