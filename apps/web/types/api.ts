@@ -130,6 +130,19 @@ export interface RecipeSummary {
   published_at: string | null;
 }
 
+export interface Skill {
+  slug: string;
+  name: string;
+  tip: string;
+}
+
+export interface RecipePathMembership {
+  path_slug: string;
+  path_title: string;
+  stage_position: number;
+  stage_title: string;
+}
+
 export interface RecipeDetail extends RecipeSummary {
   introduction: string | null;
   tips: string | null;
@@ -138,6 +151,8 @@ export interface RecipeDetail extends RecipeSummary {
   sources: Source[];
   drink: DrinkDetails | null;
   related: RecipeSummary[];
+  skills: Skill[];
+  paths: RecipePathMembership[];
 }
 
 export interface Page<T> {
@@ -174,6 +189,38 @@ export interface RecommendationsResponse {
   unknown_ingredients: string[];
   total: number;
   results: Recommendation[];
+}
+
+export interface DishSkill extends Skill {
+  /** First dish of the path that teaches this skill. */
+  is_new: boolean;
+}
+
+export interface PathDish {
+  recipe: RecipeSummary;
+  skills: DishSkill[];
+}
+
+export interface PathStage {
+  position: number;
+  title: string;
+  description: string | null;
+  dishes_to_unlock: number;
+  dishes: PathDish[];
+}
+
+export interface PathSummary {
+  slug: string;
+  title: string;
+  discipline: RecipeType;
+  description: string | null;
+  stage_count: number;
+  dish_count: number;
+  skill_count: number;
+}
+
+export interface PathDetail extends PathSummary {
+  stages: PathStage[];
 }
 
 export interface ApiErrorBody {

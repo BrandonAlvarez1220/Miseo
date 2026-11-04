@@ -41,7 +41,7 @@ function NavLinks({ variant, pathname }: { variant: Variant; pathname: string | 
   const style = styles[variant];
   return (
     <ul className={style.list}>
-      {NAV_ITEMS.map((item) => {
+      {NAV_ITEMS.filter((item) => variant === "sidebar" || !item.desktopOnly).map((item) => {
         const active = pathname !== null && isActivePath(pathname, item);
         const Icon = item.icon;
         return (

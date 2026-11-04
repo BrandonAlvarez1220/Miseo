@@ -22,6 +22,7 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CocktailAnimation } from "@/features/cocktail/cocktail-animation";
+import { RecipeLearning } from "@/features/paths/recipe-learning";
 import { getRecipe } from "@/features/recipes/api";
 import { IngredientList } from "@/features/recipes/ingredient-list";
 import { RecipeArt } from "@/features/recipes/recipe-art";
@@ -229,6 +230,8 @@ function RecipeContent({ recipe }: { recipe: RecipeDetail }) {
               ))}
             </ol>
           </section>
+
+          <RecipeLearning recipe={recipe} />
 
           {recipe.tips ? (
             <aside className="flex gap-3 rounded-lg bg-notice-soft p-5">

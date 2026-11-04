@@ -17,6 +17,7 @@ import { recipeHref } from "@/features/recipes/recipe-card";
 import { RecipeArt } from "@/features/recipes/recipe-art";
 import { RecipeGrid, RecipeGridSkeleton } from "@/features/recipes/recipe-grid";
 import { recipesHref } from "@/features/recipes/search-params";
+import { PathCards } from "@/features/paths/path-cards";
 import { pantryHref } from "@/features/recommendations/search-params";
 import { DIFFICULTY_LABELS, formatMinutes, pluralize } from "@/lib/format";
 import { attempt } from "@/lib/attempt";
@@ -79,6 +80,18 @@ export default function HomePage() {
             </Suspense>
           </section>
         </div>
+
+        <section aria-labelledby="home-paths" className="space-y-5">
+          <SectionHeading
+            id="home-paths"
+            title="Aprende cocinando"
+            description="Rutas de platillos de fáciles a complejos"
+            action={<SeeAll href="/rutas" />}
+          />
+          <Suspense fallback={<Skeleton className="h-56 w-full rounded-lg" />}>
+            <PathCards retryHref="/" />
+          </Suspense>
+        </section>
 
         <div className="grid gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
           <section aria-labelledby="home-bar" className="space-y-5">
