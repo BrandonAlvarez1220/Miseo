@@ -51,7 +51,8 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
 - Rate limiting en endpoints sensibles.
 
 ## Fase 3b — Rutas de aprendizaje (propuesta: `LEARNING_PATHS.md`)
-- Habilidades, rutas de cocina y barra por niveles, retos y progreso.
+- Escalera de platillos (fácil → complejo) en cocina y barra; las habilidades se
+  aprenden cocinando y se muestran como "lo que aprendes" en cada receta.
 
 ## Fase 4 — Ingesta con IA (opcional)
 - Paquete `ai/`: `LLMProvider`, adaptador Ollama, adaptador externo opcional.
@@ -59,8 +60,9 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
   deterministas; detección de duplicados.
 - Jobs idempotentes con reintentos seguros.
 - Panel admin: jobs, errores de validación, candidatos a duplicado.
-- Imágenes: `recipe_image` con procedencia, endpoint para el agente de Gemini,
-  fuentes con licencia abierta y moderación (propuesta: `IMAGES.md`).
+- Imágenes y vídeo: `recipe_media` con procedencia, endpoint para el agente de
+  Gemini y para vídeos de Flow, fuentes con licencia abierta y moderación
+  (propuesta: `IMAGES.md`).
 
 ## Fase 5 — Pulido y release
 - PWA (manifest, iconos, offline básico para recetas públicas).

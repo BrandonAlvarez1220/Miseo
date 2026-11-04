@@ -1,4 +1,4 @@
-# Imágenes de recetas y cócteles (propuesta para revisión)
+# Imágenes y vídeo de recetas y cócteles (propuesta para revisión)
 
 > Estado: **diseño**. El frontend ya soporta `image_url` de punta a punta (si existe
 > se muestra; si no, la ilustración por categoría o la animación del cóctel).
@@ -93,6 +93,65 @@ Reglas para el agente:
 Subidas de usuarios (Fase 3) con validación de tipo MIME real, tamaño máximo,
 eliminación de metadatos EXIF (ubicación) y moderación.
 
+## Fuente 4 — Vídeos de los tragos con Flow
+
+Idea: usar Flow (la herramienta de vídeo con IA de Google) para generar un vídeo
+realista de la preparación de cada cóctel.
+
+### Cómo convive con la animación que ya existe
+
+No se sustituyen: hacen cosas distintas.
+
+| | Animación SVG actual | Vídeo generado con Flow |
+| --- | --- | --- |
+| Exactitud | Exacta: sale de los datos (ml, orden, técnica, copa) | Puede inventar: ingredientes de más, cantidades o pasos distintos |
+| Interacción | Paso a paso, pausa, lista sincronizada | Reproducir/pausar |
+| Coste | Gratis, instantánea, funciona para cualquier receta nueva | Hay que generar cada vídeo y revisarlo |
+| Peso en móvil | Unos KB | Varios MB por vídeo |
+| Atractivo visual | Ilustración | Realista |
+
+Propuesta: **la animación SVG sigue siendo la base** (la exacta, la que enseña), y el
+vídeo de Flow es un **extra opcional** por cóctel: una portada animada atractiva.
+
+### Reglas para los vídeos
+
+- Pasan por moderación antes de publicarse: alguien comprueba que el vídeo
+  coincide con la receta (vaso, técnica, guarnición). Si muestra algo distinto,
+  se rechaza: el vídeo no puede contradecir la receta.
+- Se muestran con la etiqueta "Vídeo generado con IA".
+- Se guardan una sola vez (Supabase Storage); la app nunca genera vídeo al servir
+  una página.
+- Formato ligero para móvil (clip corto, MP4/WebM comprimido, sin audio), carga
+  diferida y `poster` con la animación o una imagen.
+- Con `prefers-reduced-motion` no se reproducen solos.
+- **Cuota:** el plan gratuito de Supabase Storage es pequeño; los vídeos llenan la
+  cuota rápido. Hay que limitarlos (p. ej. solo cócteles destacados) o usar otro
+  almacenamiento.
+
+### Integración técnica
+
+No sé si Flow ofrece una API pública para automatizarlo (hay que comprobarlo). Hay
+dos caminos y ambos terminan en el mismo endpoint de subida:
+
+1. **Con API** (la de Flow si existe, o el modelo de vídeo de Google por API): un
+   agente pide la receta a la API de Miseo, construye el prompt desde los datos y
+   sube el resultado.
+2. **Sin API**: se genera en Flow manualmente y se sube desde el panel de
+   administración.
+
+Prompt construido desde los datos (no texto libre), para que el vídeo coincida con
+la receta y todos los vídeos tengan el mismo estilo:
+
+```
+Plano medio de una barra con fondo oscuro y luz cálida lateral. Un bartender
+prepara un {title}: {pasos en orden con ingrediente y cantidad}. Técnica: {técnica}.
+Se sirve en {cristalería} {con/sin hielo}. Guarnición: {garnish}.
+Sin texto, sin logos, sin marcas de bebidas visibles. 8 segundos.
+```
+
+Para soportar vídeo, la tabla propuesta pasa a ser `recipe_media` con
+`media_type: image | video` (mismos campos de procedencia, licencia y moderación).
+
 ## Frontend
 
 - `next/image` con el dominio de Supabase Storage configurado y placeholder borroso.
@@ -102,7 +161,7 @@ eliminación de metadatos EXIF (ubicación) y moderación.
 
 ## Orden de implementación sugerido
 
-1. Tabla `recipe_image` + migración de `image_url` existente.
+1. Tabla `recipe_media` (imagen y vídeo) + migración de `image_url` existente.
 2. Endpoint de subida para administradores/servicio + panel de moderación de imágenes.
 3. Conectar el agente de Gemini a ese endpoint con un token de servicio.
 4. Búsqueda en fuentes con licencia abierta (Openverse/Wikimedia) como alternativa.

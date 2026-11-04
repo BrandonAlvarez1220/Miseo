@@ -1,85 +1,102 @@
 # Rutas de aprendizaje (propuesta para revisión)
 
-> Estado: **diseño**. Nada de esto está implementado todavía. Revisa el temario
-> antes de construirlo: es contenido, y el contenido define el producto.
+> Estado: **diseño**. Nada de esto está implementado todavía.
 
-## Idea
+## Idea: una escalera de platillos
 
-Dos rutas que llevan a alguien desde cero hasta tener **oficio** (no un título
-profesional): saber trabajar con criterio, improvisar y no depender de una receta.
+Cada ruta es una **escalera de platillos reales** que va de lo sencillo a lo
+complejo: una sopa fácil, luego un bistec con nopales, luego algo con más pasos…
+Las habilidades **no se estudian por separado**: se aprenden cocinando. Cada
+platillo dice "esto es lo que aprendes aquí" (tiempos de cocción, sellar una
+carne, hacer una salsa asada…), y al avanzar se van acumulando.
 
-- **Cocina:** del primer huevo a cocinero con oficio.
-- **Barra:** de tu primer highball a bartender casero con criterio.
+**Por qué así:** la motivación es el plato que te vas a comer, no un ejercicio de
+técnica. Además, una habilidad aparece por primera vez en un platillo fácil y se
+repite en platillos más difíciles, que es como se aprende en una cocina de verdad.
 
-Cada ruta tiene **niveles**. Cada nivel enseña **habilidades** (cortar, sellar,
-batir…) y las practica con **recetas reales del catálogo**, y termina con un
-**reto** que demuestra que la habilidad se aprendió (p. ej. "prepara un sour sin
-mirar la receta").
+Lo que **no** queremos: "Nivel 0: picar. Nivel 5: picas perfecto".
 
-### Por qué habilidades + recetas (y no solo una lista de recetas)
-
-Una receta enseña a hacer *un* plato; una habilidad se transfiere a cientos. Si
-cada receta declara qué habilidades practica (`recipe_skill`), la ruta puede:
-- recomendar "la siguiente receta que te enseña algo nuevo";
-- mostrar en cada receta "esta receta practica: sellar, desglasar";
-- medir progreso por habilidades, no por número de platos.
-
-## Modelo de datos propuesto
+## Cómo se ve para el usuario
 
 ```
-skill            (slug, name, discipline: cooking|bar, family, description, how_to JSONB pasos)
-recipe_skill     (recipe_id, skill_id, emphasis: introduces|practices)   ← N:M
-learning_path    (slug, title, discipline, description)
-path_level       (path_id, position, title, goal, challenge)
-path_item        (level_id, position, kind: skill|recipe|lesson, skill_id?, recipe_id?, lesson_id?, required)
-lesson           (slug, title, body_md, discipline)   ← teoría corta: seguridad, mise en place...
-user_progress    (user_id, path_item_id, completed_at)   ← Fase 3 (requiere login)
+Ruta de cocina · Etapa 2 "Comida de casa"            3 de 5 platillos
+┌──────────────────────────────────────────────────────────────┐
+│ ✓ Arroz rojo            ✓ Frijoles de la olla                 │
+│ ▶ Bistec con nopales    · Fácil · 30 min                      │
+│     Aprendes: sellar carne a fuego alto · asar nopales        │
+│               sin que babeen · tiempo de cocción del bistec   │
+│ ○ Pasta al pomodoro     ○ Lentejas guisadas                   │
+└──────────────────────────────────────────────────────────────┘
+Habilidades que ya tienes: picar cebolla y jitomate · sofreír ·
+arroz por absorción · cocción larga de frijol …
 ```
 
-- `bartending_technique` (ya existe) se enlaza con `skill` en lugar de duplicarse.
-- Antes del login, el progreso puede guardarse **solo en el navegador** como
-  comodidad; con cuenta, se sincroniza en `user_progress`.
-- Las rutas son datos (seeds versionados), no código: la comunidad podrá proponer
-  mejoras con el mismo flujo de moderación.
+- Cada platillo es una **receta normal del catálogo** (con su detalle, porciones,
+  sustituciones…), no contenido aparte.
+- "Lo que aprendes" sale de etiquetar las recetas con habilidades.
+- La primera vez que aparece una habilidad, la receta incluye un **tip** que la
+  explica ("cómo saber si el aceite está listo para sellar").
+- Para pasar de etapa no hace falta completarlo todo: basta con unos cuantos
+  platillos. Nadie se queda atascado por un platillo que no le apetece.
 
-## Ruta de cocina — "Del primer huevo a cocinero con oficio"
+## Ruta de cocina — "Del primer platillo a cocinero con oficio"
 
-| Nivel | Objetivo | Habilidades | Práctica (✓ ya en catálogo · ＋ nueva) | Reto |
-| --- | --- | --- | --- | --- |
-| 0. Mise en place | Trabajar ordenado y seguro | Higiene y contaminación cruzada, agarre del cuchillo y "garra", picado, juliana, brunoise | ✓ Pico de gallo · ✓ Guacamole · ✓ Ensalada caprese | Pico de gallo con cortes parejos en < 15 min |
-| 1. Huevos | Dominar el calor | Hervir (tiempos), revuelto cremoso, frito, tortilla francesa | ✓ Huevos rancheros · ✓ Panqueques · ✓ Tortilla de patatas · ＋ Huevos revueltos | Tortilla francesa sin dorar |
-| 2. Granos y legumbres | Absorción y punto | Arroz por absorción, pasta al dente, legumbres sin remojo/con remojo | ✓ Pasta al pomodoro · ✓ Lentejas · ＋ Arroz blanco | Arroz suelto sin receta |
-| 3. Sofrito, sopas y fondos | Construir sabor por capas | Sofrito, caldo casero, cremas, sazonar en capas | ✓ Sopa de tomate · ＋ Caldo de pollo · ＋ Crema de calabaza | Sopa con lo que haya en la nevera |
-| 4. Proteínas | Punto de cocción | Sellar, reposar, termómetro, desglasar, horno | ✓ Pollo al limón · ✓ Salmón al horno · ✓ Arroz con pollo | Pollo jugoso al punto con salsa de sartén |
-| 5. Salsas y emulsiones | Equilibrio y textura | Vinagreta, mayonesa, roux y bechamel, reducción | ＋ Vinagreta · ＋ Mayonesa · ＋ Bechamel | Salsa que "salve" un plato soso |
-| 6. Horno y masas | Precisión | Pesar, gluten, fermentación básica, masas quebradas | ＋ Pan rápido · ＋ Bizcocho · ＋ Masa quebrada | Bizcocho que sube parejo |
-| 7. Oficio | Autonomía | Equilibrar sal/ácido/grasa/calor, adaptar recetas, planificar un menú, cocinar con la despensa | Usa **¿Qué puedo preparar?** en modo Descubrir | Menú de 3 tiempos con lo que tienes |
+✓ = ya existe en el catálogo · ＋ = receta nueva por escribir
 
-## Ruta de barra — "De tu primer highball a bartender con criterio"
+| Etapa | Platillos | Lo que se aprende por el camino |
+| --- | --- | --- |
+| **1. Sin miedo a la estufa** | ＋ Huevos a la mexicana · ＋ Sopa de fideo · ＋ Quesadillas · ✓ Guacamole · ✓ Pico de gallo · ✓ Ensalada caprese | Picar cebolla y jitomate · fuego medio vs alto · sofreír jitomate para un caldillo · sazonar probando |
+| **2. Comida de casa** | ＋ Arroz rojo · ＋ Frijoles de la olla · ＋ Bistec con nopales · ✓ Pasta al pomodoro · ✓ Lentejas guisadas | Arroz por absorción (tostar, tapar, no mover) · cocción larga de leguminosas · sellar carne · asar nopales sin baba · tiempos de cocción |
+| **3. Sabores con más pasos** | ＋ Caldo de pollo · ＋ Chilaquiles rojos · ✓ Huevos rancheros · ✓ Pollo al limón · ✓ Salmón al horno · ✓ Tortilla de patatas | Hacer un caldo · salsa asada y licuada · punto de la proteína (que no se seque) · voltear sin miedo |
+| **4. De fin de semana** | ✓ Arroz con pollo · ＋ Tinga de pollo · ＋ Enchiladas verdes · ＋ Crema de calabaza · ✓ Panqueques | Deshebrar · salsas cocidas · coordinar varias preparaciones a la vez · cremas lisas |
+| **5. Retos** | ＋ Pozole rojo · ＋ Lasaña con bechamel · ＋ Flan napolitano · ＋ Pan de caja casero | Chiles secos (desvenar, tostar, hidratar) · roux y bechamel · baño maría · masas y fermentación · planear tiempos largos |
+| **6. Oficio** | ＋ Mole (versión casera) · Menú de 3 tiempos · Cocinar sin receta con **¿Qué puedo preparar?** | Equilibrar sal, ácido, grasa y picante · adaptar recetas · improvisar con lo que hay |
 
-| Nivel | Objetivo | Habilidades | Práctica | Reto |
-| --- | --- | --- | --- | --- |
-| 0. Fundamentos | Medir y servir | Herramientas (jigger, coctelera, colador), hielo, cristalería, construir | ✓ Cuba Libre · ✓ Moscow Mule · ✓ Limonada de menta y jengibre | Highball con medidas exactas |
-| 1. Sours | Equilibrio dulce/ácido | Batido, colado doble, proporción sour 2 : ¾ : ¾, dry shake | ✓ Daiquiri · ✓ Margarita · ✓ Whiskey Sour | Ajustar un sour que sale demasiado ácido |
-| 2. Machacados | Extraer sin amargar | Machacar, hielo picado, completar con soda | ✓ Mojito · ✓ Mojito sin alcohol | Mojito sin hojas rotas |
-| 3. Mezclados | Dilución y temperatura | Remover, enfriar, piel de cítrico | ✓ Negroni · ✓ Old Fashioned · ＋ Manhattan · ＋ Martini | Negroni con dilución correcta |
-| 4. Preparaciones | Ingredientes propios | Jarabes (simple, rico, miel, jengibre), oleo saccharum, infusiones | ＋ Jarabe de jengibre · ＋ Jarabe de miel | Crear un jarabe y usarlo en un sour |
-| 5. Variaciones | Pensar en plantillas | Plantillas (sour, highball, old fashioned), sustituir con criterio, libreta de specs | ✓ Hemingway Special (variación del Daiquiri) | Crear tu variación y documentarla |
-| 6. Sin alcohol y hospitalidad | Servir bien | Mocktails con estructura, presentación, servicio, consumo responsable | ✓ Mojito sin alcohol · ✓ Limonada | Carta de 3 bebidas para una reunión |
+## Ruta de barra — "Del primer highball a bartender con criterio"
 
-Notas de producto:
-- Las creaciones del nivel 5 se clasifican como `contemporary`/`experimental`, nunca
-  como clásicas.
-- Ruta de barra con aviso de **consumo responsable** y edad legal; todos los niveles
-  tienen alternativa sin alcohol.
-- La **animación de cócteles** ya sirve como material didáctico de los niveles 0–3
-  (paso a paso con controles).
+| Etapa | Tragos | Lo que se aprende por el camino |
+| --- | --- | --- |
+| **1. Mis primeros tragos** | ✓ Cuba Libre · ✓ Moscow Mule · ＋ Paloma · ✓ Limonada de menta y jengibre | Medir con jigger · el hielo importa · construir en el vaso · la soda va al final |
+| **2. Los sours** | ✓ Daiquiri · ✓ Margarita · ✓ Mojito · ✓ Mojito sin alcohol | Batir y colar · el equilibrio dulce/ácido · machacar sin amargar · escarchar |
+| **3. Más técnica** | ✓ Whiskey Sour · ✓ Hemingway Special · ＋ Carajillo | Dry shake (espuma de clara) · variaciones de un clásico · batir con café |
+| **4. Tragos de espirituosos** | ✓ Negroni · ✓ Old Fashioned · ＋ Manhattan · ＋ Martini | Remover y diluir · temperatura · perfumar con piel de cítrico |
+| **5. Preparaciones de la casa** | ＋ Jarabe de jamaica · ＋ Margarita de tamarindo · ＋ Agua de jamaica con soda (sin alcohol) | Jarabes caseros · usar ingredientes locales · adaptar plantillas |
+| **6. Tu firma** | Crea tu variación y documéntala | Pensar en plantillas (sour, highball, old fashioned) · libreta de especificaciones |
+
+Notas:
+- Toda la ruta de barra lleva un aviso de **consumo responsable y mayoría de edad**,
+  y en cada etapa hay al menos una alternativa sin alcohol.
+- Las creaciones de la etapa 6 se clasifican como `contemporary` o `experimental`,
+  nunca como clásicos.
+- Las especificaciones de los clásicos se verifican contra la fuente antes de
+  publicarlas (ver nota sobre IBA).
+- La **animación de cócteles** sirve directamente como material de las etapas 1–4.
+
+## Modelo de datos
+
+La ruta apunta a recetas; las habilidades son **etiquetas** de las recetas.
+
+```
+skill          (slug, name, discipline: cooking|bar, tip_md)   ← "sellar carne", "dry shake"
+recipe_skill   (recipe_id, skill_id, first_time_tip: bool)      ← N:M, "lo que aprendes"
+learning_path  (slug, title, discipline, description)
+path_stage     (path_id, position, title, description, dishes_to_unlock)
+path_dish      (stage_id, position, recipe_id)                 ← los platillos de la escalera
+user_progress  (user_id, recipe_id, cooked_at, rating?)        ← Fase 3 (requiere login)
+```
+
+- "Habilidades que ya tienes" = habilidades de las recetas que el usuario marcó
+  como cocinadas. No hay exámenes de técnica.
+- `dishes_to_unlock` permite avanzar sin completar todos los platillos de la etapa.
+- Antes del login, el progreso se guarda solo en el navegador; con cuenta, se
+  sincroniza.
+- Las rutas son datos (seeds versionados), no código.
 
 ## Orden de implementación sugerido
 
-1. Tablas `skill`, `recipe_skill`, `learning_path`, `path_level`, `path_item`, `lesson`
-   + seeds de las dos rutas con las recetas ya existentes (✓).
-2. Páginas `/rutas`, `/rutas/cocina`, `/rutas/barra` y nivel; "esta receta practica…"
-   en el detalle.
-3. Progreso local (navegador) → progreso en cuenta (Fase 3).
-4. Recetas nuevas (＋) por niveles, con atribución.
+1. Escribir las recetas ＋ de las etapas 1–2 (son las que más usuarios van a cocinar).
+2. Tablas + seeds de las dos rutas; etiquetar habilidades en las recetas existentes.
+3. Páginas `/rutas`, `/rutas/cocina`, `/rutas/barra` y la sección "Lo que aprendes"
+   en el detalle de cada receta.
+4. Progreso local → progreso en la cuenta (Fase 3).
+5. Etapas 3–6 de forma incremental.
