@@ -52,7 +52,11 @@ class Ingredient(UUIDPrimaryKeyMixin, TimestampMixin, Base):
 
     name: Mapped[str] = mapped_column(String(120))
     normalized_name: Mapped[str] = mapped_column(String(120), unique=True)
+    slug: Mapped[str] = mapped_column(String(140), unique=True)
     description: Mapped[str | None] = mapped_column(Text)
+    # Basic pantry items (salt, water, oil...) most kitchens have. The matcher can
+    # assume they are available so they don't drag down compatibility scores.
+    is_staple: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
     category_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("ingredient_category.id", ondelete="SET NULL"), index=True
     )

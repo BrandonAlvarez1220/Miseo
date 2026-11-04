@@ -40,7 +40,9 @@ async def _recipe(session: AsyncSession, slug: str = "test", **kwargs: object) -
 
 
 async def _ingredient(session: AsyncSession, normalized: str) -> Ingredient:
-    ingredient = Ingredient(name=normalized.title(), normalized_name=normalized)
+    ingredient = Ingredient(
+        name=normalized.title(), normalized_name=normalized, slug=normalized.replace(" ", "-")
+    )
     session.add(ingredient)
     await session.flush()
     return ingredient
@@ -48,7 +50,7 @@ async def _ingredient(session: AsyncSession, normalized: str) -> Ingredient:
 
 async def test_ingredient_normalized_name_is_unique(session: AsyncSession) -> None:
     await _ingredient(session, "limon")
-    session.add(Ingredient(name="Limón", normalized_name="limon"))
+    session.add(Ingredient(name="Limón", normalized_name="limon", slug="limon-2"))
     with pytest.raises(IntegrityError, match="uq_ingredient_normalized_name"):
         await session.flush()
 
