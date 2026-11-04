@@ -37,6 +37,9 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
   detalle con ajuste de porciones.
 - Seeds de recetas de ejemplo (cocina y cócteles clásicos con atribución).
 
+## Extra (hecho) — Animación de cócteles ✅
+- Animación generada a partir de los datos de cada cóctel (ver ARCHITECTURE §7b).
+
 ## Fase 3 — Autenticación y comunidad
 - Supabase Auth en web; verificación de JWT en API; perfiles `app_user`.
 - RBAC (`user`, `moderator`, `admin`) aplicado en backend.
@@ -47,12 +50,17 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
 - Subida de imágenes a Supabase Storage con validación de tipo/tamaño.
 - Rate limiting en endpoints sensibles.
 
+## Fase 3b — Rutas de aprendizaje (propuesta: `LEARNING_PATHS.md`)
+- Habilidades, rutas de cocina y barra por niveles, retos y progreso.
+
 ## Fase 4 — Ingesta con IA (opcional)
 - Paquete `ai/`: `LLMProvider`, adaptador Ollama, adaptador externo opcional.
 - Extracción estructurada con Pydantic; normalización y validación
   deterministas; detección de duplicados.
 - Jobs idempotentes con reintentos seguros.
 - Panel admin: jobs, errores de validación, candidatos a duplicado.
+- Imágenes: `recipe_image` con procedencia, endpoint para el agente de Gemini,
+  fuentes con licencia abierta y moderación (propuesta: `IMAGES.md`).
 
 ## Fase 5 — Pulido y release
 - PWA (manifest, iconos, offline básico para recetas públicas).
