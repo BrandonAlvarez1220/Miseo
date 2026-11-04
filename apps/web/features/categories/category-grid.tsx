@@ -17,11 +17,8 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
   return (
     <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {categories.map((category) => (
-        <li
-          key={category.id}
-          className="rounded-lg bg-surface p-5 shadow-soft"
-        >
-          <p className="font-display text-lg font-semibold">{category.name}</p>
+        <li key={category.id} className="rounded-lg border border-line bg-surface p-5">
+          <p className="font-semibold">{category.name}</p>
           {category.description ? (
             <p className="mt-1 text-sm text-ink-muted">{category.description}</p>
           ) : null}

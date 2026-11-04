@@ -18,7 +18,7 @@ export default function GlobalError({
 
   return (
     <Container className="py-24 text-center">
-      <h1 className="font-display text-3xl font-semibold">Algo salió mal</h1>
+      <h1 className="text-3xl font-bold">Algo salió mal</h1>
       <p className="mt-3 text-ink-muted">Ocurrió un error inesperado al mostrar esta página.</p>
       <Button className="mt-8" onClick={reset}>
         Intentar de nuevo

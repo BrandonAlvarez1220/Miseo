@@ -4,44 +4,50 @@
  * Miseo design tokens.
  *
  * Raw values live in CSS custom properties so a section can switch "world"
- * with a single attribute: the default is the warm, editorial Kitchen palette;
- * [data-theme="mixology"] swaps to the atmospheric night palette. Tailwind
+ * with a single attribute: the default is the fresh, light Kitchen palette
+ * (white, green, orange); [data-theme="mixology"] swaps to the night palette. Tailwind
  * utilities (bg-canvas, text-ink, ...) read the variables through @theme inline,
  * so components never need to know which world they are rendered in.
  */
 :root {
-  --canvas: #fbf7f0;
+  --canvas: #f6f7f5;
   --surface: #ffffff;
-  --surface-muted: #f4ece1;
-  --ink: #2a211b;
-  --ink-muted: #6e6259;
-  --line: #eadfd2;
-  --primary: #b34a26;
-  --primary-hover: #983d1e;
-  --primary-ink: #fff8f2;
-  --primary-soft: #f7e4d8;
-  --accent: #5f6d31;
-  --accent-soft: #e9ecd7;
-  --focus: #b34a26;
+  --surface-muted: #f0f2ef;
+  --ink: #17181a;
+  --ink-muted: #686d74;
+  --line: #e6e8e4;
+  --primary: #168a4a;
+  --primary-hover: #12733d;
+  --primary-ink: #ffffff;
+  --primary-soft: #e5f3ea;
+  --accent: #f0642f;
+  --accent-ink: #b9420f;
+  --accent-soft: #fdece4;
+  --notice: #b7791f;
+  --notice-soft: #fdf6e7;
+  --focus: #168a4a;
   --danger: #b42318;
   --danger-soft: #fdecea;
   color-scheme: light;
 }
 
 [data-theme="mixology"] {
-  --canvas: #14131f;
-  --surface: #1e1c2d;
-  --surface-muted: #262338;
-  --ink: #f4eee4;
-  --ink-muted: #aaa4ba;
-  --line: #322e48;
-  --primary: #e3a93b;
-  --primary-hover: #f0bb55;
-  --primary-ink: #1a1408;
-  --primary-soft: #3a3020;
-  --accent: #e0668c;
-  --accent-soft: #3b2232;
-  --focus: #e3a93b;
+  --canvas: #121418;
+  --surface: #1b1e24;
+  --surface-muted: #252930;
+  --ink: #f3f4f6;
+  --ink-muted: #a3a9b4;
+  --line: #2d323b;
+  --primary: #f0a93b;
+  --primary-hover: #f6bd5e;
+  --primary-ink: #1a1206;
+  --primary-soft: #3a2e1a;
+  --accent: #ec6d93;
+  --accent-ink: #f59ab6;
+  --accent-soft: #3b2230;
+  --notice: #f0a93b;
+  --notice-soft: #33291a;
+  --focus: #f0a93b;
   --danger: #f97066;
   --danger-soft: #3d1f22;
   color-scheme: dark;
@@ -59,21 +65,26 @@
   --color-primary-ink: var(--primary-ink);
   --color-primary-soft: var(--primary-soft);
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --color-accent-soft: var(--accent-soft);
+  --color-notice: var(--notice);
+  --color-notice-soft: var(--notice-soft);
   --color-focus: var(--focus);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
 
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-heading), ui-serif, Georgia, serif;
+  /* Same family for now; kept as a separate token so headings can diverge later. */
+  --font-display: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1.25rem;
   --radius-xl: 1.75rem;
 
-  --shadow-soft: 0 1px 2px rgb(42 33 27 / 0.04), 0 8px 24px -12px rgb(42 33 27 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(42 33 27 / 0.06), 0 16px 40px -16px rgb(42 33 27 / 0.22);
+  --shadow-soft: 0 1px 2px rgb(23 24 26 / 0.04), 0 6px 20px -10px rgb(23 24 26 / 0.1);
+  --shadow-lift: 0 2px 4px rgb(23 24 26 / 0.05), 0 14px 36px -14px rgb(23 24 26 / 0.2);
+  --shadow-glow: 0 10px 24px -10px rgb(22 138 74 / 0.55);
 }
 
 @layer base {

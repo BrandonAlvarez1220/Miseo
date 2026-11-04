@@ -34,7 +34,7 @@ export function StateMessage({
         aria-hidden="true"
         className={cn("mb-3 size-8", tone === "danger" ? "text-danger" : "text-ink-muted")}
       />
-      <p className="font-display text-lg font-semibold">{title}</p>
+      <p className="text-lg font-semibold">{title}</p>
       {description ? <p className="mt-1 max-w-md text-sm text-ink-muted">{description}</p> : null}
       {action ? <div className="mt-5">{action}</div> : null}
     </div>

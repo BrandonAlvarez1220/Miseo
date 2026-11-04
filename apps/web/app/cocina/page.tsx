@@ -1,9 +1,8 @@
-import { ChefHat } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-import { ModuleHero } from "@/components/modules/module-hero";
 import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CategoryGridSkeleton } from "@/features/categories/category-grid-skeleton";
 import { CategorySection } from "@/features/categories/category-section";
@@ -17,19 +16,20 @@ export const metadata: Metadata = {
 export default function KitchenPage() {
   return (
     <>
-      <ModuleHero
-        icon={ChefHat}
-        eyebrow="Cocina"
-        title="Recetas para cocinar con lo que tienes a mano."
+      <PageHeader
+        lead="Recetas para cocinar"
+        title="con lo que tienes a mano"
         description="Platos caseros, clásicos de siempre y propuestas de la comunidad, con ingredientes, cantidades y pasos claros."
       />
-      <Container>
-        <section aria-labelledby="kitchen-categories" className="space-y-6">
-          <SectionHeading id="kitchen-categories" title="Categorías" />
-          <Suspense fallback={<CategoryGridSkeleton />}>
-            <CategorySection recipeType="cooking" retryHref={MODULES.cooking.href} />
-          </Suspense>
-        </section>
+      <Container className="space-y-6">
+        <SectionHeading
+          id="kitchen-categories"
+          title="Categorías"
+          description="Recetas por tipo de plato"
+        />
+        <Suspense fallback={<CategoryGridSkeleton />}>
+          <CategorySection recipeType="cooking" retryHref={MODULES.cooking.href} />
+        </Suspense>
       </Container>
     </>
   );

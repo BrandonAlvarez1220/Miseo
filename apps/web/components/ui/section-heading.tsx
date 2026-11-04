@@ -4,22 +4,23 @@ import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
   id?: string;
-  eyebrow?: string;
   title: string;
   description?: ReactNode;
+  /** Optional trailing action, e.g. a "Ver todo" link. */
+  action?: ReactNode;
   className?: string;
 }
 
-export function SectionHeading({ id, eyebrow, title, description, className }: SectionHeadingProps) {
+export function SectionHeading({ id, title, description, action, className }: SectionHeadingProps) {
   return (
-    <div className={cn("max-w-2xl", className)}>
-      {eyebrow ? (
-        <p className="mb-2 text-xs font-semibold tracking-[0.18em] text-primary uppercase">{eyebrow}</p>
-      ) : null}
-      <h2 id={id} className="font-display text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-        {title}
-      </h2>
-      {description ? <p className="mt-2 text-ink-muted text-pretty">{description}</p> : null}
+    <div className={cn("flex items-end justify-between gap-4", className)}>
+      <div>
+        <h2 id={id} className="text-xl font-bold tracking-tight sm:text-2xl">
+          {title}
+        </h2>
+        {description ? <p className="mt-1 text-sm text-ink-muted">{description}</p> : null}
+      </div>
+      {action ? <div className="shrink-0">{action}</div> : null}
     </div>
   );
 }

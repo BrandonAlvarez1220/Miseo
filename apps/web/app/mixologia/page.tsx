@@ -1,9 +1,9 @@
-import { Martini } from "lucide-react";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
-import { ModuleHero } from "@/components/modules/module-hero";
+import { MixologyRegion } from "@/components/layout/theme-region";
 import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { CategoryGridSkeleton } from "@/features/categories/category-grid-skeleton";
 import { CategorySection } from "@/features/categories/category-section";
@@ -16,21 +16,22 @@ export const metadata: Metadata = {
 
 export default function MixologyPage() {
   return (
-    <>
-      <ModuleHero
-        icon={Martini}
-        eyebrow="Mixología"
-        title="Cócteles clásicos, variaciones y bebidas sin alcohol."
+    <MixologyRegion className="min-h-full pb-12">
+      <PageHeader
+        lead="Cócteles clásicos,"
+        title="variaciones y sin alcohol"
         description="Aprende técnicas, cristalería y guarniciones. Distinguimos siempre entre clásicos documentados, variaciones y propuestas experimentales."
       />
-      <Container>
-        <section aria-labelledby="drink-categories" className="space-y-6">
-          <SectionHeading id="drink-categories" title="Categorías" />
-          <Suspense fallback={<CategoryGridSkeleton />}>
-            <CategorySection recipeType="drink" retryHref={MODULES.drink.href} />
-          </Suspense>
-        </section>
+      <Container className="space-y-6">
+        <SectionHeading
+          id="drink-categories"
+          title="Categorías"
+          description="Cócteles por estilo"
+        />
+        <Suspense fallback={<CategoryGridSkeleton />}>
+          <CategorySection recipeType="drink" retryHref={MODULES.drink.href} />
+        </Suspense>
       </Container>
-    </>
+    </MixologyRegion>
   );
 }
