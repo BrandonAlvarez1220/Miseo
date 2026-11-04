@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/*
+ * Miseo design tokens.
+ *
+ * Raw values live in CSS custom properties so a section can switch "world"
+ * with a single attribute: the default is the warm, editorial Kitchen palette;
+ * [data-theme="mixology"] swaps to the atmospheric night palette. Tailwind
+ * utilities (bg-canvas, text-ink, ...) read the variables through @theme inline,
+ * so components never need to know which world they are rendered in.
+ */
+:root {
+  --canvas: #fbf7f0;
+  --surface: #ffffff;
+  --surface-muted: #f4ece1;
+  --ink: #2a211b;
+  --ink-muted: #6e6259;
+  --line: #eadfd2;
+  --primary: #b34a26;
+  --primary-hover: #983d1e;
+  --primary-ink: #fff8f2;
+  --primary-soft: #f7e4d8;
+  --accent: #5f6d31;
+  --accent-soft: #e9ecd7;
+  --focus: #b34a26;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  color-scheme: light;
+}
+
+[data-theme="mixology"] {
+  --canvas: #14131f;
+  --surface: #1e1c2d;
+  --surface-muted: #262338;
+  --ink: #f4eee4;
+  --ink-muted: #aaa4ba;
+  --line: #322e48;
+  --primary: #e3a93b;
+  --primary-hover: #f0bb55;
+  --primary-ink: #1a1408;
+  --primary-soft: #3a3020;
+  --accent: #e0668c;
+  --accent-soft: #3b2232;
+  --focus: #e3a93b;
+  --danger: #f97066;
+  --danger-soft: #3d1f22;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-focus: var(--focus);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-heading), ui-serif, Georgia, serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  --shadow-soft: 0 1px 2px rgb(42 33 27 / 0.04), 0 8px 24px -12px rgb(42 33 27 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(42 33 27 / 0.06), 0 16px 40px -16px rgb(42 33 27 / 0.22);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
