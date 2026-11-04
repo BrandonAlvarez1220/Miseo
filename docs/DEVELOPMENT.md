@@ -69,6 +69,7 @@ pnpm --filter web dev
 | Tipos API | `cd apps/api && uv run mypy app` |
 | Nueva migración | `cd apps/api && uv run alembic revision --autogenerate -m "describe change"` |
 | Lint web | `pnpm --filter web lint` |
+| Formato web | `pnpm --filter web format` (CI usa `format:check`) |
 | Tipos web | `pnpm --filter web typecheck` |
 | Tests web | `pnpm --filter web test` |
 | Build web | `pnpm --filter web build` |
