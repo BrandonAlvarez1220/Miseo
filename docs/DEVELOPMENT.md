@@ -27,7 +27,7 @@ El contenedor de la API aplica las migraciones y carga los seeds al arrancar.
 
 ### 1. Base de datos
 
-Con Docker solo para Postgres:
+Con Docker solo para Postgres (crea también `miseo_test` en el primer arranque):
 
 ```bash
 docker compose up -d db
@@ -70,7 +70,11 @@ pnpm --filter web dev
 | Nueva migración | `cd apps/api && uv run alembic revision --autogenerate -m "describe change"` |
 | Lint web | `pnpm --filter web lint` |
 | Tipos web | `pnpm --filter web typecheck` |
+| Tests web | `pnpm --filter web test` |
 | Build web | `pnpm --filter web build` |
+
+El usuario `miseo` debe poder crear la extensión `pg_trgm` (es una extensión
+*trusted* en PostgreSQL ≥ 13, así que basta con ser dueño de la base de datos).
 
 Los tests de la API usan una base de datos real (`TEST_DATABASE_URL`, por defecto
 `miseo_test`). **Por qué no SQLite:** usamos características propias de Postgres

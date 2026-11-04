@@ -10,7 +10,7 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
 - [x] Riesgos arquitectónicos (`ARCHITECTURE.md` §9).
 - [x] Roadmap y guía de desarrollo.
 
-## Fase 1 — Fundación
+## Fase 1 — Fundación ✅
 - Monorepo (pnpm workspace para JS; uv para Python).
 - `apps/api`: FastAPI, configuración tipada, logging, errores uniformes, CORS,
   health check con verificación de BD.
