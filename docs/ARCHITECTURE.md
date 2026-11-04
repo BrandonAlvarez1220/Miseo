@@ -206,6 +206,32 @@ componente de cliente; los resultados se renderizan en servidor para esa URL.
 El autocompletado usa un *route handler* de Next (`/api/ingredients`) como proxy
 BFF: el navegador nunca conoce `API_URL` y la API no necesita abrir CORS.
 
+## 7b. Animación de cócteles (datos → animación)
+
+`apps/web/features/cocktail/`. Cada cóctel se anima **a partir de sus datos**, sin
+recursos dibujados a mano:
+
+```
+receta (cristalería, técnica, ml, color, gas, guarnición)
+   → buildPourPlan()   plan de vertido (volúmenes, mezcla de color, hielo...)   [puro, testeado]
+   → buildTimeline()   lista de "beats": cada uno es una foto completa de la escena  [puro, testeado]
+   → <CocktailAnimation>  SVG + Motion: interpola entre fotos consecutivas
+```
+
+- **Por qué Motion y no Lottie/Rive/Three.js:** Lottie y Rive necesitan una
+  animación diseñada por cóctel; con datos, una nueva receta de la comunidad se
+  anima sola. Three.js (3D) es demasiado pesado para móvil. Motion anima SVG de
+  forma declarativa en React y respeta `prefers-reduced-motion`.
+- **Líquido = rectángulos recortados por el `clipPath` del interior del vaso:** la
+  misma lógica sirve para una copa cónica o un vaso recto.
+- **Mezcla de color ponderada por volumen**, con menor peso para líquidos
+  transparentes (ginebra, ron blanco): diluyen sin blanquear.
+- **Orden de barra:** hielo antes de verter en tragos construidos; refrescos con
+  gas siempre al final; sólidos (menta) primero y machacados.
+- Controles de reproducción, paso a paso y lista de pasos sincronizada (sirve
+  también para aprender). Con movimiento reducido muestra el trago terminado.
+- Datos nuevos en BD: `ingredient.color` (hex, con CHECK) e `ingredient.is_carbonated`.
+
 ## 8. Ingesta asistida por IA (Fase 4)
 
 Pipeline asíncrono e idempotente:

@@ -173,3 +173,29 @@ barra lateral, búsqueda fija, blanco/verde/naranja y Plus Jakarta Sans. Ver
 4. Despensa del usuario con cantidades y caducidad (habilita el aviso "tu tempeh
    está por caducar" de la referencia).
 5. Envío de recetas con React Hook Form + Zod y moderación.
+
+## Animación de cócteles ✅
+
+Rama `feat/cocktail-pour-animation` (parte de la Fase 2).
+
+**Completado**
+- Migración 3: `ingredient.color` (hex validado por CHECK) e `ingredient.is_carbonated`;
+  colores en los seeds; expuestos en el detalle de receta (`RecipeIngredientRef`).
+- `buildPourPlan` y `buildTimeline` (funciones puras) + `CocktailAnimation`
+  (SVG + Motion 14.3.1): 10 tipos de cristalería, técnicas batido / mezclado /
+  construido / machacado, hielo, burbujas, guarniciones (rueda de cítrico, piel de
+  naranja, menta, cereza, borde de sal), controles y paso a paso.
+- Reemplaza la ilustración estática en el detalle de cada cóctel.
+
+**Tests**
+- API: 88 passed. Web: 58 passed (plan de vertido, mezcla de color, orden de barra,
+  textos, guion por técnica). Verificado en Chromium: daiquiri, mojito, cuba libre
+  y negroni, escritorio y móvil, `prefers-reduced-motion`, sin errores de consola.
+
+**Limitaciones conocidas**
+- Las alturas del líquido son lineales (no calculan el volumen real de una copa
+  cónica): es una ilustración, no una simulación.
+- El azúcar en cucharaditas se representa como líquido (se disuelve); en el mojito
+  aparece después de la menta en vez de machacarse con ella.
+- Las guarniciones se deducen del texto libre `garnish`; las no reconocidas no se
+  dibujan.
