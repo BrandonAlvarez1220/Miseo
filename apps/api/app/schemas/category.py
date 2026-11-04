@@ -10,3 +10,4 @@ class CategoryRead(APIModel):
     slug: str
     description: str | None
     recipe_type: RecipeType
+    recipe_count: int

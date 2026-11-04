@@ -12,5 +12,15 @@ router = APIRouter(prefix="/categories", tags=["categories"])
 async def list_categories(
     session: SessionDep, recipe_type: RecipeType | None = None
 ) -> list[CategoryRead]:
-    categories = await category_repo.list_categories(session, recipe_type=recipe_type)
-    return [CategoryRead.model_validate(c) for c in categories]
+    rows = await category_repo.list_categories(session, recipe_type=recipe_type)
+    return [
+        CategoryRead(
+            id=c.id,
+            name=c.name,
+            slug=c.slug,
+            description=c.description,
+            recipe_type=c.recipe_type,
+            recipe_count=count,
+        )
+        for c, count in rows
+    ]
