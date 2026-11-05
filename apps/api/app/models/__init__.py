@@ -1,5 +1,6 @@
 """Import every model so ``Base.metadata`` is complete (Alembic autogenerate, tests)."""
 
+from app.models.agent import Agent
 from app.models.catalog import (
     BartendingTechnique,
     Category,
@@ -24,6 +25,7 @@ from app.models.recipe import (
 from app.models.user import AppUser
 
 __all__ = [
+    "Agent",
     "AppUser",
     "BartendingTechnique",
     "Category",

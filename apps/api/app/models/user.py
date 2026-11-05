@@ -18,6 +18,8 @@ class AppUser(TimestampMixin, Base):
     __tablename__ = "app_user"
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True)
+    # Copied from the verified access token so admins can identify users.
+    email: Mapped[str | None] = mapped_column(String(320), index=True)
     display_name: Mapped[str] = mapped_column(String(80))
     avatar_url: Mapped[str | None] = mapped_column(Text)
     role: Mapped[UserRole] = mapped_column(

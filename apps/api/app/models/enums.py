@@ -40,6 +40,19 @@ class UserRole(StrEnum):
     ADMIN = "admin"
 
 
+class AgentProvider(StrEnum):
+    """Which tool an external ingestion agent runs in (informational, for provenance)."""
+
+    OPENCODE = "opencode"
+    CLAUDE = "claude"
+    GEMINI = "gemini"
+    OTHER = "other"
+
+
+class AgentScope(StrEnum):
+    SUBMIT_RECIPES = "submit_recipes"
+
+
 class UnitType(StrEnum):
     MASS = "mass"
     VOLUME = "volume"
