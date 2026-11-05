@@ -6,9 +6,9 @@
 | --- | --- | --- |
 | Visitante | nada | Ver recetas, buscar, rutas, recomendador |
 | `user` | JWT de Supabase | Lo anterior + `/me` (después: favoritos, enviar recetas) |
-| `moderator` | JWT de Supabase | Lo anterior + moderar contribuciones (próximamente) |
+| `moderator` | JWT de Supabase | Lo anterior + revisar, aprobar y rechazar envíos de agentes (`/review/submissions`) |
 | `admin` | JWT de Supabase | Todo lo anterior + usuarios, roles y agentes |
-| Agente | Token propio `mis_ag_…` | Solo `GET /agent/me` por ahora; enviar recetas pendientes (siguiente rama) |
+| Agente | Token propio `mis_ag_…` | `GET /agent/me` y enviar recetas **en revisión** (`/agent/submissions`, ver [`INGESTION.md`](INGESTION.md)). Nunca publica |
 
 Los permisos se comprueban **siempre en la API**. La web solo oculta botones.
 
@@ -115,6 +115,5 @@ curl -X POST $API/api/v1/admin/agents \
 
 - Login con Supabase Auth en la web (cuando se publique) y pantalla `/admin`.
 - Límite de peticiones por agente y por usuario.
-- Endpoint de envío de recetas para agentes y cola de revisión (siguiente rama).
 - Tabla de auditoría: hoy los cambios de rol y de agentes quedan en el log con el
   prefijo `AUDIT`.

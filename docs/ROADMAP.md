@@ -54,7 +54,7 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
 - Escalera de platillos (fácil → complejo) en cocina y barra; las habilidades se
   aprenden cocinando y se muestran como "lo que aprendes" en cada receta.
 
-## Fase 4 — Ingesta con IA (opcional)
+## Fase 4 — Ingesta con IA (opcional) — API de envío y revisión ✅ (`INGESTION.md`)
 - Paquete `ai/`: `LLMProvider`, adaptador Ollama, adaptador externo opcional.
 - Extracción estructurada con Pydantic; normalización y validación
   deterministas; detección de duplicados.

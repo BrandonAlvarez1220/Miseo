@@ -287,3 +287,44 @@ sesión cerrada, sin errores de consola, sin scroll horizontal en móvil.
 **Notas**
 - El validador de correos rechaza `.local`/`.test`; el valor por defecto es
   `admin@example.com`.
+
+## Envío de recetas por agentes + cola de revisión ✅ (API)
+
+Rama `feat/agent-recipe-submissions`. Diseño en `INGESTION.md`, guía en `AGENT_GUIDE.md`.
+
+**Completado**
+- Migración 6: `ingestion_job` gana `agent_id`, `payload`, `analysis`, `reviewed_by/at`,
+  `review_notes` y el estado `rejected` (con su CHECK).
+- `POST /agent/submissions` (idempotente, corregible mientras está en revisión),
+  `GET /agent/submissions[/{id}]` (cada agente ve solo lo suyo), `GET /units` (público).
+- Pipeline determinista: validación estricta, mapeo exacto de ingredientes y unidades con
+  candidatos para el revisor, dificultad 1-5, habilidades por reglas en datos, etapa sugerida
+  por ruta, duplicados (catálogo y envíos pendientes entre agentes), límites por agente.
+- Revisión (`/review/submissions`, moderador o admin): lista con filtros, detalle, aprobar
+  (crea la receta publicada `ai_assisted` con fuente, habilidades, revisión y hueco opcional en
+  una ruta; permite mapear, **crear ingredientes** y mapear unidades) y rechazar con motivo
+  legible por el agente. Todo en una transacción.
+- Garantías probadas: nada se publica sin aprobación; un cóctel de IA no puede salir "clásico";
+  otro agente no puede pisar un envío; una receta rechazada no se reintenta; un fallo al aprobar
+  no deja ingredientes huérfanos.
+
+**Tests:** API 270 passed (`-W error::DeprecationWarning`), `ruff` y `mypy --strict` limpios,
+`alembic check` sin cambios. Incluye 44 de reglas puras, 38 del flujo de envío y 26 de
+revisión. Prueba real con el servidor y los tres agentes a la vez (opencode, Claude, Gemini):
+envíos con ingredientes desconocidos, cóctel declarado clásico, copia de una receta existente,
+reintento idéntico, rechazo leído por el agente, aprobación con mapeo y receta pública después.
+Datos de prueba borrados al terminar.
+
+**Calidad de las reglas (medida, no supuesta)**
+- Habilidades vs. las 30 recetas etiquetadas a mano: cobertura 71 %, precisión 59 % (tras un
+  ajuste; antes 45 %). Son sugerencias.
+- La dificultad es plana para platillos caseros (casi todo 1-2): sirve como techo de
+  seguridad, no para ordenar etapas. La colocación la dirigen las habilidades.
+
+**Pendiente / limitaciones** (detalle en `INGESTION.md`)
+- Pantalla de revisión en la web (siguiente rama); hoy se usa la API.
+- Los agentes reales no se probaron: aquí no hay salida a internet. Se probó con envíos
+  simulados que siguen el contrato.
+- Detección de duplicados ignora ingredientes sin mapear.
+- Crear etapas nuevas y asignar `variation` (receta padre) al aprobar.
+- No hay imágenes en este flujo.

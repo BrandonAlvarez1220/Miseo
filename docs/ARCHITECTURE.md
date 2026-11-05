@@ -236,23 +236,22 @@ receta (cristalería, técnica, ml, color, gas, guarnición)
   también para aprender). Con movimiento reducido muestra el trago terminado.
 - Datos nuevos en BD: `ingredient.color` (hex, con CHECK) e `ingredient.is_carbonated`.
 
-## 8. Ingesta asistida por IA (Fase 4)
+## 8. Ingesta asistida por agentes
 
-Pipeline asíncrono e idempotente:
+Detalle en [`INGESTION.md`](INGESTION.md) y [`AGENT_GUIDE.md`](AGENT_GUIDE.md).
 
-```
-Fuente → Extracción → Parseo estructurado (LLM + Pydantic) → Mapeo de ingredientes
-→ Normalización (determinista) → Detección de duplicados → Validación
-→ Estado "pending" → Revisión humana → Publicación
-```
+Los agentes externos (opencode, Claude, Gemini; cada uno con su token) hacen la parte
+difusa —buscar, leer, reescribir— y envían datos **estructurados** a la API. La API hace lo
+determinista (validar, mapear ingredientes y unidades, dificultad, habilidades, etapa
+sugerida, duplicados) y deja el envío en `needs_review`. Solo una persona lo publica.
 
-- `LLMProvider` es una interfaz con adaptadores (Ollama primero; externo opcional).
-- La salida del LLM es **no confiable**: se valida con Pydantic y reglas
-  deterministas; nada se publica sin aprobación humana.
-- Idempotencia: cada job tiene `idempotency_key` (hash del contenido/URL
-  normalizados) con restricción `UNIQUE`.
-- Si no hay proveedor configurado, el pipeline queda deshabilitado y la app sigue
-  funcionando con normalidad.
+- **No hay LLM dentro del servidor**: ni scraping ni modelos corren en la API, que sigue
+  siendo 100 % útil sin ningún agente. Por eso no existe el paquete `ai/` previsto
+  inicialmente; si algún día se integra un modelo local (Ollama), será otro servicio.
+- **Idempotente** por URL canónica (`UNIQUE` en la base de datos); reintentar es seguro.
+- **Procedencia siempre**: cada receta guarda su fuente, licencia, atribución y el agente que
+  la aportó (`ingestion_job.agent_id`); el contenido de IA se marca `origin_type = ai_assisted`.
+- Un agente nunca crea un cóctel "clásico" documentado.
 
 ## 9. Riesgos arquitectónicos identificados
 
