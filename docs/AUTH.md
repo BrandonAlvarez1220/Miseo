@@ -91,7 +91,8 @@ A partir de ahí, un admin cambia roles con `PUT /api/v1/admin/users/{id}/role`
 
 ## Conectar agentes (opencode, Claude, Gemini…)
 
-Cada agente es una identidad **separada** con su propio token:
+Cada agente es una identidad **separada** con su propio token. Se gestionan en la web,
+en `/admin/agentes` (solo administradores), o con la API:
 
 ```bash
 curl -X POST $API/api/v1/admin/agents \

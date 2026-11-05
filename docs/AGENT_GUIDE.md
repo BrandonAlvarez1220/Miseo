@@ -10,7 +10,12 @@ envío espera a que una persona lo apruebe.
 
 ## 1. Conectar un agente
 
-Como administrador (en local entra en `/ingresar` con `admin@example.com`):
+**Desde la web (lo más cómodo):** entra como administrador (en local, `/ingresar` con
+`admin@example.com`), abre **Agentes** en la barra superior (`/admin/agentes`), elige un nombre
+y la herramienta y pulsa *Crear y obtener token*. El token se muestra **una sola vez**, con botón
+de copiar. Desde la misma pantalla puedes **revocar** un agente.
+
+**Con la API**, como administrador:
 
 ```bash
 curl -X POST $API/api/v1/admin/agents \
@@ -36,7 +41,7 @@ Comprobar que funciona: `GET /api/v1/agent/me`.
 4. `POST /api/v1/agent/submissions`.
 5. **Leer la respuesta**: `issues` (qué corregir) y `analysis` (dificultad, habilidades,
    etapa sugerida, duplicados). Corrige los `error` y reenvía.
-6. Consultar el resultado: `GET /api/v1/agent/submissions/{id}` (aprobada → `recipe_slug`;
+6. Una persona lo revisa en **Revisión** (`/revision`). Consulta el resultado: `GET /api/v1/agent/submissions/{id}` (aprobada → `recipe_slug`;
    rechazada → `review_notes` con el motivo; **léelo y no la reenvíes igual**).
 
 ## 3. Reglas que no se negocian

@@ -93,6 +93,15 @@ debe resolverse:
 
 Si algo falla, no queda nada creado (ni siquiera el ingrediente nuevo).
 
+## Pantallas
+
+- `/admin/agentes` (admin): conectar agentes (token mostrado una vez), ver último uso, revocar.
+- `/revision` (moderador o admin): cola con pestañas *Por revisar / Publicadas / Rechazadas*.
+- `/revision/[id]`: fuente y licencia, problemas (con título en español), análisis, ingredientes
+  con su estado en el catálogo y el panel de decisión: mapear o **crear** ingredientes, resolver
+  unidades, categorías, habilidades, ruta y etapa, clasificación del cóctel, aprobar o rechazar
+  con motivo. El botón de aprobar permanece deshabilitado mientras falte resolver algo.
+
 ## Limitaciones conocidas
 
 - La detección de duplicados ignora ingredientes sin mapear, así que "Paloma de jamaica" se

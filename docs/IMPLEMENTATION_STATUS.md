@@ -328,3 +328,43 @@ Datos de prueba borrados al terminar.
 - Detección de duplicados ignora ingredientes sin mapear.
 - Crear etapas nuevas y asignar `variation` (receta padre) al aprobar.
 - No hay imágenes en este flujo.
+
+## Pantallas de agentes y revisión ✅
+
+Rama `feat/review-queue-ui`. Incluye la función **"Conectar agente"** pedida.
+
+**Completado**
+- `/admin/agentes`: conectar agentes (nombre + herramienta), token mostrado una sola vez con
+  copiar, lista con último uso y revocar (con confirmación). Solo admin.
+- `/revision` y `/revision/[id]`: cola por estado, detalle completo y panel de decisión
+  (mapear, **crear ingredientes**, resolver unidades, categorías, habilidades, colocación en una
+  ruta, clasificación de cócteles, aprobar/rechazar con motivo). Moderador o admin.
+- Menú de usuario con enlaces según el rol; el usuario normal no ve ninguno y recibe "no tienes
+  permiso" si entra por URL (la API lo hace cumplir igualmente).
+- API: `GET /ingredients/categories` (familias, para crear ingredientes).
+- Detalles: nombre del ingrediente nuevo propuesto con mayúscula inicial; títulos en español
+  para los códigos de problemas; las acciones de servidor solo exportan funciones asíncronas
+  (el build de Next lo exige).
+
+**Tests**
+- Web: 104 passed (`vitest`): payload de aprobación, panel de decisión (botón bloqueado hasta
+  resolver, creación y mapeo, categoría obligatoria, rechazo con motivo, clasificación "clásico"
+  según la fuente), roles, errores de la API, títulos de problemas. `eslint`, `prettier`, `tsc` y
+  `next build` limpios.
+- Playwright, con la API real: sin sesión → login con retorno; usuario normal → "sin permiso" y
+  sin enlaces; admin conecta un agente en la pantalla (token una vez; nombre repetido rechazado);
+  el agente envía con ese token; el botón de aprobar permanece bloqueado hasta resolver el
+  ingrediente; se crea «Chile guajillo» (familia Especias), se publica y aparece en la receta
+  pública y en el catálogo; otro envío se rechaza y el agente lee el motivo; al revocar, el token
+  recibe 401; sin scroll horizontal en móvil; sin errores de consola ni ruido en el log.
+  Datos de prueba borrados.
+
+**Lo que esa prueba descubrió y se corrigió:** el ingrediente creado heredaba la minúscula del
+agente ("chile guajillo"); un archivo `"use server"` exportaba una función síncrona (el build
+fallaba y los tests no); mi comprobación del permiso solo leía el título de la página.
+
+**Limitaciones**
+- La pantalla no permite crear etapas nuevas ni elegir una receta padre (variaciones).
+- Los mensajes detallados de los problemas siguen en inglés (vienen de la API); el título sí está
+  en español.
+- No hay edición del texto de la receta durante la revisión: solo aprobar o rechazar.
