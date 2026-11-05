@@ -34,7 +34,12 @@ type QueryValue = string | number | boolean | undefined | null;
 
 export async function apiFetch<T>(
   path: string,
-  options: { query?: Record<string, QueryValue>; init?: RequestInit } = {},
+  options: {
+    query?: Record<string, QueryValue>;
+    init?: RequestInit;
+    /** Access token for protected endpoints (sent as a Bearer header). */
+    token?: string;
+  } = {},
 ): Promise<T> {
   const url = new URL(path, getApiBaseUrl());
   for (const [key, value] of Object.entries(options.query ?? {})) {
@@ -45,7 +50,11 @@ export async function apiFetch<T>(
   try {
     response = await fetch(url, {
       ...options.init,
-      headers: { Accept: "application/json", ...options.init?.headers },
+      headers: {
+        Accept: "application/json",
+        ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
+        ...options.init?.headers,
+      },
     });
   } catch (cause) {
     throw new ApiError("No se pudo conectar con la API", 0, "network_error", String(cause));

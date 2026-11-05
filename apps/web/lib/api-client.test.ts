@@ -26,6 +26,23 @@ describe("apiFetch", () => {
     expect(url.toString()).toBe("http://api.test/api/v1/categories?recipe_type=drink");
   });
 
+  it("sends the access token as a Bearer header only when given", async () => {
+    // A fresh Response per call: a body can only be read once.
+    const fetchMock = vi.fn(() => Promise.resolve(Response.json({})));
+    vi.stubGlobal("fetch", fetchMock);
+
+    await apiFetch("/api/v1/me", { token: "abc" });
+    await apiFetch("/api/v1/recipes");
+
+    const headers = (call: number) =>
+      (fetchMock.mock.calls[call] as unknown as [URL, RequestInit])[1].headers as Record<
+        string,
+        string
+      >;
+    expect(headers(0).Authorization).toBe("Bearer abc");
+    expect(headers(1).Authorization).toBeUndefined();
+  });
+
   it("returns the parsed JSON body on success", async () => {
     mockFetch(Response.json([{ id: "1" }]));
     await expect(apiFetch("/x")).resolves.toEqual([{ id: "1" }]);

@@ -223,6 +223,23 @@ export interface PathDetail extends PathSummary {
   stages: PathStage[];
 }
 
+export type UserRole = "user" | "moderator" | "admin";
+
+export interface CurrentUser {
+  id: string;
+  email: string | null;
+  display_name: string;
+  role: UserRole;
+  created_at: string;
+}
+
+export interface DevLoginResult {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  user: CurrentUser;
+}
+
 export interface ApiErrorBody {
   error: {
     code: string;
