@@ -279,7 +279,7 @@ publicación.
 - `getSession()` difiere la llamada a `/me` con `connection()`: Next hace renders de
   prefetch con cookies reales y los aborta, lo que dejaba `fetch` rechazados en el log.
 
-**Tests:** API 162 passed (11 nuevos; pasan con y sin `.env` local); web 77 passed (`safeRedirectPath`, `apiFetch`
+**Tests:** API 162 passed (11 nuevos). Verificado con el `.env` local presente y sin él pero con `DATABASE_URL`/`TEST_DATABASE_URL` como variables de entorno, que es lo que hace el CI. Sin ninguna de las dos la API no arranca, por diseño; web 77 passed (`safeRedirectPath`, `apiFetch`
 con token). Playwright: login, dominio reservado rechazado con mensaje, `next`
 malicioso ignorado, cookie `httpOnly` ilegible desde JS, logout, cookie corrupta =
 sesión cerrada, sin errores de consola, sin scroll horizontal en móvil.
