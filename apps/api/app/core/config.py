@@ -8,7 +8,7 @@ clear message instead of failing on the first request.
 from functools import lru_cache
 from typing import Annotated, Literal
 
-from pydantic import Field, PostgresDsn, SecretStr, field_validator
+from pydantic import Field, PostgresDsn, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
@@ -37,6 +37,13 @@ class Settings(BaseSettings):
     supabase_jwt_audience: str = "authenticated"
     supabase_jwt_issuer: str | None = None
 
+    # LOCAL DEVELOPMENT ONLY. Exposes POST /api/v1/dev/login, which hands out a
+    # token for any email without a password, so you can work without Supabase.
+    # The app refuses to start with it enabled in production.
+    dev_login_enabled: bool = False
+    # Emails promoted to admin when they sign in through the dev login.
+    dev_admin_emails: Annotated[list[str], NoDecode] = []
+
     # Comma separated list of allowed browser origins.
     cors_origins: Annotated[list[str], NoDecode] = ["http://localhost:3000"]
 
@@ -53,6 +60,23 @@ class Settings(BaseSettings):
         if isinstance(value, str):
             return [origin.strip() for origin in value.split(",") if origin.strip()]
         return value
+
+    @field_validator("dev_admin_emails", mode="before")
+    @classmethod
+    def _split_admin_emails(cls, value: object) -> object:
+        if isinstance(value, str):
+            return [email.strip().lower() for email in value.split(",") if email.strip()]
+        if isinstance(value, list):
+            return [str(email).strip().lower() for email in value]
+        return value
+
+    @model_validator(mode="after")
+    def _dev_login_is_safe(self) -> "Settings":
+        if self.dev_login_enabled and self.environment == "production":
+            raise ValueError("DEV_LOGIN_ENABLED must never be true in production")
+        if self.dev_login_enabled and self.supabase_jwt_secret is None:
+            raise ValueError("DEV_LOGIN_ENABLED requires SUPABASE_JWT_SECRET (it signs the tokens)")
+        return self
 
     @property
     def is_production(self) -> bool:

@@ -53,6 +53,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.add_middleware(RequestContextMiddleware)
     register_exception_handlers(app)
     app.include_router(api_router)
+    if settings.dev_login_enabled:
+        from app.api.v1 import dev
+
+        app.include_router(dev.router, prefix="/api/v1")
     return app
 
 
