@@ -40,7 +40,7 @@ documentación actualizada y `docs/IMPLEMENTATION_STATUS.md` al día.
 ## Extra (hecho) — Animación de cócteles ✅
 - Animación generada a partir de los datos de cada cóctel (ver ARCHITECTURE §7b).
 
-## Fase 3 — Autenticación y comunidad
+## Fase 3 — Autenticación y comunidad (API de auth, roles y agentes ✅; falta login en la web)
 - Supabase Auth en web; verificación de JWT en API; perfiles `app_user`.
 - RBAC (`user`, `moderator`, `admin`) aplicado en backend.
 - Favoritos.

@@ -134,14 +134,18 @@ cambia por razones distintas.
 | **pydantic-settings** | `os.environ` manual | Configuración tipada y validada al arrancar: si falta una variable crítica, la app falla rápido y con un mensaje claro. |
 | **uv** para dependencias Python | pip/poetry | Resolución rápida y `uv.lock` reproducible. |
 
-### Autenticación y autorización (Fase 3)
+### Autenticación y autorización
 
-- Supabase Auth emite un JWT. El frontend lo envía como `Authorization: Bearer`.
-- La API **verifica** el JWT (JWKS de Supabase o secreto del proyecto) y resuelve el
-  perfil en `app_user`, donde está el rol (`user`, `moderator`, `admin`).
-- Los permisos se aplican en la API mediante dependencias de FastAPI
-  (`require_role(Role.MODERATOR)`). El frontend solo oculta UI; nunca autoriza.
-- La `service_role key` de Supabase **solo** existe en el backend.
+Detalle y modelo de amenazas en [`AUTH.md`](AUTH.md). Resumen:
+
+- Supabase Auth emite un JWT; la API lo **verifica** (JWKS o secreto HS256, con el
+  algoritmo fijado por tipo de clave) y resuelve el perfil en `app_user`.
+- El rol (`user`, `moderator`, `admin`) vive en **nuestra** base de datos, no en el
+  token, y se exige con dependencias de FastAPI (`AdminUser`, `ModeratorUser`).
+- Los agentes de ingesta (opencode, Claude, Gemini…) son una identidad distinta de
+  las personas: token propio, guardado como hash, con *scopes* y revocación
+  individual. Así se puede saber qué agente aportó cada receta.
+- La `service_role key` de Supabase no se usa en ningún sitio.
 
 ### Errores, logging y seguridad
 

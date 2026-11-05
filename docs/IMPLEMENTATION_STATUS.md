@@ -229,3 +229,37 @@ Rama `feat/learning-paths-dish-ladder`. Detalle en `LEARNING_PATHS.md`.
 - La Paloma usa la especificación IBA de memoria (50 ml tequila, 5 ml lima, 100 ml
   refresco de toronja, sal): verificar junto con el resto.
 - El progreso es por navegador hasta tener cuentas (Fase 3).
+
+## Auth, roles y registro de agentes ✅ (API)
+
+Rama `feat/api-auth-roles-and-agent-registry`. Detalle en `AUTH.md`.
+
+**Completado**
+- Migración 5: tabla `agent` (con CHECK de nombre y scopes) y `app_user.email`.
+- Verificación de JWT de Supabase con algoritmo fijado por tipo de clave (HS256 con
+  secreto, RS256/ES256 con JWKS), `exp`/`sub`/`aud` obligatorios, `iss` opcional.
+  Fallo del JWKS → 503, no 401.
+- Perfiles creados en el primer acceso (rol `user`), con carga segura frente a
+  peticiones simultáneas. El rol se lee de la BD, nunca del token.
+- RBAC: `CurrentUser`, `ModeratorUser`, `AdminUser`; `GET/PATCH /me`;
+  `GET /admin/users`, `PUT /admin/users/{id}/role` (un admin no cambia su propio rol).
+- CLI `python -m app.cli grant-role` para nombrar al primer administrador.
+- Registro de agentes: `POST/GET /admin/agents`, `POST /admin/agents/{id}/revoke`,
+  `GET /agent/me`. Token `mis_ag_…` mostrado una vez y guardado como SHA-256; scope
+  `submit_recipes`; revocación individual; `last_used_at` limitado a 1 escritura/min.
+- `Page[T]` movido a `schemas/common.py` (lo usan ahora recetas y usuarios).
+
+**Tests:** 151 passed (`-W error::DeprecationWarning`): 35 de auth (token expirado,
+audiencia, firma, sin `sub`/`exp`, `alg: none`, confusión de algoritmo, emisor, ES256
+con JWKS simulado, roles ignorados en el token, matriz de permisos), 19 de agentes
+(hash en BD, tres agentes independientes, revocación, tokens no intercambiables,
+CLI). `ruff` y `mypy --strict` limpios. Prueba manual con el servidor real: login →
+CLI → admin → tres agentes con token válido.
+
+**No verificado**
+- Contra un **Supabase real**: se probó con tokens firmados localmente. Falta
+  confirmar la configuración del JWKS/emisor con tu proyecto.
+- Pantalla de login en la web (necesita URL y *anon key* de tu proyecto).
+
+**Siguiente:** endpoint `POST /agent/submissions` (validación, normalización,
+duplicados, dificultad, sugerencia de etapa, cola pendiente) y pantalla de revisión.

@@ -82,6 +82,21 @@ Los tests de la API usan una base de datos real (`TEST_DATABASE_URL`, por defect
 (`pg_trgm`, `NULLS NOT DISTINCT`, `gen_random_uuid()`); probar en otro motor daría
 falsos positivos.
 
+## Probar rutas protegidas en local (sin Supabase)
+
+Con un secreto de desarrollo puedes firmar tus propios tokens:
+
+```bash
+export SUPABASE_JWT_SECRET="un-secreto-local-de-al-menos-32-bytes!!"
+cd apps/api && uv run uvicorn app.main:app --reload
+# en otra terminal:
+TOKEN=$(uv run python -c "import jwt,time,uuid; print(jwt.encode({'sub':str(uuid.uuid4()),'aud':'authenticated','exp':int(time.time())+3600,'email':'yo@local.test'}, '$SUPABASE_JWT_SECRET', algorithm='HS256'))")
+curl -H "Authorization: Bearer $TOKEN" localhost:8000/api/v1/me
+uv run python -m app.cli grant-role --email yo@local.test --role admin
+```
+
+Nunca uses ese secreto fuera de tu máquina. Ver [`AUTH.md`](AUTH.md).
+
 ## Convenciones de Git
 
 ### Ramas
