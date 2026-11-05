@@ -21,6 +21,8 @@ from app.db.base import Base
 from app.db.session import create_engine, create_session_factory
 from app.main import create_app
 
+TEST_JWT_SECRET = "test-secret-with-at-least-thirty-two-bytes!"
+
 TEST_DATABASE_URL = os.environ.get(
     "TEST_DATABASE_URL", "postgresql+psycopg://miseo:miseo@localhost:5432/miseo_test"
 )
@@ -32,6 +34,7 @@ def settings() -> Settings:
         environment="test",
         database_url=TEST_DATABASE_URL,  # type: ignore[arg-type]
         cors_origins=["http://testserver.local"],
+        supabase_jwt_secret=TEST_JWT_SECRET,  # type: ignore[arg-type]
         log_level="WARNING",
     )
 
@@ -82,4 +85,17 @@ async def client(
     app.state.session_factory = session_factory
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://testserver") as client:
+        yield client
+
+
+@pytest.fixture
+async def unconfigured_client(
+    settings: Settings, session_factory: async_sessionmaker[AsyncSession]
+) -> AsyncIterator[AsyncClient]:
+    """An API with no auth configured: public endpoints work, protected ones say 503."""
+    app = create_app(settings.model_copy(update={"supabase_jwt_secret": None}))
+    app.state.session_factory = session_factory
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://testserver"
+    ) as client:
         yield client
