@@ -3,6 +3,7 @@
 import uuid
 from datetime import datetime
 from decimal import Decimal
+from typing import Any
 
 from sqlalchemy import (
     CheckConstraint,
@@ -16,6 +17,7 @@ from sqlalchemy import (
     func,
     text,
 )
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db.base import Base, TimestampMixin, UUIDPrimaryKeyMixin
@@ -45,6 +47,19 @@ class IngestionJob(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     created_by: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("app_user.id", ondelete="SET NULL")
     )
+    # The external agent (opencode, Claude, Gemini...) that submitted it: provenance.
+    agent_id: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("agent.id", ondelete="SET NULL"), index=True
+    )
+    # Cleaned submission plus the ingredient/unit lines resolved by our pipeline.
+    payload: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
+    # Deterministic analysis: difficulty, suggested skills and stage, duplicates.
+    analysis: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
+    reviewed_by: Mapped[uuid.UUID | None] = mapped_column(
+        ForeignKey("app_user.id", ondelete="SET NULL")
+    )
+    reviewed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    review_notes: Mapped[str | None] = mapped_column(Text)
 
 
 class IngestionIssue(UUIDPrimaryKeyMixin, Base):

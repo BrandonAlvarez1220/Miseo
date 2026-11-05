@@ -94,6 +94,7 @@ class IngestionStatus(StrEnum):
     NEEDS_REVIEW = "needs_review"
     COMPLETED = "completed"
     FAILED = "failed"
+    REJECTED = "rejected"
 
 
 class IssueSeverity(StrEnum):

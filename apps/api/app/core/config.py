@@ -37,6 +37,11 @@ class Settings(BaseSettings):
     supabase_jwt_audience: str = "authenticated"
     supabase_jwt_issuer: str | None = None
 
+    # Limits for ingestion agents (counted in the database: no extra infrastructure).
+    agent_max_submissions_per_hour: int = Field(default=60, ge=1)
+    agent_max_pending: int = Field(default=200, ge=1)
+    agent_max_revisions: int = Field(default=5, ge=0)
+
     # LOCAL DEVELOPMENT ONLY. Exposes POST /api/v1/dev/login, which hands out a
     # token for any email without a password, so you can work without Supabase.
     # The app refuses to start with it enabled in production.

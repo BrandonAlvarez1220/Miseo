@@ -59,6 +59,21 @@ class ForbiddenError(AppError):
     code = "forbidden"
 
 
+class UnprocessableError(AppError):
+    """The request is well-formed JSON but breaks a business rule (422)."""
+
+    status_code = status.HTTP_422_UNPROCESSABLE_CONTENT
+    code = "invalid_submission"
+
+
+class TooManyRequestsError(AppError):
+    status_code = status.HTTP_429_TOO_MANY_REQUESTS
+    code = "rate_limited"
+
+    def __init__(self, message: str, *, retry_after_seconds: int = 3600) -> None:
+        super().__init__(message, headers={"Retry-After": str(retry_after_seconds)})
+
+
 class AuthUnavailableError(AppError):
     """Authentication cannot be checked right now (not configured, or key source down)."""
 
