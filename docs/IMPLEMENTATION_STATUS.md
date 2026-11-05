@@ -263,3 +263,27 @@ CLI → admin → tres agentes con token válido.
 
 **Siguiente:** endpoint `POST /agent/submissions` (validación, normalización,
 duplicados, dificultad, sugerencia de etapa, cola pendiente) y pantalla de revisión.
+
+## Ingreso local (sin Supabase) ✅
+
+Rama `feat/local-dev-login`. Se desarrolla todo en local; Supabase queda para la
+publicación.
+
+**Completado**
+- API: `POST /api/v1/dev/login` (solo si `DEV_LOGIN_ENABLED`), usuarios estables por
+  correo, `DEV_ADMIN_EMAILS` para el primer admin sin CLI. Validación de arranque:
+  prohibido en producción y exige el secreto de firma.
+- Web: `/ingresar`, sesión en cookie `httpOnly`, menú de usuario en la barra superior
+  (dentro de `<Suspense>`), cerrar sesión, `apiFetch` con `token`, redirección `next`
+  segura.
+- `getSession()` difiere la llamada a `/me` con `connection()`: Next hace renders de
+  prefetch con cookies reales y los aborta, lo que dejaba `fetch` rechazados en el log.
+
+**Tests:** API 162 passed (11 nuevos); web 77 passed (`safeRedirectPath`, `apiFetch`
+con token). Playwright: login, dominio reservado rechazado con mensaje, `next`
+malicioso ignorado, cookie `httpOnly` ilegible desde JS, logout, cookie corrupta =
+sesión cerrada, sin errores de consola, sin scroll horizontal en móvil.
+
+**Notas**
+- El validador de correos rechaza `.local`/`.test`; el valor por defecto es
+  `admin@example.com`.

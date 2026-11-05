@@ -82,7 +82,15 @@ Los tests de la API usan una base de datos real (`TEST_DATABASE_URL`, por defect
 (`pg_trgm`, `NULLS NOT DISTINCT`, `gen_random_uuid()`); probar en otro motor daría
 falsos positivos.
 
-## Probar rutas protegidas en local (sin Supabase)
+## Entrar en local (sin Supabase)
+
+1. `cp apps/api/.env.example apps/api/.env` y `cp apps/web/.env.example apps/web/.env.local`.
+2. Levanta API y web y abre http://localhost:3000/ingresar.
+3. Entra con `admin@example.com` para ser administrador (cualquier otro correo: usuario normal).
+
+Detalle y seguridad en [`AUTH.md`](AUTH.md).
+
+## Probar rutas protegidas a mano (con curl)
 
 Con un secreto de desarrollo puedes firmar tus propios tokens:
 

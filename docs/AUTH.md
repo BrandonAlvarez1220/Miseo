@@ -46,8 +46,35 @@ SUPABASE_JWT_ISSUER=https://<tu-proyecto>.supabase.co/auth/v1
 
 Sin ninguna, la API funciona igual en modo solo lectura pública.
 
-> Aún no hay pantalla de login en la web: requiere un proyecto de Supabase real
-> (URL y *anon key*) y no se puede probar sin él. La API ya está lista y probada.
+## Desarrollo local: ingreso sin Supabase
+
+Para trabajar en local no hace falta ningún proyecto de Supabase. Con
+`DEV_LOGIN_ENABLED=true` (viene así en `apps/api/.env.example`) la API expone
+`POST /api/v1/dev/login`, que entrega un token para **cualquier correo, sin
+contraseña**. La web lo usa en `/ingresar`.
+
+```bash
+cd apps/api && cp .env.example .env        # ya trae DEV_LOGIN_ENABLED y un secreto local
+```
+
+- Entra con `admin@example.com` (está en `DEV_ADMIN_EMAILS`) y serás administrador;
+  con cualquier otro correo serás un usuario normal.
+- El mismo correo es siempre el mismo usuario, también tras reiniciar.
+- Usa dominios como `example.com`: el validador rechaza `.local` y `.test` (reservados).
+- Los tokens se firman con `SUPABASE_JWT_SECRET`, el mismo secreto que verifica la API,
+  así que roles, agentes y pantallas de admin se comportan **igual que con Supabase**.
+
+Seguridad (probada en `tests/test_dev_login.py`):
+
+- **Apagado por defecto**, y con él apagado la ruta ni existe (404).
+- **La API no arranca** con `DEV_LOGIN_ENABLED=true` si `ENVIRONMENT=production`, ni
+  sin `SUPABASE_JWT_SECRET`. Si copias el `.env.example` a producción, falla en voz alta.
+- La web guarda el token en una cookie `httpOnly` + `SameSite=Lax` (JavaScript no puede
+  leerla). Pon `SESSION_COOKIE_SECURE=true` cuando sirvas por HTTPS.
+- El parámetro `next` solo acepta rutas del propio sitio (no hay *open redirect*).
+
+**Al publicar:** se desactiva `DEV_LOGIN_ENABLED`, se configura el JWKS de Supabase y
+se cambia el formulario de `/ingresar` por el de Supabase Auth. La API no cambia.
 
 ## Nombrar al primer administrador
 
@@ -86,7 +113,7 @@ curl -X POST $API/api/v1/admin/agents \
 
 ## Pendiente
 
-- Pantalla de login y `/admin` en la web (necesita un proyecto de Supabase).
+- Login con Supabase Auth en la web (cuando se publique) y pantalla `/admin`.
 - Límite de peticiones por agente y por usuario.
 - Endpoint de envío de recetas para agentes y cola de revisión (siguiente rama).
 - Tabla de auditoría: hoy los cambios de rol y de agentes quedan en el log con el
