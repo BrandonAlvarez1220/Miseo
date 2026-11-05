@@ -1,7 +1,8 @@
-import { LogIn, LogOut } from "lucide-react";
+import { LogIn, LogOut, Plug, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
+import { hasRole } from "@/lib/roles";
 
 import { logoutAction } from "./actions";
 import { getSession } from "./current-user";
@@ -20,8 +21,26 @@ export async function UserMenu() {
   }
   const { user } = session;
   const initials = user.display_name.slice(0, 2).toUpperCase();
+  const links = [
+    hasRole(user.role, "moderator")
+      ? { href: "/revision", label: "Revisión", icon: ShieldCheck }
+      : null,
+    hasRole(user.role, "admin") ? { href: "/admin/agentes", label: "Agentes", icon: Plug } : null,
+  ].filter((link) => link !== null);
   return (
     <div className="flex items-center gap-2 sm:gap-3">
+      {links.map(({ href, label, icon: Icon }) => (
+        <Link
+          key={href}
+          href={href}
+          aria-label={label}
+          title={label}
+          className={buttonVariants({ variant: "outline", size: "sm", className: "px-3" })}
+        >
+          <Icon aria-hidden="true" />
+          <span className="hidden lg:inline">{label}</span>
+        </Link>
+      ))}
       <div className="flex items-center gap-2">
         <span
           aria-hidden="true"
