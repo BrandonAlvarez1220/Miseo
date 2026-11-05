@@ -11,6 +11,9 @@ from app.api.v1 import (
     paths,
     recipes,
     recommendations,
+    review,
+    submissions,
+    units,
 )
 
 api_router = APIRouter(prefix="/api/v1")
@@ -24,3 +27,6 @@ api_router.include_router(paths.router)
 api_router.include_router(me.router)
 api_router.include_router(admin.router)
 api_router.include_router(agent.router)
+api_router.include_router(units.router)
+api_router.include_router(submissions.router)
+api_router.include_router(review.router)
