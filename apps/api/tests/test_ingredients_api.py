@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.enums import RecipeType
 from tests.factories import make_ingredient, make_recipe
+from tests.submission_helpers import seed_catalog
 
 
 async def test_search_by_alias_and_without_accents(
@@ -63,3 +64,13 @@ async def test_popular_ingredients_by_module(client: AsyncClient, session: Async
 async def test_invalid_slug_list_is_rejected(client: AsyncClient) -> None:
     response = await client.get("/api/v1/ingredients", params={"slugs": "DROP TABLE;"})
     assert response.status_code == 422
+
+
+async def test_ingredient_categories_are_public(client: AsyncClient, session: AsyncSession) -> None:
+    await seed_catalog(session)
+    await session.commit()
+
+    body = (await client.get("/api/v1/ingredients/categories")).json()
+
+    assert {"verduras", "destilados"} <= {c["slug"] for c in body}
+    assert body == sorted(body, key=lambda c: c["name"])

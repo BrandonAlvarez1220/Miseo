@@ -1,9 +1,11 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Query
+from sqlalchemy import select
 
 from app.api.deps import SessionDep
 from app.api.v1.params import CsvSlugs, split_csv
+from app.models import IngredientCategory
 from app.models.enums import RecipeType
 from app.repositories import ingredient as ingredient_repo
 from app.repositories.ingredient import IngredientSort
@@ -54,3 +56,14 @@ async def list_ingredients(
         )
         for ingredient, count in rows
     ]
+
+
+@router.get(
+    "/categories",
+    response_model=list[CategoryRef],
+    summary="Ingredient families (vegetables, spirits...)",
+    description="For creating new catalog ingredients during review.",
+)
+async def list_ingredient_categories(session: SessionDep) -> list[CategoryRef]:
+    rows = await session.scalars(select(IngredientCategory).order_by(IngredientCategory.name))
+    return [CategoryRef.model_validate(row) for row in rows.all()]
