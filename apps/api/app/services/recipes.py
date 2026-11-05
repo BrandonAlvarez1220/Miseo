@@ -11,13 +11,13 @@ from app.models.enums import RecipeType
 from app.repositories import learning as learning_repo
 from app.repositories import recipe as recipe_repo
 from app.repositories.recipe import RecipeFilters, RecipeSort
+from app.schemas.common import Page
 from app.schemas.recipe import (
     AlternativeRead,
     CatalogItemRead,
     CategoryRef,
     DrinkDetailsRead,
     IngredientRef,
-    Page,
     RecipeDetail,
     RecipeIngredientRead,
     RecipeIngredientRef,

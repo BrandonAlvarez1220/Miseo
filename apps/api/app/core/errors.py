@@ -23,10 +23,13 @@ class AppError(Exception):
     status_code = status.HTTP_400_BAD_REQUEST
     code = "bad_request"
 
-    def __init__(self, message: str, *, details: Any = None) -> None:
+    def __init__(
+        self, message: str, *, details: Any = None, headers: dict[str, str] | None = None
+    ) -> None:
         super().__init__(message)
         self.message = message
         self.details = details
+        self.headers = headers
 
 
 class NotFoundError(AppError):
@@ -37,6 +40,30 @@ class NotFoundError(AppError):
 class ConflictError(AppError):
     status_code = status.HTTP_409_CONFLICT
     code = "conflict"
+
+
+class UnauthorizedError(AppError):
+    """Missing or invalid credentials (401). Tells clients to retry with a Bearer token."""
+
+    status_code = status.HTTP_401_UNAUTHORIZED
+    code = "unauthorized"
+
+    def __init__(self, message: str = "Authentication required") -> None:
+        super().__init__(message, headers={"WWW-Authenticate": "Bearer"})
+
+
+class ForbiddenError(AppError):
+    """Authenticated, but not allowed to do this (403)."""
+
+    status_code = status.HTTP_403_FORBIDDEN
+    code = "forbidden"
+
+
+class AuthUnavailableError(AppError):
+    """Authentication cannot be checked right now (not configured, or key source down)."""
+
+    status_code = status.HTTP_503_SERVICE_UNAVAILABLE
+    code = "auth_unavailable"
 
 
 def _error_body(code: str, message: str, details: Any = None) -> dict[str, Any]:
@@ -58,7 +85,9 @@ def register_exception_handlers(app: FastAPI) -> None:
     @app.exception_handler(AppError)
     async def _app_error(_: Request, exc: AppError) -> JSONResponse:
         return JSONResponse(
-            status_code=exc.status_code, content=_error_body(exc.code, exc.message, exc.details)
+            status_code=exc.status_code,
+            content=_error_body(exc.code, exc.message, exc.details),
+            headers=exc.headers,
         )
 
     @app.exception_handler(RequestValidationError)

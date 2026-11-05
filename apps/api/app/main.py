@@ -12,6 +12,7 @@ from app.core.config import Settings, get_settings
 from app.core.errors import register_exception_handlers
 from app.core.logging import configure_logging
 from app.core.middleware import RequestContextMiddleware
+from app.core.security import TokenVerifier
 from app.db.session import create_engine, create_session_factory
 
 
@@ -39,6 +40,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         redoc_url=None if settings.is_production else "/redoc",
     )
     app.state.settings = settings
+    # Cheap to build: no network access until a token with an asymmetric key arrives.
+    app.state.token_verifier = TokenVerifier.from_settings(settings)
 
     app.add_middleware(
         CORSMiddleware,

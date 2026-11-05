@@ -6,7 +6,8 @@ from app.api.deps import SessionDep
 from app.api.v1.params import CsvSlugs, split_csv
 from app.models.enums import Difficulty, RecipeType
 from app.repositories.recipe import RecipeFilters, RecipeSort
-from app.schemas.recipe import Page, RecipeDetail, RecipeSummary
+from app.schemas.common import Page
+from app.schemas.recipe import RecipeDetail, RecipeSummary
 from app.services import recipes as recipe_service
 
 router = APIRouter(prefix="/recipes", tags=["recipes"])

@@ -139,11 +139,3 @@ class RecipeDetail(RecipeSummary):
     related: list[RecipeSummary]
     skills: list[RecipeSkill] = Field(description="What you learn cooking this recipe.")
     paths: list[RecipePathMembership] = Field(description="Learning paths that include it.")
-
-
-class Page[T](BaseModel):
-    items: list[T]
-    total: int
-    page: int
-    page_size: int
-    pages: int

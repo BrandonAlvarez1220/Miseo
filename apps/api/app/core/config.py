@@ -8,7 +8,7 @@ clear message instead of failing on the first request.
 from functools import lru_cache
 from typing import Annotated, Literal
 
-from pydantic import Field, PostgresDsn, field_validator
+from pydantic import Field, PostgresDsn, SecretStr, field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 
@@ -26,6 +26,16 @@ class Settings(BaseSettings):
     # prepared statements; disable them when connecting through it.
     database_disable_prepared_statements: bool = False
     database_pool_size: int = Field(default=5, ge=1, le=50)
+
+    # Supabase Auth. The API only VERIFIES access tokens; it never needs the
+    # service-role key. Configure at least one of:
+    #  - SUPABASE_JWKS_URL: projects with asymmetric signing keys (recommended), or
+    #  - SUPABASE_JWT_SECRET: projects using the legacy shared HS256 secret.
+    # With neither, public endpoints work and protected ones answer 503.
+    supabase_jwt_secret: SecretStr | None = None
+    supabase_jwks_url: str | None = None
+    supabase_jwt_audience: str = "authenticated"
+    supabase_jwt_issuer: str | None = None
 
     # Comma separated list of allowed browser origins.
     cors_origins: Annotated[list[str], NoDecode] = ["http://localhost:3000"]
