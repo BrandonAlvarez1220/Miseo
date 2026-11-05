@@ -240,6 +240,136 @@ export interface DevLoginResult {
   user: CurrentUser;
 }
 
+export type IssueSeverity = "error" | "warning" | "info";
+export type IngestionStatus =
+  "queued" | "running" | "needs_review" | "completed" | "failed" | "rejected";
+export type AgentProvider = "opencode" | "claude" | "gemini" | "other";
+
+export interface SubmissionIssue {
+  severity: IssueSeverity;
+  code: string;
+  message: string;
+  field_path: string | null;
+}
+
+export interface SubmissionLine {
+  index: number;
+  name: string;
+  ingredient_slug: string | null;
+  ingredient_name: string | null;
+  candidates: { slug: string; name: string; similarity: number }[];
+  quantity: DecimalString | null;
+  quantity_max: DecimalString | null;
+  unit_code: string | null;
+  unit_text: string | null;
+  optional: boolean;
+  notes: string | null;
+  group: string | null;
+}
+
+export interface PlacementSuggestion {
+  path_slug: string;
+  path_title: string;
+  stage_position: number;
+  stage_title: string;
+  new_stage: boolean;
+  unknown_skills: string[];
+  introduces: string[];
+  reason: string;
+}
+
+export interface DuplicateRef {
+  kind: "recipe" | "submission";
+  title: string;
+  similarity: number;
+  reason: string;
+  slug: string | null;
+  submission_id: string | null;
+}
+
+export interface SubmissionAnalysis {
+  difficulty: { score: number; label: Difficulty; reasons: string[] };
+  skills: { slug: string; name: string }[];
+  placements: PlacementSuggestion[];
+  duplicates: DuplicateRef[];
+  classification: { claimed: DrinkClassification | null; suggested: DrinkClassification } | null;
+}
+
+export interface AgentRef {
+  id: string;
+  name: string;
+  provider: string;
+}
+
+export interface SubmissionListItem {
+  id: string;
+  status: IngestionStatus;
+  title: string;
+  recipe_type: RecipeType;
+  agent: AgentRef | null;
+  difficulty_score: number | null;
+  errors: number;
+  warnings: number;
+  created_at: string;
+}
+
+export interface SubmissionDetail {
+  id: string;
+  status: IngestionStatus;
+  outcome: "created" | "updated" | "unchanged";
+  issues: SubmissionIssue[];
+  blocking_issues: number;
+  analysis: SubmissionAnalysis | null;
+  review_notes: string | null;
+  recipe_slug: string | null;
+  title: string;
+  recipe_type: RecipeType;
+  source: {
+    name: string;
+    url: string | null;
+    source_type: SourceType;
+    license: string | null;
+    attribution: string | null;
+  };
+  description: string | null;
+  tips: string | null;
+  servings: number;
+  preparation_time_minutes: number | null;
+  cooking_time_minutes: number | null;
+  categories: string[];
+  lines: SubmissionLine[];
+  steps: string[];
+  drink: {
+    is_alcoholic: boolean;
+    base_spirit: string | null;
+    glass: string | null;
+    technique: string | null;
+    garnish: string | null;
+  } | null;
+  agent_notes: string | null;
+  agent: AgentRef | null;
+  created_at: string;
+  reviewed_at: string | null;
+}
+
+export interface Agent {
+  id: string;
+  name: string;
+  provider: AgentProvider;
+  description: string | null;
+  token_prefix: string;
+  scopes: string[];
+  is_active: boolean;
+  created_at: string;
+  last_used_at: string | null;
+  revoked_at: string | null;
+}
+
+export interface CreatedAgent extends Agent {
+  /** Shown once; only its hash is stored. */
+  token: string;
+}
+
 export interface ApiErrorBody {
   error: {
     code: string;

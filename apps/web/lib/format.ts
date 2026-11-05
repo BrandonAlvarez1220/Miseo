@@ -31,3 +31,9 @@ export function formatMinutes(minutes: number | null | undefined): string | null
 export function pluralize(count: number, singular: string, plural: string): string {
   return `${count} ${count === 1 ? singular : plural}`;
 }
+
+/** "chile guajillo" -> "Chile guajillo". Leaves the rest of the text untouched. */
+export function capitalizeFirst(text: string): string {
+  const trimmed = text.trim();
+  return trimmed ? trimmed.charAt(0).toLocaleUpperCase("es") + trimmed.slice(1) : trimmed;
+}
