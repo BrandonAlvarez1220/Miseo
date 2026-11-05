@@ -279,7 +279,7 @@ publicación.
 - `getSession()` difiere la llamada a `/me` con `connection()`: Next hace renders de
   prefetch con cookies reales y los aborta, lo que dejaba `fetch` rechazados en el log.
 
-**Tests:** API 162 passed (11 nuevos); web 77 passed (`safeRedirectPath`, `apiFetch`
+**Tests:** API 162 passed (11 nuevos; pasan con y sin `.env` local); web 77 passed (`safeRedirectPath`, `apiFetch`
 con token). Playwright: login, dominio reservado rechazado con mensaje, `next`
 malicioso ignorado, cookie `httpOnly` ilegible desde JS, logout, cookie corrupta =
 sesión cerrada, sin errores de consola, sin scroll horizontal en móvil.

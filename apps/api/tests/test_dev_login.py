@@ -14,6 +14,7 @@ from tests.conftest import TEST_DATABASE_URL, TEST_JWT_SECRET
 
 def _settings(**overrides: object) -> Settings:
     values: dict[str, object] = {
+        "_env_file": None,
         "environment": "development",
         "database_url": TEST_DATABASE_URL,
         "supabase_jwt_secret": TEST_JWT_SECRET,

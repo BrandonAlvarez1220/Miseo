@@ -30,7 +30,9 @@ TEST_DATABASE_URL = os.environ.get(
 
 @pytest.fixture(scope="session")
 def settings() -> Settings:
+    # _env_file=None: tests must not depend on the developer's local .env.
     return Settings(
+        _env_file=None,
         environment="test",
         database_url=TEST_DATABASE_URL,  # type: ignore[arg-type]
         cors_origins=["http://testserver.local"],
