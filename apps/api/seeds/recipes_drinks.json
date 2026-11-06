@@ -1,0 +1,254 @@
+[
+  {
+    "slug": "daiquiri",
+    "title": "Daiquiri",
+    "description": "Ron blanco, lima y azúcar: el sour cubano por excelencia.",
+    "introduction": "Un clásico de tres ingredientes que pone a prueba el equilibrio entre ácido y dulce.",
+    "tips": "Usa jugo de lima recién exprimido y bate con fuerza para que quede bien frío.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 3, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "sours"],
+    "drink": {"is_alcoholic": true, "base_spirit": "ron blanco", "glass": "coupe", "technique": "batido", "classification": "classic", "garnish": "Rueda de lima (opcional)"},
+    "ingredients": [
+      {"ingredient": "ron blanco", "quantity": 60, "unit": "ml"},
+      {"ingredient": "lima", "quantity": 20, "unit": "ml", "notes": "jugo recién exprimido"},
+      {"ingredient": "jarabe simple", "quantity": 15, "unit": "ml"}
+    ],
+    "steps": [
+      "Enfría la copa con hielo o en el congelador.",
+      "Añade todos los ingredientes a la coctelera con hielo y bate con energía unos 10 segundos.",
+      "Cuela doble en la copa fría y sirve."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "hemingway-special",
+    "title": "Hemingway Special",
+    "description": "Variación del daiquiri con toronja y licor marrasquino, sin azúcar añadido.",
+    "introduction": "Variación documentada del daiquiri, asociada al Floridita de La Habana.",
+    "tips": "Es un cóctel seco y ácido; si lo prefieres más amable, añade 5 ml de jarabe simple.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 3, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "sours"],
+    "drink": {"is_alcoholic": true, "base_spirit": "ron blanco", "glass": "coupe", "technique": "batido", "classification": "variation", "variation_of": "daiquiri"},
+    "ingredients": [
+      {"ingredient": "ron blanco", "quantity": 60, "unit": "ml"},
+      {"ingredient": "toronja", "quantity": 40, "unit": "ml", "notes": "jugo"},
+      {"ingredient": "licor marrasquino", "quantity": 15, "unit": "ml"},
+      {"ingredient": "lima", "quantity": 15, "unit": "ml", "notes": "jugo"}
+    ],
+    "steps": [
+      "Añade todos los ingredientes a la coctelera con hielo.",
+      "Bate con energía y cuela doble en una copa fría."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "margarita",
+    "title": "Margarita",
+    "description": "Tequila, licor de naranja y lima con un borde de sal.",
+    "introduction": "Uno de los cócteles más pedidos del mundo, de la familia de los sours.",
+    "tips": "Escarcha solo la mitad del borde con sal para que cada sorbo pueda elegirse con o sin ella.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 4, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "sours"],
+    "drink": {"is_alcoholic": true, "base_spirit": "tequila", "glass": "coupe", "technique": "batido", "classification": "classic", "garnish": "Media corona de sal y rueda de lima"},
+    "ingredients": [
+      {"ingredient": "tequila", "quantity": 50, "unit": "ml"},
+      {"ingredient": "triple sec", "quantity": 20, "unit": "ml"},
+      {"ingredient": "lima", "quantity": 15, "unit": "ml", "notes": "jugo"},
+      {"ingredient": "sal", "unit": "to_taste", "optional": true, "notes": "para el borde"}
+    ],
+    "steps": [
+      "Humedece la mitad del borde de la copa con lima y pásalo por sal.",
+      "Bate el tequila, el triple sec y la lima con hielo.",
+      "Cuela en la copa preparada."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "negroni",
+    "title": "Negroni",
+    "description": "Partes iguales de ginebra, Campari y vermut rojo: amargo, dulce y aromático.",
+    "introduction": "El aperitivo italiano por excelencia.",
+    "tips": "Usa un cubo de hielo grande: se diluye más despacio y mantiene el equilibrio.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 2, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "aperitivos"],
+    "drink": {"is_alcoholic": true, "base_spirit": "ginebra", "glass": "rocks", "technique": "construido", "classification": "classic", "garnish": "Media rodaja de naranja"},
+    "ingredients": [
+      {"ingredient": "ginebra", "quantity": 30, "unit": "ml"},
+      {"ingredient": "campari", "quantity": 30, "unit": "ml"},
+      {"ingredient": "vermut rojo", "quantity": 30, "unit": "ml"},
+      {"ingredient": "naranja", "quantity": 0.5, "unit": "slice", "optional": true, "notes": "para decorar"}
+    ],
+    "steps": [
+      "Llena el vaso de hielo.",
+      "Vierte la ginebra, el Campari y el vermut y remueve suavemente.",
+      "Decora con media rodaja de naranja."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "old-fashioned",
+    "title": "Old Fashioned",
+    "description": "Bourbon, azúcar y amargo de angostura: el cóctel en su forma más esencial.",
+    "introduction": "Su nombre lo dice todo: así se preparaban los cócteles 'a la antigua'.",
+    "tips": "Disuelve bien el azúcar antes de añadir el hielo y el bourbon.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 4, "cooking_time_minutes": 0,
+    "categories": ["clasicos"],
+    "drink": {"is_alcoholic": true, "base_spirit": "bourbon", "glass": "rocks", "technique": "construido", "classification": "classic", "garnish": "Piel de naranja"},
+    "ingredients": [
+      {"ingredient": "bourbon", "quantity": 45, "unit": "ml"},
+      {"ingredient": "azucar", "quantity": 1, "unit": "piece", "notes": "un terrón"},
+      {"ingredient": "angostura", "quantity": 2, "unit": "dash"},
+      {"ingredient": "agua", "quantity": 1, "unit": "bar_spoon"},
+      {"ingredient": "naranja", "quantity": 1, "unit": "slice", "optional": true, "notes": "su piel, para perfumar"}
+    ],
+    "steps": [
+      "Pon el terrón de azúcar en el vaso, añade la angostura y el agua y macera hasta disolver.",
+      "Llena de hielo, añade el bourbon y remueve unos segundos.",
+      "Exprime la piel de naranja sobre el vaso y úsala de decoración."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "mojito",
+    "title": "Mojito",
+    "description": "Ron blanco, lima, menta y azúcar, completado con soda.",
+    "introduction": "El refrescante clásico cubano.",
+    "tips": "Presiona la menta con suavidad: si la rompes demasiado amarga.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 4, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "highballs"],
+    "drink": {"is_alcoholic": true, "base_spirit": "ron blanco", "glass": "highball", "technique": "machacado", "classification": "classic", "garnish": "Ramita de menta y rueda de lima"},
+    "ingredients": [
+      {"ingredient": "ron blanco", "quantity": 45, "unit": "ml"},
+      {"ingredient": "lima", "quantity": 20, "unit": "ml", "notes": "jugo"},
+      {"ingredient": "menta", "quantity": 6, "unit": "leaf"},
+      {"ingredient": "azucar", "quantity": 2, "unit": "tsp"},
+      {"ingredient": "agua con gas", "notes": "para completar"}
+    ],
+    "steps": [
+      "Machaca suavemente la menta con el azúcar y el jugo de lima en el vaso.",
+      "Añade hielo picado y el ron, y remueve.",
+      "Completa con agua con gas y decora con una ramita de menta."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "whiskey-sour",
+    "title": "Whiskey Sour",
+    "description": "Bourbon, limón y azúcar, con clara de huevo opcional para una espuma sedosa.",
+    "introduction": "La plantilla de todos los sours.",
+    "tips": "Si usas clara, haz primero un dry shake (sin hielo) para montar la espuma.",
+    "recipe_type": "drink", "difficulty": "medium", "servings": 1,
+    "preparation_time_minutes": 4, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "sours"],
+    "drink": {"is_alcoholic": true, "base_spirit": "bourbon", "glass": "rocks", "technique": "batido", "classification": "classic", "garnish": "Piel de naranja y cereza"},
+    "ingredients": [
+      {"ingredient": "bourbon", "quantity": 45, "unit": "ml"},
+      {"ingredient": "limon", "quantity": 25, "unit": "ml", "notes": "jugo"},
+      {"ingredient": "jarabe simple", "quantity": 20, "unit": "ml"},
+      {"ingredient": "huevo", "quantity": 1, "unit": "piece", "optional": true, "notes": "solo la clara (unos 20 ml)"}
+    ],
+    "steps": [
+      "Si usas clara, bate todos los ingredientes sin hielo durante 10 segundos.",
+      "Añade hielo y bate de nuevo con energía.",
+      "Cuela en un vaso con hielo y decora."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "moscow-mule",
+    "title": "Moscow Mule",
+    "description": "Vodka, cerveza de jengibre y lima, servido en taza de cobre.",
+    "introduction": "Un highball picante y refrescante.",
+    "tips": "Cuanto más fría la cerveza de jengibre, mejor se conserva el gas.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 2, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "highballs"],
+    "drink": {"is_alcoholic": true, "base_spirit": "vodka", "glass": "taza-de-cobre", "technique": "construido", "classification": "classic", "garnish": "Rodaja de lima"},
+    "ingredients": [
+      {"ingredient": "vodka", "quantity": 45, "unit": "ml"},
+      {"ingredient": "cerveza de jengibre", "quantity": 120, "unit": "ml"},
+      {"ingredient": "lima", "quantity": 10, "unit": "ml", "notes": "jugo"}
+    ],
+    "steps": [
+      "Llena la taza de hielo.",
+      "Añade el vodka y la lima y completa con la cerveza de jengibre.",
+      "Remueve suavemente y decora con lima."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "cuba-libre",
+    "title": "Cuba Libre",
+    "description": "Ron blanco, cola y lima: mucho más que un ron con cola.",
+    "introduction": "La lima es lo que convierte un ron con cola en un Cuba Libre.",
+    "tips": "Exprime la lima dentro del vaso y deja caer la rodaja para que suelte sus aceites.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 2, "cooking_time_minutes": 0,
+    "categories": ["clasicos", "highballs"],
+    "drink": {"is_alcoholic": true, "base_spirit": "ron blanco", "glass": "highball", "technique": "construido", "classification": "classic", "garnish": "Rodaja de lima"},
+    "ingredients": [
+      {"ingredient": "ron blanco", "quantity": 50, "unit": "ml"},
+      {"ingredient": "cola", "quantity": 120, "unit": "ml"},
+      {"ingredient": "lima", "quantity": 10, "unit": "ml", "notes": "jugo"}
+    ],
+    "steps": [
+      "Llena el vaso de hielo y añade el jugo de lima.",
+      "Vierte el ron y completa con la cola.",
+      "Remueve suavemente y decora con una rodaja de lima."
+    ],
+    "sources": "iba"
+  },
+  {
+    "slug": "mojito-sin-alcohol",
+    "title": "Mojito sin alcohol",
+    "description": "Toda la frescura del mojito, sin ron.",
+    "introduction": "Variación sin alcohol del mojito clásico.",
+    "tips": "Aumenta un poco la lima y la menta para compensar el cuerpo que aporta el ron.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 4, "cooking_time_minutes": 0,
+    "categories": ["sin-alcohol", "highballs"],
+    "drink": {"is_alcoholic": false, "glass": "highball", "technique": "machacado", "classification": "variation", "variation_of": "mojito", "garnish": "Ramita de menta"},
+    "ingredients": [
+      {"ingredient": "lima", "quantity": 30, "unit": "ml", "notes": "jugo"},
+      {"ingredient": "menta", "quantity": 8, "unit": "leaf"},
+      {"ingredient": "azucar", "quantity": 2, "unit": "tsp"},
+      {"ingredient": "agua con gas", "quantity": 150, "unit": "ml"}
+    ],
+    "steps": [
+      "Machaca suavemente la menta con el azúcar y la lima en el vaso.",
+      "Llena de hielo picado y completa con agua con gas.",
+      "Remueve y decora con menta."
+    ],
+    "sources": "miseo"
+  },
+  {
+    "slug": "limonada-de-menta-y-jengibre",
+    "title": "Limonada de menta y jengibre",
+    "description": "Limonada con gas, perfumada con menta fresca y un toque picante de jengibre.",
+    "introduction": "Una bebida sin alcohol de la casa, pensada para días de calor.",
+    "tips": "Ajusta el jarabe al gusto: depende mucho de lo ácidos que estén los limones.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 5, "cooking_time_minutes": 0,
+    "categories": ["sin-alcohol"],
+    "drink": {"is_alcoholic": false, "glass": "collins", "technique": "machacado", "classification": "contemporary", "garnish": "Hojas de menta y rodaja de limón"},
+    "ingredients": [
+      {"ingredient": "limon", "quantity": 60, "unit": "ml", "notes": "jugo"},
+      {"ingredient": "jarabe simple", "quantity": 30, "unit": "ml"},
+      {"ingredient": "menta", "quantity": 6, "unit": "leaf"},
+      {"ingredient": "jengibre", "quantity": 2, "unit": "slice", "notes": "finas"},
+      {"ingredient": "agua con gas", "quantity": 120, "unit": "ml"}
+    ],
+    "steps": [
+      "Machaca el jengibre con el jarabe en el vaso. Añade la menta y presiona suavemente.",
+      "Agrega el jugo de limón y llena de hielo.",
+      "Completa con agua con gas, remueve y decora."
+    ],
+    "sources": "miseo"
+  }
+]

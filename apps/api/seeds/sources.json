@@ -1,0 +1,20 @@
+{
+  "iba": [
+    {
+      "source_name": "IBA Official Cocktails",
+      "source_url": "https://iba-world.com/",
+      "attribution": "Especificación según la lista oficial de cócteles de la International Bartenders Association (IBA). Texto de preparación redactado por Miseo.",
+      "license": null,
+      "source_type": "website"
+    }
+  ],
+  "miseo": [
+    {
+      "source_name": "Miseo",
+      "source_url": null,
+      "attribution": "Receta de ejemplo escrita para los datos de desarrollo de Miseo.",
+      "license": "CC BY-SA 4.0",
+      "source_type": "original"
+    }
+  ]
+}

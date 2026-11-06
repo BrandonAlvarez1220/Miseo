@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/*
+ * Miseo design tokens.
+ *
+ * Raw values live in CSS custom properties so a section can switch "world"
+ * with a single attribute: the default is the fresh, light Kitchen palette
+ * (white, green, orange); [data-theme="mixology"] swaps to the night palette. Tailwind
+ * utilities (bg-canvas, text-ink, ...) read the variables through @theme inline,
+ * so components never need to know which world they are rendered in.
+ */
+:root {
+  --canvas: #f6f7f5;
+  --surface: #ffffff;
+  --surface-muted: #f0f2ef;
+  --ink: #17181a;
+  --ink-muted: #686d74;
+  --line: #e6e8e4;
+  --primary: #168a4a;
+  --primary-hover: #12733d;
+  --primary-ink: #ffffff;
+  --primary-soft: #e5f3ea;
+  --accent: #f0642f;
+  --accent-ink: #b9420f;
+  --accent-soft: #fdece4;
+  --notice: #b7791f;
+  --notice-soft: #fdf6e7;
+  --focus: #168a4a;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  color-scheme: light;
+}
+
+[data-theme="mixology"] {
+  --canvas: #121418;
+  --surface: #1b1e24;
+  --surface-muted: #252930;
+  --ink: #f3f4f6;
+  --ink-muted: #a3a9b4;
+  --line: #2d323b;
+  --primary: #f0a93b;
+  --primary-hover: #f6bd5e;
+  --primary-ink: #1a1206;
+  --primary-soft: #3a2e1a;
+  --accent: #ec6d93;
+  --accent-ink: #f59ab6;
+  --accent-soft: #3b2230;
+  --notice: #f0a93b;
+  --notice-soft: #33291a;
+  --focus: #f0a93b;
+  --danger: #f97066;
+  --danger-soft: #3d1f22;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-notice: var(--notice);
+  --color-notice-soft: var(--notice-soft);
+  --color-focus: var(--focus);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  /* Same family for now; kept as a separate token so headings can diverge later. */
+  --font-display: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+
+  --shadow-soft: 0 1px 2px rgb(23 24 26 / 0.04), 0 6px 20px -10px rgb(23 24 26 / 0.1);
+  --shadow-lift: 0 2px 4px rgb(23 24 26 / 0.05), 0 14px 36px -14px rgb(23 24 26 / 0.2);
+  --shadow-glow: 0 10px 24px -10px rgb(22 138 74 / 0.55);
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

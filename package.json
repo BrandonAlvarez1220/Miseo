@@ -1,0 +1,16 @@
+{
+  "name": "miseo",
+  "private": true,
+  "description": "Open-source community platform for cooking recipes and mixology",
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.0",
+  "engines": {
+    "node": ">=20.9"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "build:web": "pnpm --filter web build",
+    "lint:web": "pnpm --filter web lint",
+    "test:web": "pnpm --filter web test"
+  }
+}

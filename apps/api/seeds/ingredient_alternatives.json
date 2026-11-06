@@ -1,0 +1,21 @@
+[
+  {"ingredient": "lima", "alternative": "limon", "type": "similar", "notes": "Más ácido y menos aromático; funciona en casi todos los usos."},
+  {"ingredient": "limon", "alternative": "lima", "type": "similar", "notes": "Aporta un perfil más floral y algo más amargo."},
+  {"ingredient": "aceite de oliva", "alternative": "aceite vegetal", "type": "equivalent", "notes": "Sabor más neutro."},
+  {"ingredient": "aceite vegetal", "alternative": "aceite de oliva", "type": "equivalent", "notes": "Aporta más sabor; evita el virgen extra para frituras largas."},
+  {"ingredient": "mantequilla", "alternative": "aceite vegetal", "type": "similar", "ratio": 0.8, "notes": "Usa un 80 % de la cantidad; no sirve para cremar con azúcar."},
+  {"ingredient": "cilantro", "alternative": "perejil", "type": "similar", "notes": "Más suave; mantiene el frescor verde."},
+  {"ingredient": "perejil", "alternative": "cilantro", "type": "similar", "notes": "Sabor más intenso y cítrico."},
+  {"ingredient": "caldo de pollo", "alternative": "caldo de verduras", "type": "equivalent", "notes": "Además hace la receta apta para vegetarianos si no lleva otra carne."},
+  {"ingredient": "caldo de verduras", "alternative": "caldo de pollo", "type": "equivalent", "notes": "Deja de ser apto para vegetarianos."},
+  {"ingredient": "caldo de pollo", "alternative": "agua", "type": "emergency", "notes": "Funciona, pero con menos sabor; ajusta la sal."},
+  {"ingredient": "caldo de verduras", "alternative": "agua", "type": "emergency", "notes": "Funciona, pero con menos sabor; ajusta la sal."},
+  {"ingredient": "cerveza de jengibre", "alternative": "ginger ale", "type": "similar", "notes": "Más dulce y con menos picor de jengibre."},
+  {"ingredient": "ginger ale", "alternative": "cerveza de jengibre", "type": "similar", "notes": "Más picante y menos dulce."},
+  {"ingredient": "jarabe simple", "alternative": "azucar", "type": "similar", "notes": "Disuelve azúcar en la misma cantidad de agua (1:1). Unos 15 ml de jarabe equivalen a 2 cucharaditas de azúcar."},
+  {"ingredient": "azucar", "alternative": "jarabe simple", "type": "similar", "notes": "En bebidas, 2 cucharaditas de azúcar ≈ 15 ml de jarabe simple."},
+  {"ingredient": "azucar", "alternative": "miel", "type": "similar", "ratio": 0.75, "notes": "Usa un 75 % de la cantidad; aporta sabor propio."},
+  {"ingredient": "nata", "alternative": "leche", "type": "emergency", "notes": "El resultado será menos cremoso."},
+  {"ingredient": "toronja", "alternative": "naranja", "type": "emergency", "notes": "Menos amarga y más dulce; cambia el perfil del cóctel."},
+  {"ingredient": "albahaca", "alternative": "perejil", "type": "emergency", "notes": "Aporta frescor pero no el aroma de la albahaca."}
+]

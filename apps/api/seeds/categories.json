@@ -1,0 +1,17 @@
+[
+  {"recipe_type": "cooking", "slug": "desayunos", "name": "Desayunos", "description": "Para empezar el día con energía."},
+  {"recipe_type": "cooking", "slug": "entradas", "name": "Entradas", "description": "Bocados para abrir el apetito."},
+  {"recipe_type": "cooking", "slug": "sopas-y-cremas", "name": "Sopas y cremas", "description": "Reconfortantes, de cuchara."},
+  {"recipe_type": "cooking", "slug": "ensaladas", "name": "Ensaladas", "description": "Frescas, crujientes y llenas de color."},
+  {"recipe_type": "cooking", "slug": "pastas-y-arroces", "name": "Pastas y arroces", "description": "Clásicos que nunca fallan."},
+  {"recipe_type": "cooking", "slug": "carnes-y-aves", "name": "Carnes y aves", "description": "Asados, guisos y salteados."},
+  {"recipe_type": "cooking", "slug": "pescados-y-mariscos", "name": "Pescados y mariscos", "description": "Del mar a la mesa."},
+  {"recipe_type": "cooking", "slug": "vegetariano", "name": "Vegetariano", "description": "Platos protagonizados por vegetales."},
+  {"recipe_type": "cooking", "slug": "postres", "name": "Postres", "description": "El final dulce."},
+  {"recipe_type": "drink", "slug": "clasicos", "name": "Clásicos", "description": "Cócteles con historia documentada."},
+  {"recipe_type": "drink", "slug": "sours", "name": "Sours", "description": "Destilado, cítrico y dulzor en equilibrio."},
+  {"recipe_type": "drink", "slug": "highballs", "name": "Highballs", "description": "Largos, burbujeantes y refrescantes."},
+  {"recipe_type": "drink", "slug": "tropicales", "name": "Tropicales", "description": "Ron, frutas y espíritu tiki."},
+  {"recipe_type": "drink", "slug": "aperitivos", "name": "Aperitivos", "description": "Amargos y ligeros, antes de comer."},
+  {"recipe_type": "drink", "slug": "sin-alcohol", "name": "Sin alcohol", "description": "Mocktails y bebidas sin alcohol."}
+]

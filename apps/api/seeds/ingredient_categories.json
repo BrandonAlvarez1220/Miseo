@@ -1,0 +1,20 @@
+[
+  {"slug": "verduras", "name": "Verduras y hortalizas"},
+  {"slug": "frutas", "name": "Frutas"},
+  {"slug": "citricos", "name": "Cítricos"},
+  {"slug": "hierbas", "name": "Hierbas frescas"},
+  {"slug": "especias", "name": "Especias"},
+  {"slug": "proteinas", "name": "Carnes y aves"},
+  {"slug": "pescados", "name": "Pescados y mariscos"},
+  {"slug": "lacteos", "name": "Lácteos y huevos"},
+  {"slug": "granos", "name": "Granos, harinas y pastas"},
+  {"slug": "legumbres", "name": "Legumbres"},
+  {"slug": "aceites", "name": "Aceites y grasas"},
+  {"slug": "despensa", "name": "Despensa"},
+  {"slug": "destilados", "name": "Destilados"},
+  {"slug": "licores", "name": "Licores"},
+  {"slug": "vinos", "name": "Vinos y fortificados"},
+  {"slug": "amargos", "name": "Amargos (bitters)"},
+  {"slug": "jarabes", "name": "Jarabes y endulzantes"},
+  {"slug": "mezcladores", "name": "Mezcladores y refrescos"}
+]

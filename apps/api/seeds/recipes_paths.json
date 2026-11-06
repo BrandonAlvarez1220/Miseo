@@ -1,0 +1,175 @@
+[
+  {
+    "slug": "huevos-a-la-mexicana",
+    "title": "Huevos a la mexicana",
+    "description": "Huevos revueltos con jitomate, cebolla y chile serrano: los colores de la bandera en el sartén.",
+    "introduction": "El desayuno con el que mucha gente aprende a cocinar. Pocas cosas, pero enseña lo básico: picar parejo y no pasarse de fuego.",
+    "tips": "Retira los huevos del fuego cuando todavía se vean un poco húmedos: terminan de cocerse con su propio calor.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 2,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 8,
+    "categories": ["desayunos"],
+    "ingredients": [
+      {"ingredient": "huevo", "quantity": 4, "unit": "piece"},
+      {"ingredient": "tomate", "quantity": 1, "unit": "piece", "notes": "jitomate picado"},
+      {"ingredient": "cebolla", "quantity": 0.25, "unit": "piece", "notes": "picada"},
+      {"ingredient": "chile serrano", "quantity": 1, "unit": "piece", "notes": "picado; sin semillas si no quieres picante"},
+      {"ingredient": "aceite vegetal", "quantity": 1, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "tortilla de maiz", "quantity": 4, "unit": "piece", "optional": true, "notes": "calientes, para acompañar"}
+    ],
+    "steps": [
+      "Calienta el aceite a fuego medio y sofríe la cebolla y el chile 2 minutos.",
+      "Añade el jitomate y cocina 2 minutos más, hasta que suelte su jugo.",
+      "Bate los huevos con una pizca de sal y viértelos en el sartén.",
+      "Mueve con una espátula de forma suave y constante hasta que cuajen pero sigan jugosos. Sirve con tortillas."
+    ]
+  },
+  {
+    "slug": "sopa-de-fideo",
+    "title": "Sopa de fideo",
+    "description": "Fideo dorado en un caldillo de jitomate: la sopa de casa por excelencia.",
+    "introduction": "El secreto está en dorar bien el fideo antes de añadir el caldillo: le da sabor tostado y evita que se bata.",
+    "tips": "Dora el fideo moviendo sin parar; pasa de dorado a quemado en segundos.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 20,
+    "categories": ["sopas-y-cremas"],
+    "ingredients": [
+      {"ingredient": "fideo", "quantity": 200, "unit": "g"},
+      {"ingredient": "tomate", "quantity": 3, "unit": "piece", "notes": "jitomates"},
+      {"ingredient": "cebolla", "quantity": 0.25, "unit": "piece"},
+      {"ingredient": "ajo", "quantity": 1, "unit": "clove"},
+      {"ingredient": "caldo de pollo", "quantity": 1.5, "unit": "l"},
+      {"ingredient": "aceite vegetal", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "aguacate", "quantity": 1, "unit": "piece", "optional": true, "notes": "en cubos, para servir"}
+    ],
+    "steps": [
+      "Licúa los jitomates con la cebolla, el ajo y un poco del caldo. Cuela si quieres un caldillo más fino.",
+      "Calienta el aceite y dora el fideo a fuego medio, moviendo sin parar, hasta que tome color dorado.",
+      "Vierte el licuado sobre el fideo (con cuidado, salpica) y cocina 3 minutos para que se sazone.",
+      "Añade el resto del caldo, ajusta de sal y cocina 8-10 minutos a fuego bajo hasta que el fideo esté suave. Sirve con aguacate."
+    ]
+  },
+  {
+    "slug": "quesadillas",
+    "title": "Quesadillas de queso Oaxaca",
+    "description": "Tortillas de maíz calientes con queso Oaxaca fundido y, si tienes, una hoja de epazote.",
+    "introduction": "Rápidas y perfectas para aprender a usar el comal: fuego medio, paciencia y voltear en el momento justo.",
+    "tips": "Si el queso no se funde antes de que la tortilla se dore, baja el fuego y tapa el comal un minuto.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 2,
+    "preparation_time_minutes": 5, "cooking_time_minutes": 10,
+    "categories": ["desayunos", "entradas", "vegetariano"],
+    "ingredients": [
+      {"ingredient": "tortilla de maiz", "quantity": 6, "unit": "piece"},
+      {"ingredient": "queso oaxaca", "quantity": 200, "unit": "g", "notes": "deshebrado"},
+      {"ingredient": "epazote", "quantity": 6, "unit": "leaf", "optional": true}
+    ],
+    "steps": [
+      "Calienta el comal o un sartén a fuego medio, sin aceite.",
+      "Calienta la tortilla 30 segundos por lado, coloca el queso y el epazote en una mitad y dóblala.",
+      "Cocina 1-2 minutos por lado, hasta que el queso se funda y la tortilla quede ligeramente tostada."
+    ]
+  },
+  {
+    "slug": "arroz-rojo",
+    "title": "Arroz rojo",
+    "description": "Arroz a la mexicana, suelto y con sabor a jitomate, que acompaña casi todo.",
+    "introduction": "Aquí se aprende el método por absorción: tostar el arroz, añadir el líquido justo y no destapar.",
+    "tips": "La regla de oro: una vez que tapas la olla, no la abras ni muevas el arroz hasta que termine.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 25,
+    "categories": ["pastas-y-arroces"],
+    "ingredients": [
+      {"ingredient": "arroz", "quantity": 1, "unit": "cup", "notes": "lavado y escurrido"},
+      {"ingredient": "tomate", "quantity": 2, "unit": "piece", "notes": "jitomates"},
+      {"ingredient": "cebolla", "quantity": 0.25, "unit": "piece"},
+      {"ingredient": "ajo", "quantity": 1, "unit": "clove"},
+      {"ingredient": "caldo de pollo", "quantity": 2, "unit": "cup", "notes": "caliente"},
+      {"ingredient": "aceite vegetal", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "guisantes", "quantity": 0.5, "unit": "cup", "optional": true, "notes": "chícharos"},
+      {"ingredient": "zanahoria", "quantity": 1, "unit": "piece", "optional": true, "notes": "en cubos pequeños"}
+    ],
+    "steps": [
+      "Licúa los jitomates con la cebolla y el ajo, y cuela.",
+      "Calienta el aceite y fríe el arroz a fuego medio, moviendo, hasta que suene seco y se vea opaco y algo dorado (5-7 minutos).",
+      "Añade el licuado y cocina hasta que casi no quede líquido.",
+      "Vierte el caldo caliente, la sal y las verduras. Cuando hierva, baja el fuego al mínimo y tapa.",
+      "Cocina 18 minutos sin destapar. Apaga y deja reposar 5 minutos tapado antes de esponjar con un tenedor."
+    ]
+  },
+  {
+    "slug": "frijoles-de-la-olla",
+    "title": "Frijoles de la olla",
+    "description": "Frijoles cocidos lentamente con cebolla, ajo y epazote. La base de la cocina diaria.",
+    "introduction": "Una receta de paciencia: aprenderás a controlar una cocción larga y a sazonar en el momento correcto.",
+    "tips": "Añade la sal cuando los frijoles ya estén suaves: si se pone al principio, la piel tarda más en ablandarse.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 6,
+    "preparation_time_minutes": 10, "cooking_time_minutes": 150,
+    "categories": ["vegetariano"],
+    "ingredients": [
+      {"ingredient": "frijol seco", "quantity": 500, "unit": "g", "notes": "limpio y lavado"},
+      {"ingredient": "agua", "quantity": 2.5, "unit": "l"},
+      {"ingredient": "cebolla", "quantity": 0.5, "unit": "piece"},
+      {"ingredient": "ajo", "quantity": 2, "unit": "clove"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "epazote", "quantity": 1, "unit": "sprig", "optional": true}
+    ],
+    "steps": [
+      "Si quieres acortar la cocción, remoja los frijoles en agua fría durante la noche y desecha esa agua.",
+      "Pon los frijoles en una olla con el agua, la cebolla y el ajo. Lleva a ebullición y baja a fuego suave.",
+      "Cocina tapado a medias entre 2 y 3 horas, añadiendo agua caliente si hace falta para que siempre estén cubiertos.",
+      "Cuando estén suaves, añade la sal y el epazote y cocina 15 minutos más."
+    ]
+  },
+  {
+    "slug": "bistec-con-nopales",
+    "title": "Bistec con nopales",
+    "description": "Bistec de res sellado y guisado con nopales asados en salsa de jitomate y chile serrano.",
+    "introduction": "Dos habilidades en un platillo: sellar carne a fuego alto y asar nopales sin que suelten baba.",
+    "tips": "Para que los nopales no babeen, ásalos solos en el sartén caliente hasta que cambien a verde oscuro y se evapore su líquido, antes de juntarlos con la salsa.",
+    "recipe_type": "cooking", "difficulty": "easy", "servings": 4,
+    "preparation_time_minutes": 15, "cooking_time_minutes": 25,
+    "categories": ["carnes-y-aves"],
+    "ingredients": [
+      {"ingredient": "bistec de res", "quantity": 600, "unit": "g", "notes": "en tiras o trozos"},
+      {"ingredient": "nopales", "quantity": 4, "unit": "piece", "notes": "limpios, en tiras"},
+      {"ingredient": "tomate", "quantity": 3, "unit": "piece", "notes": "jitomates picados"},
+      {"ingredient": "cebolla", "quantity": 0.5, "unit": "piece", "notes": "en rodajas"},
+      {"ingredient": "chile serrano", "quantity": 2, "unit": "piece", "notes": "picados"},
+      {"ingredient": "ajo", "quantity": 2, "unit": "clove", "notes": "picados"},
+      {"ingredient": "aceite vegetal", "quantity": 2, "unit": "tbsp"},
+      {"ingredient": "sal", "unit": "to_taste"},
+      {"ingredient": "pimienta negra", "unit": "to_taste"}
+    ],
+    "steps": [
+      "Asa los nopales en un sartén caliente sin aceite, moviendo de vez en cuando, hasta que se vean verde oscuro y sin baba (8-10 minutos). Reserva.",
+      "Salpimienta la carne. Calienta el aceite a fuego alto y sella la carne en tandas, sin amontonarla, 1-2 minutos por lado. Reserva.",
+      "En el mismo sartén, a fuego medio, sofríe la cebolla, el ajo y el chile 3 minutos. Añade el jitomate y cocina 5 minutos.",
+      "Regresa la carne y los nopales, ajusta de sal y cocina 5 minutos más para que todo se integre."
+    ]
+  },
+  {
+    "slug": "paloma",
+    "title": "Paloma",
+    "description": "Tequila con refresco de toronja, un toque de lima y sal. El highball mexicano.",
+    "introduction": "En México se pide más que la Margarita: refrescante, sencilla y perfecta para aprender a construir en el vaso.",
+    "tips": "Usa un refresco de toronja bien frío y añádelo al final para que conserve el gas.",
+    "recipe_type": "drink", "difficulty": "easy", "servings": 1,
+    "preparation_time_minutes": 2, "cooking_time_minutes": 0,
+    "categories": ["highballs"],
+    "drink": {"is_alcoholic": true, "base_spirit": "tequila", "glass": "highball", "technique": "construido", "classification": "classic", "garnish": "Rodaja de lima y media corona de sal"},
+    "ingredients": [
+      {"ingredient": "tequila", "quantity": 50, "unit": "ml"},
+      {"ingredient": "lima", "quantity": 5, "unit": "ml", "notes": "jugo"},
+      {"ingredient": "refresco de toronja", "quantity": 100, "unit": "ml"},
+      {"ingredient": "sal", "quantity": 1, "unit": "pinch", "optional": true}
+    ],
+    "steps": [
+      "Si quieres, escarcha media orilla del vaso con sal.",
+      "Llena el vaso de hielo y añade el tequila y el jugo de lima.",
+      "Completa con el refresco de toronja y remueve suavemente."
+    ],
+    "sources": "iba"
+  }
+]

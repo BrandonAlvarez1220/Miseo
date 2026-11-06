@@ -1,0 +1,9 @@
+[
+  {"slug": "batido", "name": "Batido (shake)", "description": "Agitar con hielo en coctelera para enfriar, diluir y airear. Ideal con cítricos, lácteos o claras."},
+  {"slug": "mezclado", "name": "Mezclado (stir)", "description": "Remover con hielo en vaso mezclador. Enfría y diluye sin airear; para tragos solo de destilados."},
+  {"slug": "construido", "name": "Construido (build)", "description": "Servir los ingredientes directamente en el vaso de servicio."},
+  {"slug": "machacado", "name": "Machacado (muddle)", "description": "Presionar frutas o hierbas para liberar aceites y jugos."},
+  {"slug": "licuado", "name": "Licuado (blend)", "description": "Mezclar con hielo en licuadora para texturas frappé."},
+  {"slug": "flotado", "name": "Flotado (float)", "description": "Verter suavemente un ingrediente sobre otro para crear capas."},
+  {"slug": "dry-shake", "name": "Dry shake", "description": "Batir sin hielo para emulsionar claras de huevo antes del batido con hielo."}
+]

@@ -1,0 +1,23 @@
+[
+  {"code": "g", "name": "gramo", "plural_name": "gramos", "unit_type": "mass", "to_base_factor": 1},
+  {"code": "kg", "name": "kilogramo", "plural_name": "kilogramos", "unit_type": "mass", "to_base_factor": 1000},
+  {"code": "oz_wt", "name": "onza (peso)", "plural_name": "onzas (peso)", "unit_type": "mass", "to_base_factor": 28.349523},
+  {"code": "lb", "name": "libra", "plural_name": "libras", "unit_type": "mass", "to_base_factor": 453.59237},
+  {"code": "ml", "name": "mililitro", "plural_name": "mililitros", "unit_type": "volume", "to_base_factor": 1},
+  {"code": "cl", "name": "centilitro", "plural_name": "centilitros", "unit_type": "volume", "to_base_factor": 10},
+  {"code": "l", "name": "litro", "plural_name": "litros", "unit_type": "volume", "to_base_factor": 1000},
+  {"code": "tsp", "name": "cucharadita", "plural_name": "cucharaditas", "unit_type": "volume", "to_base_factor": 5},
+  {"code": "tbsp", "name": "cucharada", "plural_name": "cucharadas", "unit_type": "volume", "to_base_factor": 15},
+  {"code": "cup", "name": "taza", "plural_name": "tazas", "unit_type": "volume", "to_base_factor": 240},
+  {"code": "oz", "name": "onza líquida", "plural_name": "onzas líquidas", "unit_type": "volume", "to_base_factor": 29.57353},
+  {"code": "bar_spoon", "name": "cucharita de bar", "plural_name": "cucharitas de bar", "unit_type": "volume", "to_base_factor": 5},
+  {"code": "dash", "name": "dash", "plural_name": "dashes", "unit_type": "volume", "to_base_factor": 0.9},
+  {"code": "drop", "name": "gota", "plural_name": "gotas", "unit_type": "volume", "to_base_factor": 0.05},
+  {"code": "piece", "name": "pieza", "plural_name": "piezas", "unit_type": "count", "to_base_factor": null},
+  {"code": "slice", "name": "rodaja", "plural_name": "rodajas", "unit_type": "count", "to_base_factor": null},
+  {"code": "clove", "name": "diente", "plural_name": "dientes", "unit_type": "count", "to_base_factor": null},
+  {"code": "leaf", "name": "hoja", "plural_name": "hojas", "unit_type": "count", "to_base_factor": null},
+  {"code": "sprig", "name": "ramita", "plural_name": "ramitas", "unit_type": "count", "to_base_factor": null},
+  {"code": "pinch", "name": "pizca", "plural_name": "pizcas", "unit_type": "other", "to_base_factor": null},
+  {"code": "to_taste", "name": "al gusto", "plural_name": "al gusto", "unit_type": "other", "to_base_factor": null}
+]

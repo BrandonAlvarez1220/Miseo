@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "cocina",
+    "title": "Del primer platillo a cocinero con oficio",
+    "discipline": "cooking",
+    "description": "Una escalera de platillos de casa, de lo más sencillo a lo más elaborado. Las habilidades se aprenden cocinando.",
+    "stages": [
+      {"title": "Sin miedo a la estufa", "description": "Platillos rápidos para perderle el miedo al cuchillo y al fuego.", "dishes_to_unlock": 3,
+       "dishes": ["huevos-a-la-mexicana", "sopa-de-fideo", "quesadillas", "guacamole", "pico-de-gallo", "ensalada-caprese"]},
+      {"title": "Comida de casa", "description": "Lo que se come en casa todos los días: arroz, frijoles y guisos sencillos.", "dishes_to_unlock": 3,
+       "dishes": ["arroz-rojo", "frijoles-de-la-olla", "bistec-con-nopales", "pasta-al-pomodoro", "lentejas-guisadas"]},
+      {"title": "Sabores con más pasos", "description": "Salsas licuadas, proteínas en su punto y algún que otro volteo valiente.", "dishes_to_unlock": 3,
+       "dishes": ["huevos-rancheros", "pollo-al-limon-con-ajo", "salmon-al-horno-con-limon", "tortilla-de-patatas", "sopa-de-tomate"]},
+      {"title": "De fin de semana", "description": "Platillos para cocinar con calma y coordinar varias cosas a la vez.", "dishes_to_unlock": 1,
+       "dishes": ["arroz-con-pollo", "panqueques"]}
+    ]
+  },
+  {
+    "slug": "barra",
+    "title": "Del primer highball a bartender con criterio",
+    "discipline": "drink",
+    "description": "De los tragos más sencillos a los clásicos de espirituosos. Cada etapa incluye opciones sin alcohol cuando existen.",
+    "stages": [
+      {"title": "Mis primeros tragos", "description": "Construir en el vaso: medir, hielo y la soda al final.", "dishes_to_unlock": 2,
+       "dishes": ["cuba-libre", "moscow-mule", "paloma", "limonada-de-menta-y-jengibre"]},
+      {"title": "Los sours", "description": "Batir, colar y encontrar el equilibrio entre dulce y ácido.", "dishes_to_unlock": 2,
+       "dishes": ["daiquiri", "margarita", "mojito", "mojito-sin-alcohol"]},
+      {"title": "Más técnica", "description": "Espuma de clara y tu primera variación de un clásico.", "dishes_to_unlock": 1,
+       "dishes": ["whiskey-sour", "hemingway-special"]},
+      {"title": "Tragos de espirituosos", "description": "Remover, diluir y perfumar: los clásicos más puros.", "dishes_to_unlock": 1,
+       "dishes": ["negroni", "old-fashioned"]}
+    ]
+  }
+]
